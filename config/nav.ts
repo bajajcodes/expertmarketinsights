@@ -3,6 +3,8 @@ import { MainNavItem, SidebarNavItem } from '@/types/nav';
 interface NavConfig {
   mainNav: MainNavItem[];
   sidebarNav: SidebarNavItem[];
+  policiesNav: MainNavItem[];
+  helpdeskNav: MainNavItem[];
 }
 
 export const navConfig: NavConfig = {
@@ -115,6 +117,58 @@ export const navConfig: NavConfig = {
           items: [],
         },
       ],
+    },
+  ],
+  policiesNav: [
+    {
+      href: '/privacy-policy',
+      title: 'Privacy Policy',
+    },
+    {
+      href: '/refund-policy',
+      title: 'Refund Policy',
+    },
+    {
+      href: '/disclaimer',
+      title: 'Disclaimer',
+    },
+    {
+      href: '/terms-and-condition',
+      title: 'Terms & Conditions',
+    },
+    {
+      href: '/sitemap',
+      title: 'Sitemap',
+    },
+    {
+      href: '/reports',
+      title: 'All Reports',
+    },
+  ],
+  helpdeskNav: [
+    {
+      href: '/format-delivery',
+      title: 'Format & Delivery',
+    },
+    {
+      href: '/subscription',
+      title: 'Subscription',
+    },
+    {
+      href: '/payment-options',
+      title: 'Payment Options',
+    },
+    {
+      href: '/career',
+      title: 'Careers',
+    },
+    {
+      href: '/sitemap.xml',
+      title: 'XML Sitemap',
+    },
+    {
+      href: '/faq',
+      title: 'FAQs',
     },
   ],
 };
