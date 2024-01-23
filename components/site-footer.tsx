@@ -79,7 +79,7 @@ export function SiteFooter() {
             </ul>
           </div>
         </div>
-        <div className="container flex gap-4 flex-col  lg:items-center lg:justify-between lg:flex-row">
+        <div className="container flex gap-4 flex-col  lg:items-end lg:justify-between lg:flex-row">
           <div className="flex items-center space-x-2">
             <Button variant="link" size="icon" className="text-black bg-white">
               <span>
@@ -97,7 +97,7 @@ export function SiteFooter() {
               </span>
             </Button>
           </div>
-          <div className="text-[#3ba7e0] text-base font-bold mb-8 lg:mb-2 uppercase">
+          <div className="text-[#3ba7e0] text-base font-bold mb-8 lg:mb-0 uppercase">
             COPYRIGHT © 2024 ALL RIGHTS RESERVED
           </div>
         </div>
