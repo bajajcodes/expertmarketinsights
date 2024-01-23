@@ -109,7 +109,7 @@ export default function Home() {
               niche company profiles.
             </PageHeaderDescription>
             <PageHeaderDescription className="mb-4">
-              With a focus on meeting our clients' needs, we analyse drawbacks,
+              With a focus on meeting our clients needs, we analyse drawbacks,
               prospects, conditions, and valuations, employing well-established
               methodologies and seasoned skills. This ensures our patrons
               experience innovative solutions and achieve desired outcomes.
@@ -119,8 +119,10 @@ export default function Home() {
                 We consider beyond the conventional boundaries of the market.
               </strong>
               <br />
-              "Data, data everywhere, yet we find ourselves immersed in an
-              abundance of information."
+              <span>
+                Data, data everywhere, yet we find ourselves immersed in an
+                abundance of information.
+              </span>
             </PageHeaderDescription>
             <PageHeaderDescription className="mb-4">
               At Expert Market Insights, we generate exceptional value for our
@@ -134,7 +136,7 @@ export default function Home() {
               have successfully guided businesses worldwide with our market
               research reports and are strongly positioned to spearhead digital
               transformations. In conclusion, we consider it our duty to ensure
-              our clients' success because their triumph reflects positively on
+              our clients success because their triumph reflects positively on
               us as well.
             </PageHeaderDescription>
           </PageHeader>
