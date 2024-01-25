@@ -7,7 +7,7 @@ import { WeAreTrustedBy } from './we-are-trusted-by-carousel';
 
 export function SiteFooter() {
   return (
-    <>
+    <footer className="text-black">
       <WeAreTrustedBy />
       <div className=" bg-[#9cdaf5] p-8 flex flex-col md:flex-row md:items-center md:justify-center gap-8">
         <div className="mb-3 md:mb-0 text-2xl font-semibold">
@@ -15,7 +15,7 @@ export function SiteFooter() {
         </div>
         <InputWithButton />
       </div>
-      <footer className="bg-[#1a1e2c] px-2 py-8 md:px-8 ">
+      <div className="bg-[#1a1e2c] px-2 py-8 md:px-8 ">
         <div className="container max-w-screen-xl">
           <div className="flex flex-col lg:items-center lg:justify-between gap-4  md:flex-row mb-8">
             <div className="flex flex-col gap-4">
@@ -106,7 +106,7 @@ export function SiteFooter() {
             </div>
           </div>
         </div>
-      </footer>
-    </>
+      </div>
+    </footer>
   );
 }

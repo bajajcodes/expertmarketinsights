@@ -28,7 +28,7 @@ export const navConfig: NavConfig = {
       items: [
         {
           title: 'Overview',
-          href: '/aboutus/Overview',
+          href: '/aboutus/overview',
           items: [],
         },
         {
