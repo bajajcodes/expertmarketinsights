@@ -1,6 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
 import { InputWithButton } from '@/components/input-with-button';
-import { PageHeader } from '@/components/page-header';
 import Link from 'next/link';
 
 interface LayoutProps {
