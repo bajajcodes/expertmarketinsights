@@ -15,7 +15,7 @@ export const navConfig: NavConfig = {
     },
     {
       title: 'Services',
-      href: '/services',
+      href: '/aboutus/services',
     },
     {
       title: 'Contact US',
@@ -28,7 +28,7 @@ export const navConfig: NavConfig = {
       items: [
         {
           title: 'Overview',
-          href: '/aboutus/Overview',
+          href: '/aboutus/overview',
           items: [],
         },
         {
