@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import * as React from 'react';
-import Link from 'next/link';
-import { cn } from '@/lib/utils';
-import { Icons } from './icons';
-import { siteConfig } from '@/config/site';
+import * as React from "react";
+import Link from "next/link";
+import { cn } from "@/lib/utils";
+import { Icons } from "./icons";
+import { siteConfig } from "@/config/site";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -13,14 +13,21 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
-} from '@/components/ui/navigation-menu';
-import { navConfig } from '@/config/nav';
+} from "@/components/ui/navigation-menu";
+import { navConfig } from "@/config/nav";
+import Image from "next/image";
 
 export function MainNav() {
   return (
     <div className="mr-4 hidden md:flex md:items-center">
       <Link href="/" className="mr-6 flex items-center space-x-2">
-        <Icons.logo className="h-6 w-6" />
+        <Image
+          src="/logo.png"
+          className="w-10 h-10 mr-2"
+          width={48}
+          height={48}
+          alt="EMI Logo"
+        />
         <span className="hidden font-bold sm:inline-block">
           {siteConfig.name}
         </span>
@@ -71,8 +78,8 @@ export function MainNav() {
 }
 
 const ListItem = React.forwardRef<
-  React.ElementRef<'a'>,
-  React.ComponentPropsWithoutRef<'a'>
+  React.ElementRef<"a">,
+  React.ComponentPropsWithoutRef<"a">
 >(({ className, title, children, ...props }, ref) => {
   return (
     <li>
@@ -80,7 +87,7 @@ const ListItem = React.forwardRef<
         <a
           ref={ref}
           className={cn(
-            'block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground',
+            "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
             className
           )}
           {...props}
@@ -94,4 +101,4 @@ const ListItem = React.forwardRef<
     </li>
   );
 });
-ListItem.displayName = 'ListItem';
+ListItem.displayName = "ListItem";

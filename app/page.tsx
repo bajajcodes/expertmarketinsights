@@ -1,27 +1,27 @@
 /* eslint-disable @next/next/no-img-element */
-'use client';
+"use client";
 
-import { Icons } from '@/components/icons';
-import { InputWithButton } from '@/components/input-with-button';
+import { Icons } from "@/components/icons";
+import { InputWithButton } from "@/components/input-with-button";
 import {
   PageHeader,
   PageHeaderDescription,
   PageHeaderHeading,
-} from '@/components/page-header';
-import { Button } from '@/components/ui/button';
+} from "@/components/page-header";
+import { Button } from "@/components/ui/button";
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from '@/components/ui/carousel';
-import { navConfig } from '@/config/nav';
-import { images } from '@/data/hero-section';
-import Image from 'next/image';
-import Link from 'next/link';
-import React from 'react';
-import Autoplay from 'embla-carousel-autoplay';
+} from "@/components/ui/carousel";
+import { navConfig } from "@/config/nav";
+import { images } from "@/data/hero-section";
+import Image from "next/image";
+import Link from "next/link";
+import React from "react";
+import Autoplay from "embla-carousel-autoplay";
 
 //TODO: replace web `<img />` tag with `<Image />` next/image tag
 export default function Home() {
@@ -33,7 +33,23 @@ export default function Home() {
   );
   return (
     <React.Fragment>
-      <Carousel className="w-full">
+      <div className="relative h-[500px]">
+        <div className="w-full h-full relative bg-blend-screen bg-opacity-50 bg-gray-500/5"></div>
+        <img
+          src={images[0].src}
+          alt={images[0].alt}
+          className={
+            "w-full h-full object-cover object-center absolute top-0 left-0 aspect-square"
+          }
+        />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center justify-center">
+          <p className="mb-4 leading-10 font-bold text-white drop-shadow text-4xl">
+            We Use Research For Illumination!
+          </p>
+          <InputWithButton />
+        </div>
+      </div>
+      {/* <Carousel className="w-full">
         <CarouselContent>
           <CarouselItem>
             <div className="relative h-[500px]">
@@ -42,7 +58,7 @@ export default function Home() {
                 src={images[0].src}
                 alt={images[0].alt}
                 className={
-                  'w-full h-full object-cover object-center absolute top-0 left-0 aspect-square'
+                  "w-full h-full object-cover object-center absolute top-0 left-0 aspect-square"
                 }
               />
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center justify-center">
@@ -60,7 +76,7 @@ export default function Home() {
                 src={images[1].src}
                 alt={images[1].alt}
                 className={
-                  'w-full h-full object-cover object-center absolute top-0 left-0 aspect-square'
+                  "w-full h-full object-cover object-center absolute top-0 left-0 aspect-square"
                 }
               />
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center justify-center">
@@ -74,9 +90,7 @@ export default function Home() {
             </div>
           </CarouselItem>
         </CarouselContent>
-        {/* <CarouselPrevious />
-        <CarouselNext /> */}
-      </Carousel>
+      </Carousel> */}
       <section className="bg-gray-100">
         <section className="container flex flex-col lg:gap-2 md:flex-row justify-center px-4 pt-4">
           <div className="relative h-[700px] z-0">
@@ -84,14 +98,14 @@ export default function Home() {
               src="https://placehold.co/400/orange/white/png"
               alt="loerum ispum"
               className={
-                'mb-4 w-[80%] h-[400px] object-cover object-center aspect-square'
+                "mb-4 w-[80%] h-[400px] object-cover object-center aspect-square"
               }
             />
             <img
               src="https://placehold.co/400/red/white/png"
               alt="loerum ispum"
               className={
-                'mb-6 absolute -z-10 bottom-0 right-0 w-[80%] h-[400px] object-cover object-center aspect-square'
+                "mb-6 absolute -z-10 bottom-0 right-0 w-[80%] h-[400px] object-cover object-center aspect-square"
               }
             />
           </div>
@@ -172,7 +186,7 @@ export default function Home() {
         <div className="flex flex-col md:flex-row md:items-center md:justify-center">
           <Carousel
             opts={{
-              align: 'start',
+              align: "start",
             }}
             plugins={[plugin1.current]}
             orientation="vertical"
@@ -197,7 +211,7 @@ export default function Home() {
           </Carousel>
           <Carousel
             opts={{
-              align: 'start',
+              align: "start",
             }}
             plugins={[plugin2.current]}
             orientation="vertical"

@@ -1,15 +1,16 @@
-'use client';
+"use client";
 
-import * as React from 'react';
-import Link, { LinkProps } from 'next/link';
-import { useRouter } from 'next/navigation';
-import { cn } from '@/lib/utils';
-import { Sheet, SheetContent, SheetTrigger } from './ui/sheet';
-import { Button } from './ui/button';
-import { ScrollArea } from './ui/scroll-area';
-import { siteConfig } from '@/config/site';
-import { navConfig } from '@/config/nav';
-import { Icons } from './icons';
+import * as React from "react";
+import Link, { LinkProps } from "next/link";
+import { useRouter } from "next/navigation";
+import { cn } from "@/lib/utils";
+import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
+import { Button } from "./ui/button";
+import { ScrollArea } from "./ui/scroll-area";
+import { siteConfig } from "@/config/site";
+import { navConfig } from "@/config/nav";
+import { Icons } from "./icons";
+import Image from "next/image";
 
 export function MobileNav() {
   const [open, setOpen] = React.useState(false);
@@ -21,7 +22,13 @@ export function MobileNav() {
         className="flex items-center m-2 mt-0 md:hidden"
         onOpenChange={setOpen}
       >
-        <Icons.logo className="mr-2 h-4 w-4" />
+        <Image
+          src="/logo.png"
+          className="w-10 h-10 mr-2"
+          width={48}
+          height={48}
+          alt="EMI Logo"
+        />
         <span className="font-bold">{siteConfig.name}</span>
       </MobileLink>
       <SheetTrigger asChild>
