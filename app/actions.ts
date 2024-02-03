@@ -78,7 +78,7 @@ async function subscribeToNewsLetter(
         from: 'onboarding@resend.dev',
         to: 'shmbajaj32@gmail.com',
         subject: 'News Letter Subscription',
-        html: `<p>${JSON.stringify(rawFormData)}</p>`,
+        html: `<p><strong>Email:&nbsp;</strong><span>${rawFormData?.email}</span></p>`,
       }),
     });
     const data = await response.json();

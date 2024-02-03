@@ -1,8 +1,9 @@
 // TODO: store and use icons from compoennts/icons.tsx
-import { Phone, Mail, Facebook, Twitter, Linkedin } from 'lucide-react';
-import { Button } from './ui/button';
+import { Phone, Mail } from 'lucide-react';
 import { MainNav } from './main-nav';
 import { MobileNav } from './mobile-nav';
+import { siteConfig } from '@/config/site';
+import { SocialLinks } from './social-links';
 
 export function SiteHeader() {
   return (
@@ -14,32 +15,16 @@ export function SiteHeader() {
               <span>
                 <Phone className="h-4 w-4" />
               </span>
-              <span>+91-89564-46619</span>
+              <span>{siteConfig.mobile}</span>
             </div>
             <div className="flex flex-wrap items-center gap-1">
               <span>
                 <Mail className="h-4 w-4" />
               </span>
-              <span>sales@expertmarketinsights.com</span>
+              <span>{siteConfig.email}</span>
             </div>
           </div>
-          <div className="flex items-center space-x-2">
-            <Button variant="link" size="icon" className="text-black bg-white">
-              <span>
-                <Facebook className="h-4 w-4" />
-              </span>
-            </Button>
-            <Button variant="link" size="icon" className="text-black bg-white">
-              <span>
-                <Twitter className="h-4 w-4" />
-              </span>
-            </Button>
-            <Button variant="link" size="icon" className="text-black bg-white">
-              <span>
-                <Linkedin className="h-4 w-4" />
-              </span>
-            </Button>
-          </div>
+          <SocialLinks />
         </div>
         <MainNav />
         <MobileNav />

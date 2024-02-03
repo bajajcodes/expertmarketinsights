@@ -33,7 +33,7 @@ export function NewsLetterForm({ title }: { title: string }) {
     <form
       action={formAction}
       ref={formRef}
-      className="flex flex-col gap-4 lg:flex-row w-full max-w-xl lg:items-center"
+      className="flex flex-col gap-4 lg:flex-row w-full max-w-xl lg:items-center lg:gap-0"
     >
       <FormItem className="transition-all ease-in-out">
         <Input

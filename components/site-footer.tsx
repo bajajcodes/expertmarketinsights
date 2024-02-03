@@ -1,7 +1,7 @@
-import { Button } from './ui/button';
-import { Facebook, Linkedin, Twitter } from 'lucide-react';
+import { siteConfig } from '@/config/site';
 import { InputWithButton } from './input-with-button';
 import { LeadGenerateForm } from './lead-generate-form';
+import { SocialLinks } from './social-links';
 
 export function SiteFooter() {
   return (
@@ -14,18 +14,15 @@ export function SiteFooter() {
       </div>
       <div className="bg-[#1a1e2c] px-2 py-8 md:px-8 ">
         <div className="container max-w-screen-md m-0">
-          <div className="mb-8 grid md:grid-cols-2">
+          <div className="mb-8 grid md:grid-cols-2 gap-4">
             <div className="flex flex-col gap-4">
               <div className="flex flex-col gap-4">
                 <p className="uppercase text-[#3ba7e0] font-bold text-base underline">
                   COMPANY ADDRESS
                 </p>
-                <p className="text-white">
-                  1331 Johnson Dr, Buffalo, Grove. <br />
-                  illinios, Chicago, USA.
-                </p>
+                <p className="text-white max-w-52">{siteConfig.address}</p>
               </div>
-              <div className="flex flex-col gap-4">
+              {/* <div className="flex flex-col gap-4">
                 <p className="uppercase text-[#3ba7e0] font-bold text-base underline">
                   ASIAN INTELLIGENCE CENTRE
                 </p>
@@ -35,7 +32,7 @@ export function SiteFooter() {
                   Lane no-5, Koregaon Park, <br />
                   Pune-411001
                 </p>
-              </div>
+              </div> */}
             </div>
             <div className="flex flex-col gap-4">
               <p className="uppercase text-[#3ba7e0] font-bold text-base underline">
@@ -47,35 +44,7 @@ export function SiteFooter() {
             </div>
           </div>
           <div className="flex gap-4 flex-col md:flex-row md:items-end">
-            <div className="flex items-center space-x-2">
-              <Button
-                variant="link"
-                size="icon"
-                className="text-black bg-white"
-              >
-                <span>
-                  <Facebook className="h-4 w-4" />
-                </span>
-              </Button>
-              <Button
-                variant="link"
-                size="icon"
-                className="text-black bg-white"
-              >
-                <span>
-                  <Twitter className="h-4 w-4" />
-                </span>
-              </Button>
-              <Button
-                variant="link"
-                size="icon"
-                className="text-black bg-white"
-              >
-                <span>
-                  <Linkedin className="h-4 w-4" />
-                </span>
-              </Button>
-            </div>
+            <SocialLinks />
             <div className="text-[#3ba7e0] text-base font-bold uppercase">
               COPYRIGHT © 2024 ALL RIGHTS RESERVED
             </div>
