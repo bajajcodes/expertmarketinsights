@@ -1,6 +1,6 @@
 export const images = {
   header: {
-    src: 'https://res.cloudinary.com/dvi5qujxs/image/upload/v1706871715/expertmarketinsights/EMIHEADER_of7zyp.jpg',
+    src: 'https://res.cloudinary.com/dvi5qujxs/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/v1706952576/emihome_ko2pcz.jpg',
     alt: 'Header',
   },
   introduction1: {

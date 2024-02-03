@@ -4,11 +4,14 @@ import { Button } from './ui/button';
 import { Facebook, Linkedin, Twitter } from 'lucide-react';
 import { InputWithButton } from './input-with-button';
 import { WeAreTrustedBy } from './we-are-trusted-by-carousel';
+import { FormItem, FormMessage } from './form';
+import { Input } from './ui/input';
+import { Textarea } from './ui/textarea';
 
 export function SiteFooter() {
   return (
     <footer className="text-black">
-      <WeAreTrustedBy />
+      {/* <WeAreTrustedBy /> */}
       <div className=" bg-[#9cdaf5] p-8 flex flex-col md:flex-row md:items-center md:justify-center gap-8">
         <div className="mb-3 md:mb-0 text-2xl font-semibold">
           Subscribe to Our Latest and Trending Market Research
@@ -16,10 +19,10 @@ export function SiteFooter() {
         <InputWithButton />
       </div>
       <div className="bg-[#1a1e2c] px-2 py-8 md:px-8 ">
-        <div className="container max-w-screen-xl">
-          <div className="flex flex-col lg:items-center lg:justify-between gap-4  md:flex-row mb-8">
+        <div className="container max-w-screen-md m-0">
+          <div className="mb-8 grid md:grid-cols-2">
             <div className="flex flex-col gap-4">
-              <div className="flex flex-col gap-8">
+              <div className="flex flex-col gap-4">
                 <p className="uppercase text-[#3ba7e0] font-bold text-base underline">
                   COMPANY ADDRESS
                 </p>
@@ -28,7 +31,7 @@ export function SiteFooter() {
                   illinios, Chicago, USA.
                 </p>
               </div>
-              <div className="flex flex-col gap-8">
+              <div className="flex flex-col gap-4">
                 <p className="uppercase text-[#3ba7e0] font-bold text-base underline">
                   ASIAN INTELLIGENCE CENTRE
                 </p>
@@ -40,38 +43,65 @@ export function SiteFooter() {
                 </p>
               </div>
             </div>
-            <div className="flex flex-col gap-8">
+            <div className="flex flex-col gap-4">
               <p className="uppercase text-[#3ba7e0] font-bold text-base underline">
-                POLICIES
+                FREE CUSTOMIZED REPORT
               </p>
-              <ul>
-                {navConfig.policiesNav.map((item) => (
-                  <li
-                    key={item.href}
-                    className="text-white hover:text-[#3ba7e0] py-1"
-                  >
-                    <Link href={item.href!}>{item.title}</Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className="flex flex-col gap-8">
-              <p className="uppercase text-[#3ba7e0] font-bold text-base underline">
-                Help Desk
-              </p>
-              <ul>
-                {navConfig.helpdeskNav.map((item) => (
-                  <li
-                    key={item.href}
-                    className="text-white hover:text-[#3ba7e0] py-1"
-                  >
-                    <Link href={item.href!}>{item.title}</Link>
-                  </li>
-                ))}
-              </ul>
+              <div>
+                <form
+                  name="freeCustomizedReportForm"
+                  className="grid gap-4 text-white"
+                >
+                  <FormItem>
+                    <Input
+                      type="text"
+                      name="name"
+                      placeholder="Name"
+                      className="bg-[#ffffff1a] pt-3 pb-6"
+                      required
+                    />
+                    <FormMessage />
+                  </FormItem>
+                  <FormItem>
+                    <Input
+                      type="email"
+                      name="email"
+                      placeholder="Email"
+                      className="bg-[#ffffff1a] pt-3 pb-6"
+                      required
+                    />
+                    <FormMessage />
+                  </FormItem>
+                  <FormItem>
+                    <Input
+                      type="text"
+                      name="mobile"
+                      placeholder="Phone no"
+                      className="bg-[#ffffff1a] pt-3 pb-6"
+                      required
+                    />
+                  </FormItem>
+                  <FormItem>
+                    <Textarea
+                      name="message"
+                      placeholder="Message"
+                      className="bg-[#ffffff1a] pt-3 pb-6"
+                      required
+                    />
+                  </FormItem>
+                  <FormItem>
+                    <Button
+                      className="bg-expertmarketinsight hover:bg-expertmarketinsight/90"
+                      size="lg"
+                    >
+                      Get It Now
+                    </Button>
+                  </FormItem>
+                </form>
+              </div>
             </div>
           </div>
-          <div className="flex gap-4 flex-col  lg:items-end lg:justify-between lg:flex-row">
+          <div className="flex gap-4 flex-col md:flex-row md:items-end">
             <div className="flex items-center space-x-2">
               <Button
                 variant="link"
@@ -101,7 +131,7 @@ export function SiteFooter() {
                 </span>
               </Button>
             </div>
-            <div className="text-[#3ba7e0] text-base font-bold mb-8 lg:mb-0 uppercase">
+            <div className="text-[#3ba7e0] text-base font-bold uppercase">
               COPYRIGHT © 2024 ALL RIGHTS RESERVED
             </div>
           </div>
