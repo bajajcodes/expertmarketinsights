@@ -86,7 +86,7 @@ export function Testimonies() {
                     In a crowded market research landscape, Expert Market
                     Insights shines bright. Their reports are not just data;
                     they are strategic assets. Trustworthy, insightful, and
-                    essential for any business aiming to stay ahead in today's
+                    essential for any business aiming to stay ahead in todays
                     dynamic markets.
                   </p>
                   <p className="font-semibold">Matthew Hobert</p>
