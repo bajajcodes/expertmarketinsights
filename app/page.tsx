@@ -8,90 +8,47 @@ import {
   PageHeaderDescription,
   PageHeaderHeading,
 } from '@/components/page-header';
-import { Button } from '@/components/ui/button';
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from '@/components/ui/carousel';
 import { navConfig } from '@/config/nav';
-import { images } from '@/data/hero-section';
-import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
-import Autoplay from 'embla-carousel-autoplay';
+import { images } from '@/data/home-page';
+import Image from 'next/image';
+import { Testimonies } from '@/components/testimonies';
 
-//TODO: replace web `<img />` tag with `<Image />` next/image tag
 export default function Home() {
-  const plugin1 = React.useRef(
-    Autoplay({ delay: 2000, stopOnInteraction: true })
-  );
-  const plugin2 = React.useRef(
-    Autoplay({ delay: 2000, stopOnInteraction: true })
-  );
   return (
     <React.Fragment>
-      <Carousel className="w-full">
-        <CarouselContent>
-          <CarouselItem>
-            <div className="relative h-[500px]">
-              <div className="w-full h-full relative bg-blend-screen bg-opacity-50 bg-gray-500/5"></div>
-              <img
-                src={images[0].src}
-                alt={images[0].alt}
-                className={
-                  'w-full h-full object-cover object-center absolute top-0 left-0 aspect-square'
-                }
-              />
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center justify-center">
-                <p className="mb-4 leading-10 font-bold text-white drop-shadow text-4xl">
-                  We Use Research For Illumination!
-                </p>
-                <InputWithButton />
-              </div>
-            </div>
-          </CarouselItem>
-          <CarouselItem>
-            <div className="relative h-[500px]">
-              <div className="w-full h-full relative bg-blend-screen bg-opacity-50 bg-gray-700/5"></div>
-              <img
-                src={images[1].src}
-                alt={images[1].alt}
-                className={
-                  'w-full h-full object-cover object-center absolute top-0 left-0 aspect-square'
-                }
-              />
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center justify-center">
-                <p className="mb-4 leading-10 font-bold text-white text-4xl">
-                  What we relevant is signifcant!
-                </p>
-                <Button variant="secondary" size="lg">
-                  Connect With US
-                </Button>
-              </div>
-            </div>
-          </CarouselItem>
-        </CarouselContent>
-        {/* <CarouselPrevious />
-        <CarouselNext /> */}
-      </Carousel>
+      <div className="relative h-[500px]">
+        <div className="w-full h-full relative bg-blend-screen bg-opacity-50 bg-gray-500/5"></div>
+        <img
+          src={images.header.src}
+          alt={images.header.alt}
+          className={
+            'w-full h-full object-cover object-center absolute top-0 left-0 aspect-square'
+          }
+        />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center justify-center">
+          <p className="mb-4 leading-10 font-semibold  drop-shadow text-4xl">
+            We Use Research For Illumination!
+          </p>
+          <InputWithButton title="Search" />
+        </div>
+      </div>
       <section className="bg-gray-100">
-        <section className="container flex flex-col lg:gap-2 md:flex-row justify-center px-4 pt-4">
-          <div className="relative h-[700px] z-0">
+        <section className="container flex flex-col lg:gap-2 md:flex-row justify-center pl-12 pr-4 pt-8">
+          <div className="relative h-[1000px] z-0">
             <img
-              src="https://placehold.co/400/orange/white/png"
-              alt="loerum ispum"
+              src={images.introduction1.src}
+              alt={images.introduction1.alt}
               className={
-                'mb-4 w-[80%] h-[400px] object-cover object-center aspect-square'
+                'mb-4 w-[80%] h-[500px] object-cover object-center aspect-square'
               }
             />
             <img
-              src="https://placehold.co/400/red/white/png"
-              alt="loerum ispum"
+              src={images.introduction2.src}
+              alt={images.introduction2.alt}
               className={
-                'mb-6 absolute -z-10 bottom-0 right-0 w-[80%] h-[400px] object-cover object-center aspect-square'
+                'mb-6 absolute -z-10 bottom-10 right-0 w-[80%] h-[500px] object-cover object-center aspect-square'
               }
             />
           </div>
@@ -143,29 +100,71 @@ export default function Home() {
         </section>
       </section>
       <section>
-        <div className="container">
+        <div className="container py-12 px-6">
           <div className="heading-section mb-5 mt-3 mt-lg-0">
-            <h2 className="mb-3 text-center font-extrabold text-3xl text-[#5539f3]">
+            <h2 className="mb-3 text-center font-extrabold text-3xl text-expertmarketinsight">
               Industries
             </h2>
           </div>
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 mb-4">
-            {navConfig.sidebarNav[1].items.map((item) => (
-              <Link href={item.href!} key={item.href}>
-                <div className="flex flex-col items-center justify-between rounded-md border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground">
-                  <h6 className="bg-[#5539f3] text-white text-xl p-2 h-11  w-14 mx-auto rounded-[50%]">
-                    <Icons.factory className="m-auto mb-3 h-6 w-6 text-white" />
-                  </h6>
-                  <p className="text-base text-center mb-4">
-                    <strong>{item.title}</strong>
-                  </p>
-                </div>
-              </Link>
-            ))}
+          <div className="grid auto-rows-[1fr] gap-4 md:gap-6 md:grid-cols-2 lg:grid-cols-3 grid-flow-row mb-4 max-w-xs md:max-w-3xl m-auto">
+            {navConfig.sidebarNav[1].items.map((item) => {
+              const Icon = Icons[item.icon!];
+              return (
+                <Link href={item.href!} key={item.href} className="grid">
+                  <div className="flex items-center justify-center rounded-md border-2 border-muted bg-popover p-4 ">
+                    <div className="flex flex-col items-center justify-center hover:text-accent-foreground hover:transform hover:scale-105 hover:lg:scale-110 transition-all">
+                      <h6 className="bg-expertmarketinsight text-white text-xl p-2 h-11  w-14 mx-auto rounded-[50%] hover:bg-blue-500 transition-all delay-0 transform ease-in-out hover:duration-2000 hover:rotate-360">
+                        <Icon className="m-auto mb-3 h-6 w-6 text-white" />
+                      </h6>
+                      <p className="text-base text-center mb-4">
+                        <strong>{item.title}</strong>
+                      </p>
+                    </div>
+                  </div>
+                </Link>
+              );
+            })}
           </div>
         </div>
       </section>
-      <section className="container">
+      <section className="bg-slate-300">
+        <div className="container grid place-items-center md:grid-cols-2 lg:grid-cols-4 py-16 px-10 md:flex-row flex-wrap gap-16">
+          <div>
+            <div className="text-expertmarketinsight mb-2 text-5xl font-bold">
+              210,123
+            </div>
+            <div className="text-expertmarketinsight uppercase tracking-widest">
+              REPORTS PUBLISHED
+            </div>
+          </div>
+          <div>
+            <div className="text-expertmarketinsight mb-2 text-5xl font-bold">
+              1,123
+            </div>
+            <div className="text-expertmarketinsight uppercase tracking-widest">
+              CLIENT INQUIRIES
+            </div>
+          </div>
+          <div>
+            <div className="text-expertmarketinsight mb-2 text-5xl font-bold">
+              10,123
+            </div>
+            <div className="text-expertmarketinsight uppercase tracking-widest">
+              SATISFIED CLIENTS
+            </div>
+          </div>
+          <div>
+            <div className="text-expertmarketinsight mb-2 text-5xl font-bold">
+              510
+            </div>
+            <div className="text-expertmarketinsight uppercase tracking-widest">
+              CUSTOM STUDIES
+            </div>
+          </div>
+        </div>
+      </section>
+      <Testimonies />
+      {/* <section className="container">
         <h2 className="mb-8 text-center text-3xl">
           <strong>Latest Reports</strong>
         </h2>
@@ -182,7 +181,7 @@ export default function Home() {
               {Array.from({ length: 5 }).map((_, index) => (
                 <CarouselItem key={index} className="pt-1 md:basis-1/2">
                   <Link href="#">
-                    <p className="p-1 text-[#5539f3] hover:text-cyan-500">
+                    <p className="p-1 text-expertmarketinsight hover:text-cyan-500">
                       <strong>
                         Global Teleradiology Market Size, Trend & Forecast to
                         2031 <span>__{index}__</span>
@@ -192,8 +191,6 @@ export default function Home() {
                 </CarouselItem>
               ))}
             </CarouselContent>
-            {/* <CarouselPrevious />
-              <CarouselNext /> */}
           </Carousel>
           <Carousel
             opts={{
@@ -207,7 +204,7 @@ export default function Home() {
               {Array.from({ length: 5 }).map((_, index) => (
                 <CarouselItem key={index} className="pt-1 md:basis-1/2">
                   <Link href="#">
-                    <p className="p-1 text-[#5539f3] hover:text-cyan-500">
+                    <p className="p-1 text-expertmarketinsight hover:text-cyan-500">
                       <strong>
                         Global Teleradiology Market Size, Trend & Forecast to
                         2031 <span>__{index}__</span>
@@ -217,11 +214,9 @@ export default function Home() {
                 </CarouselItem>
               ))}
             </CarouselContent>
-            {/* <CarouselPrevious />
-              <CarouselNext /> */}
           </Carousel>
         </div>
-      </section>
+      </section> */}
     </React.Fragment>
   );
 }

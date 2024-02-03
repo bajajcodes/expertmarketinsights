@@ -53,6 +53,8 @@ const config = {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))',
         },
+        expertmarketinsight: '#3a3774',
+        emicomplementary: '#717437',
       },
       borderRadius: {
         lg: 'var(--radius)',
@@ -75,6 +77,12 @@ const config = {
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
+      },
+      transitionDuration: {
+        '2000': '2000ms',
+      },
+      rotate: {
+        '360': '360deg',
       },
     },
   },

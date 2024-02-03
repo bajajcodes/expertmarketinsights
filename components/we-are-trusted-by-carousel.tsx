@@ -1,20 +1,10 @@
-/* eslint-disable @next/next/no-img-element */
 'use client';
 
 import * as React from 'react';
 import Autoplay from 'embla-carousel-autoplay';
 
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from './ui/carousel';
-import { images } from '@/data/hero-section';
-import { Card, CardContent } from './ui/card';
+import { Carousel, CarouselContent, CarouselItem } from './ui/carousel';
 
-//TODO: replace web `<img />` tag with `<Image />` next/image tag
 export function WeAreTrustedBy() {
   const plugin = React.useRef(
     Autoplay({ delay: 2000, stopOnInteraction: true })

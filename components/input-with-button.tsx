@@ -1,25 +1,18 @@
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
 import { cn } from '@/lib/utils';
 import React from 'react';
+import { NewsLetterForm } from './newsletter-form';
 
 export function InputWithButton({
   className,
+  title = 'Subscribe',
   ...rest
-}: React.HTMLAttributes<HTMLDivElement>) {
+}: React.HTMLAttributes<HTMLDivElement> & { title?: string }) {
   return (
     <div
-      className={cn('flex w-full max-w-sm items-center', className)}
+      className={cn('flex w-full max-w-xl items-center', className)}
       {...rest}
     >
-      <Input
-        type="email"
-        placeholder="Email"
-        className="bg-white rounded-none"
-      />
-      <Button type="submit" className="rounded-none">
-        Subscribe
-      </Button>
+      <NewsLetterForm title={title} />
     </div>
   );
 }
