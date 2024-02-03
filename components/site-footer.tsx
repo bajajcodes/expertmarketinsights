@@ -1,17 +1,11 @@
-import { navConfig } from '@/config/nav';
-import Link from 'next/link';
 import { Button } from './ui/button';
 import { Facebook, Linkedin, Twitter } from 'lucide-react';
 import { InputWithButton } from './input-with-button';
-import { WeAreTrustedBy } from './we-are-trusted-by-carousel';
-import { FormItem, FormMessage } from './form';
-import { Input } from './ui/input';
-import { Textarea } from './ui/textarea';
+import { LeadGenerateForm } from './lead-generate-form';
 
 export function SiteFooter() {
   return (
     <footer className="text-black">
-      {/* <WeAreTrustedBy /> */}
       <div className=" bg-[#9cdaf5] p-8 flex flex-col md:flex-row md:items-center md:justify-center gap-8">
         <div className="mb-3 md:mb-0 text-2xl font-semibold">
           Subscribe to Our Latest and Trending Market Research
@@ -48,56 +42,7 @@ export function SiteFooter() {
                 FREE CUSTOMIZED REPORT
               </p>
               <div>
-                <form
-                  name="freeCustomizedReportForm"
-                  className="grid gap-4 text-white"
-                >
-                  <FormItem>
-                    <Input
-                      type="text"
-                      name="name"
-                      placeholder="Name"
-                      className="bg-[#ffffff1a] pt-3 pb-6"
-                      required
-                    />
-                    <FormMessage />
-                  </FormItem>
-                  <FormItem>
-                    <Input
-                      type="email"
-                      name="email"
-                      placeholder="Email"
-                      className="bg-[#ffffff1a] pt-3 pb-6"
-                      required
-                    />
-                    <FormMessage />
-                  </FormItem>
-                  <FormItem>
-                    <Input
-                      type="text"
-                      name="mobile"
-                      placeholder="Phone no"
-                      className="bg-[#ffffff1a] pt-3 pb-6"
-                      required
-                    />
-                  </FormItem>
-                  <FormItem>
-                    <Textarea
-                      name="message"
-                      placeholder="Message"
-                      className="bg-[#ffffff1a] pt-3 pb-6"
-                      required
-                    />
-                  </FormItem>
-                  <FormItem>
-                    <Button
-                      className="bg-expertmarketinsight hover:bg-expertmarketinsight/90"
-                      size="lg"
-                    >
-                      Get It Now
-                    </Button>
-                  </FormItem>
-                </form>
+                <LeadGenerateForm />
               </div>
             </div>
           </div>

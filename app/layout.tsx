@@ -5,6 +5,7 @@ import { fontSans } from '@/lib/fonts';
 import { SiteFooter } from '@/components/site-footer';
 import { SiteHeader } from '@/components/site-header';
 import { siteConfig } from '@/config/site';
+import { Toaster } from '@/components/ui/toaster';
 
 export const metadata: Metadata = {
   title: {
@@ -48,6 +49,7 @@ export default function RootLayout({
             <SiteFooter />
           </div>
         </div>
+        <Toaster />
       </body>
     </html>
   );
