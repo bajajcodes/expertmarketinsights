@@ -27,7 +27,9 @@ export default function OverviewPage() {
           />
         </div>
         <PageHeader className="lg:py-0">
-          <PageHeaderHeading className='md:text-4xl'>Overview</PageHeaderHeading>
+          <PageHeaderHeading className="md:text-4xl">
+            Overview
+          </PageHeaderHeading>
           <PageHeaderDescription className="text-left text-neutral-700">
             Expert Market Insights stands at the forefront of global data
             analytics, serving as a vital resource for addressing inquiries and
@@ -66,8 +68,9 @@ export default function OverviewPage() {
             </CardHeader>
             <CardContent>
               <p>
-                We aim to accomplish the pinnacle and a unique space in market
-                research and business intelligence.
+                To be the premier source of cutting-edge insights, Expert Market
+                Insights aims to lead the market research industry with
+                innovation, precision, and unwavering client commitment.
               </p>
             </CardContent>
           </Card>
@@ -77,9 +80,8 @@ export default function OverviewPage() {
             </CardHeader>
             <CardContent>
               <p>
-                We want to attain customer fulfilment, be a forefront in the
-                industry and become the firmest decision support system for our
-                clients’.
+                We aspire to achieve customer satisfaction, lead the industry,
+                and be the most robust decision support system for our clients.
               </p>
             </CardContent>
           </Card>
@@ -89,11 +91,12 @@ export default function OverviewPage() {
             </CardHeader>
             <CardContent>
               <p>
-                As a values-driven organization, we prioritize client
-                confidentiality, innovation, timely report delivery,
-                satisfaction, and uphold excellence and integrity in all aspects
-                of our work. These favorable norms guide our approach and
-                commitment.
+                We, as a values-based organization, firmly abide by a set of
+                guiding principles that shape our actions and decisions. These
+                principles include upholding client confidentiality, fostering
+                innovation, ensuring timely report delivery, prioritizing client
+                satisfaction, and maintaining an unwavering commitment to
+                excellence and integrity.
               </p>
             </CardContent>
           </Card>
@@ -103,8 +106,8 @@ export default function OverviewPage() {
             </CardHeader>
             <CardContent>
               <p>
-                At The Research Insights, we believe that perfection is not
-                attainable, but if we chase for it, we can catch excellence.
+                At Expert Market Insights, we recognize that perfection may be
+                elusive, yet in our pursuit, we aim to capture excellence.
               </p>
             </CardContent>
           </Card>
@@ -114,8 +117,9 @@ export default function OverviewPage() {
             </CardHeader>
             <CardContent>
               <p>
-                The team of Research Insights, does the right thing even when no
-                one is watching them; that’s how we define our integrity.
+                At Research Insights, our team upholds integrity by doing the
+                right thing even when no one is watching; its our definition of
+                ethical conduct.
               </p>
             </CardContent>
           </Card>

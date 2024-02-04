@@ -1,23 +1,12 @@
-/* eslint-disable @next/next/no-img-element */
 'use client';
 
-import {
-  PageHeader,
-  PageHeaderDescription,
-  PageHeaderHeading,
-} from '@/components/page-header';
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card';
-import { Separator } from '@radix-ui/react-separator';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { images } from '@/data/services';
+import Image from 'next/image';
 
 export default function ServicesPage() {
   return (
-    <div className="container my-8 grid gap-8 lg:gap-4">
+    <div className="container p-0 md:p-2 my-8 grid gap-8 lg:gap-4">
       <Card>
         <CardHeader className="bg-[#413c69]">
           <CardTitle className="text-white font-bold text-2xl">
@@ -27,8 +16,10 @@ export default function ServicesPage() {
         <CardContent className="grid gap-4 lg:grid-cols-2 p-0">
           <div className="relative h-[240px] lg:h-auto">
             <div className="w-full h-full relative bg-blend-screen bg-opacity-50 bg-gray-500/5"></div>
-            <img
-              src="https://www.theresearchinsights.com/images/service1.webp"
+            <Image
+              src={images.banner1.src}
+              width={100}
+              height={100}
               alt="about banner"
               className={
                 'w-full h-full object-cover object-center absolute top-0 left-0 aspect-square'
@@ -70,9 +61,11 @@ export default function ServicesPage() {
           </p>
           <div className="relative h-[240px] lg:h-auto">
             <div className="w-full h-full relative bg-blend-screen bg-opacity-50 bg-gray-500/5"></div>
-            <img
-              src="https://www.theresearchinsights.com/images/service2.webp"
+            <Image
+              src={images.banner2.src}
               alt="about banner"
+              width={100}
+              height={100}
               className={
                 'w-full h-full object-cover object-center absolute top-0 left-0 aspect-square'
               }
@@ -89,9 +82,11 @@ export default function ServicesPage() {
         <CardContent className="grid gap-4 lg:grid-cols-2 p-0">
           <div className="relative h-[240px] lg:h-auto">
             <div className="w-full h-full relative bg-blend-screen bg-opacity-50 bg-gray-500/5"></div>
-            <img
-              src="https://www.theresearchinsights.com/images/service3.webp"
+            <Image
+              src={images.banner3.src}
               alt="about banner"
+              width={100}
+              height={100}
               className={
                 'w-full h-full object-cover object-center absolute top-0 left-0 aspect-square'
               }

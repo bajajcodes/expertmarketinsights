@@ -8,12 +8,19 @@ import { useToast } from './ui/use-toast';
 import { useFormState } from 'react-dom';
 import { subscribeToNewsLetter } from '@/app/actions';
 import { NewsLetterType } from '@/types/schema';
+import { cn } from '@/lib/utils';
 
 const intialState: NewsLetterType = {
   email: '',
 };
 
-export function NewsLetterForm({ title }: { title: string }) {
+export function NewsLetterForm({
+  title,
+  direction = 'column',
+}: {
+  title: string;
+  direction?: 'row' | 'column';
+}) {
   const { toast } = useToast();
   const [state, formAction] = useFormState(subscribeToNewsLetter, intialState);
   const formRef = useRef<HTMLFormElement | null>(null);
@@ -33,7 +40,10 @@ export function NewsLetterForm({ title }: { title: string }) {
     <form
       action={formAction}
       ref={formRef}
-      className="flex flex-col gap-4 lg:flex-row w-full max-w-xl lg:items-center lg:gap-0"
+      className={cn(
+        'flex flex-col gap-4 lg:flex-row w-full max-w-xl lg:items-center lg:gap-0',
+        { 'flex-row': direction === 'row' }
+      )}
     >
       <FormItem className="transition-all ease-in-out">
         <Input

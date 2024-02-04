@@ -22,9 +22,9 @@ export default function OverviewPage() {
         <PageHeaderHeading className="md:text-4xl text-left ">
           Research Methodology
         </PageHeaderHeading>
-        <Separator className='w-[124px] h-1 bg-orange-500' />
+        <Separator className="w-[124px] h-1 bg-orange-500" />
         <PageHeaderDescription className="font-bold text-left text-neutral-700">
-          &quot;All we’re armed with is research!&quot;
+          &quot;All we possess is the power of research!&quot;
         </PageHeaderDescription>
         <PageHeaderDescription className="text-left text-neutral-700">
           Expert Market Insights achieves top-notch outcomes by utilizing a

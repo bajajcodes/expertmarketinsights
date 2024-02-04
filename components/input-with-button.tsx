@@ -5,14 +5,18 @@ import { NewsLetterForm } from './newsletter-form';
 export function InputWithButton({
   className,
   title = 'Subscribe',
+  direction = 'column',
   ...rest
-}: React.HTMLAttributes<HTMLDivElement> & { title?: string }) {
+}: React.HTMLAttributes<HTMLDivElement> & {
+  title?: string;
+  direction?: 'row' | 'column';
+}) {
   return (
     <div
       className={cn('flex w-full max-w-xl items-center', className)}
       {...rest}
     >
-      <NewsLetterForm title={title} />
+      <NewsLetterForm title={title} direction={direction} />
     </div>
   );
 }
