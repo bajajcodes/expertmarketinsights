@@ -9,6 +9,7 @@ import { useFormState } from 'react-dom';
 import { LeadGenerateType } from '@/types/schema';
 import { useEffect, useRef } from 'react';
 import { useToast } from './ui/use-toast';
+import { cn } from '@/lib/utils';
 
 const intialState: LeadGenerateType = {
   name: '',
@@ -17,7 +18,7 @@ const intialState: LeadGenerateType = {
   message: '',
 };
 
-export function LeadGenerateForm() {
+export function LeadGenerateForm({ className = '' }: { className?: string }) {
   const { toast } = useToast();
   const [state, formAction] = useFormState(
     sendLeadForFreeCustomizedReport,
@@ -39,7 +40,7 @@ export function LeadGenerateForm() {
   return (
     <form
       name="freeCustomizedReportForm"
-      className="grid gap-4 text-white"
+      className={cn('grid gap-4 text-white', className)}
       action={formAction}
       ref={formRef}
     >
@@ -71,8 +72,8 @@ export function LeadGenerateForm() {
           className="bg-[#ffffff1a] pt-3 pb-6"
           required
         />
+        <FormMessage>{state.errors?.mobile}</FormMessage>
       </FormItem>
-      <FormMessage>{state.errors?.mobile}</FormMessage>
       <FormItem>
         <Textarea
           name="message"

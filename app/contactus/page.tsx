@@ -1,8 +1,6 @@
-/* eslint-disable @next/next/no-img-element */
-import { FormItem, FormLabel, FormMessage } from '@/components/form';
 import { Icons } from '@/components/icons';
 import { InputWithButton } from '@/components/input-with-button';
-import { Button } from '@/components/ui/button';
+import { LeadGenerateForm } from '@/components/lead-generate-form';
 import {
   Card,
   CardContent,
@@ -10,8 +8,9 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
+import { siteConfig } from '@/config/site';
+import { images } from '@/data/layout';
+import Image from 'next/image';
 import Link from 'next/link';
 
 export default function ContactUsPage() {
@@ -20,8 +19,10 @@ export default function ContactUsPage() {
       <div>
         <div className="relative h-[100px]">
           <div className="w-full h-full relative bg-blend-screen bg-opacity-50 bg-gray-500/5"></div>
-          <img
-            src="https://www.theresearchinsights.com/images/banner2.webp"
+          <Image
+            src={images.banner.src}
+            width={100}
+            height={100}
             alt="about banner"
             className={
               'w-full h-full object-cover object-center absolute top-0 left-0 aspect-square'
@@ -47,56 +48,9 @@ export default function ContactUsPage() {
             <h2 className="text-3xl mb-8 font-bold leading-8 text-center">
               Have Questions? Reach Out to Us
             </h2>
-            <div>
-              <form
-                name="contactUsForm"
-                className="grid gap-4 place-items-center"
-              >
-                <FormItem>
-                  {/* <div className="flex flex-col gap-2"> */}
-                    <FormLabel htmlFor="name">Full Name</FormLabel>
-                    <Input
-                      type="text"
-                      name="name"
-                      placeholder="Name"
-                      required
-                    />
-                  {/* </div> */}
-                </FormItem>
-                <FormItem>
-                  {/* <div className="flex flex-col gap-2"> */}
-                    <FormLabel htmlFor="email">Email Address</FormLabel>
-                    <Input
-                      type="email"
-                      name="email"
-                      placeholder="Email"
-                      required
-                    />
-                    <FormMessage />
-                  {/* </div> */}
-                </FormItem>
-                <FormItem>
-                  {/* <div className="flex flex-col gap-2"> */}
-                    <FormLabel htmlFor="mobile">Phone No.</FormLabel>
-                    <Input
-                      type="text"
-                      name="mobile"
-                      placeholder="Phone no"
-                      required
-                    />
-                  {/* </div> */}
-                </FormItem>
-                <FormItem>
-                  {/* <div className="flex flex-col gap-2"> */}
-                    <FormLabel htmlFor="message">Message</FormLabel>
-                    <Textarea name="message" placeholder="Message" required />
-                  {/* </div> */}
-                </FormItem>
-                <FormItem>
-                  <Button>Send Message</Button>
-                </FormItem>
-              </form>
-            </div>
+            {/* <div> */}
+            <LeadGenerateForm className="place-items-center text-black" />
+            {/* </div> */}
           </div>
           <Card
             className="bg-[#3ba7e0] text-white p-4 md:p-3 rounded-none"
@@ -115,19 +69,7 @@ export default function ContactUsPage() {
                 <div className="border-2 border-gray-300 p-2 rounded-[50%] flex items-center">
                   <Icons.map className="h-6 w-6 text-white" />
                 </div>
-                <span>
-                  Address: 1331 Johnson Dr, Buffalo, Grove.illinois, Chicago,
-                  USA.
-                </span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <div className="border-2 border-gray-300 p-2 rounded-[50%] flex items-center">
-                  <Icons.map className="h-6 w-6 text-white" />
-                </div>
-                <span>
-                  Address: 2nd floor, Arth Vishwa Complex, Lane no-5, Koregaon
-                  Park, Pune-411001
-                </span>
+                <span>{siteConfig.address}</span>
               </div>
               <div>
                 <div className="flex items-center space-x-2">
@@ -137,18 +79,8 @@ export default function ContactUsPage() {
                   <div>
                     <p>Phone:</p>
                     <p>
-                      <a href="tel:+918956446619" title="The Research Insights">
-                        +91-89564-46619
-                      </a>
-                    </p>
-                    <p>
-                      <a href="tel:+918956446619" title="The Research Insights">
-                        +91-89564-46619
-                      </a>
-                    </p>
-                    <p>
-                      <a href="tel:+918956446619" title="The Research Insights">
-                        +91-89564-46619
+                      <a href={siteConfig.mobile} title="The Research Insights">
+                        {siteConfig.mobile}
                       </a>
                     </p>
                   </div>
@@ -161,10 +93,10 @@ export default function ContactUsPage() {
                 <span>
                   Email:
                   <a
-                    href="mailto:sales@theresearchinsights.com"
+                    href={`mailto:${siteConfig.email}`}
                     title="The Research Insights"
                   >
-                    sales@theresearchinsights.com
+                    {siteConfig.email}
                   </a>
                 </span>
               </div>

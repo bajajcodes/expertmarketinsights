@@ -23,8 +23,8 @@ export function MobileNav() {
         onOpenChange={setOpen}
       >
         <Image
-          width={48}
-          height={48}
+          width={72}
+          height={72}
           className="mr-2"
           src="/logo.png"
           alt="logo"

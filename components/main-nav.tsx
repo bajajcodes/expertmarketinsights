@@ -22,11 +22,11 @@ export function MainNav() {
   const pathname = usePathname();
   return (
     <div className="mr-4 hidden md:flex md:items-center">
-      <Link href="/" className="mr-6 flex items-center space-x-2">
+      <Link href="/" className="mr-6 flex flex-wrap items-center space-x-2">
         {/* <Icons.logo className="h-6 w-6" /> */}
         <Image
-          width={48}
-          height={48}
+          width={72}
+          height={72}
           className="mr-2"
           src="/logo.png"
           alt="logo"
