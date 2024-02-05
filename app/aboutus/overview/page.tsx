@@ -7,7 +7,6 @@ import {
 import {
   Card,
   CardContent,
-  CardDescription,
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
@@ -22,7 +21,7 @@ export default function OverviewPage() {
             src="https://www.theresearchinsights.com/images/overview.webp"
             alt="about banner"
             className={
-              'w-full h-full object-cover object-center absolute top-0 left-0 aspect-square'
+              "w-full h-full object-cover object-center absolute top-0 left-0 aspect-square"
             }
           />
         </div>
@@ -117,9 +116,9 @@ export default function OverviewPage() {
             </CardHeader>
             <CardContent>
               <p>
-                At Research Insights, our team upholds integrity by doing the
-                right thing even when no one is watching; its our definition of
-                ethical conduct.
+                At Expert Market Insights, our team upholds integrity by doing
+                the right thing even when no one is watching; its our
+                definition of ethical conduct.
               </p>
             </CardContent>
           </Card>
