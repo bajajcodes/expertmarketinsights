@@ -1,37 +1,21 @@
-import { Icons } from '@/components/icons';
-import { InputWithButton } from '@/components/input-with-button';
-import { LeadGenerateForm } from '@/components/lead-generate-form';
+import { Icons } from "@/components/icons";
+import { LeadGenerateForm } from "@/components/lead-generate-form";
+import { SearchReport } from "@/components/search-report";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from '@/components/ui/card';
-import { siteConfig } from '@/config/site';
-import { images } from '@/data/layout';
-import Image from 'next/image';
-import Link from 'next/link';
+} from "@/components/ui/card";
+import { siteConfig } from "@/config/site";
+import Link from "next/link";
 
 export default function ContactUsPage() {
   return (
     <>
       <div>
-        <div className="relative h-[100px]">
-          <div className="w-full h-full relative bg-blend-screen bg-opacity-50 bg-gray-500/5"></div>
-          <Image
-            src={images.banner.src}
-            width={100}
-            height={100}
-            alt="about banner"
-            className={
-              'w-full h-full object-cover object-center absolute top-0 left-0 aspect-square'
-            }
-          />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center justify-center">
-            <InputWithButton className="min-w-[max-content]" />
-          </div>
-        </div>
+        <SearchReport />
         <div className="bg-[#413c69] px-8 py-4 text-white gap-2 flex items-center">
           <span>
             <Link href="/" className="text-[#b0e0e6]">
@@ -54,7 +38,7 @@ export default function ContactUsPage() {
           </div>
           <Card
             className="bg-[#3ba7e0] text-white p-4 md:p-3 rounded-none"
-            style={{ overflowWrap: 'anywhere' }}
+            style={{ overflowWrap: "anywhere" }}
           >
             <CardHeader className="pb-4 p-1 md:p-6">
               <CardTitle className="text-2xl font-bold">

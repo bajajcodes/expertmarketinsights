@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { images } from '@/data/services';
-import Image from 'next/image';
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { images } from "@/data/services";
+import Image from "next/image";
 
 export default function ServicesPage() {
   return (
@@ -15,14 +15,14 @@ export default function ServicesPage() {
         </CardHeader>
         <CardContent className="grid gap-4 lg:grid-cols-2 p-0">
           <div className="relative h-[240px] lg:h-auto">
-            <div className="w-full h-full relative bg-blend-screen bg-opacity-50 bg-gray-500/5"></div>
             <Image
               src={images.banner1.src}
-              width={100}
-              height={100}
+              width={0}
+              height={0}
+              sizes="100vw"
               alt="about banner"
               className={
-                'w-full h-full object-cover object-center absolute top-0 left-0 aspect-square'
+                "w-full h-full absolute top-0 left-0 object-cover object-center"
               }
             />
           </div>
@@ -60,14 +60,14 @@ export default function ServicesPage() {
             existing clients.
           </p>
           <div className="relative h-[240px] lg:h-auto">
-            <div className="w-full h-full relative bg-blend-screen bg-opacity-50 bg-gray-500/5"></div>
             <Image
               src={images.banner2.src}
+              width={0}
+              height={0}
+              sizes="100vw"
               alt="about banner"
-              width={100}
-              height={100}
               className={
-                'w-full h-full object-cover object-center absolute top-0 left-0 aspect-square'
+                "w-full h-full absolute top-0 left-0 object-cover object-center"
               }
             />
           </div>
@@ -80,15 +80,15 @@ export default function ServicesPage() {
           </CardTitle>
         </CardHeader>
         <CardContent className="grid gap-4 lg:grid-cols-2 p-0">
-          <div className="relative h-[240px] lg:h-auto">
-            <div className="w-full h-full relative bg-blend-screen bg-opacity-50 bg-gray-500/5"></div>
+          <div className="relative h-[240px] lg:h-auto bg-gray-50">
             <Image
               src={images.banner3.src}
+              width={0}
+              height={0}
+              sizes="100vw"
               alt="about banner"
-              width={100}
-              height={100}
               className={
-                'w-full h-full object-cover object-center absolute top-0 left-0 aspect-square'
+                "w-full h-full absolute top-0 left-0 object-cover object-center"
               }
             />
           </div>
