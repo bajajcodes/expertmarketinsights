@@ -148,14 +148,6 @@ export const navConfig: NavConfig = {
       href: '/terms-and-condition',
       title: 'Terms & Conditions',
     },
-    {
-      href: '/sitemap',
-      title: 'Sitemap',
-    },
-    {
-      href: '/reports',
-      title: 'All Reports',
-    },
   ],
   helpdeskNav: [
     {

@@ -2,6 +2,8 @@ import { siteConfig } from '@/config/site';
 import { InputWithButton } from './input-with-button';
 import { LeadGenerateForm } from './lead-generate-form';
 import { SocialLinks } from './social-links';
+import { navConfig } from '@/config/nav';
+import Link from 'next/link';
 
 export function SiteFooter() {
   return (
@@ -13,8 +15,8 @@ export function SiteFooter() {
         <InputWithButton />
       </div>
       <div className="bg-[#1a1e2c] px-2 py-8 md:px-8 ">
-        <div className="container max-w-screen-md m-0">
-          <div className="mb-8 grid md:grid-cols-2 gap-4">
+        <div className="container">
+          <div className="mb-8 grid md:grid-cols-4 gap-4">
             <div className="flex flex-col gap-4">
               <div className="flex flex-col gap-4">
                 <p className="uppercase text-[#3ba7e0] font-bold text-base underline">
@@ -22,17 +24,36 @@ export function SiteFooter() {
                 </p>
                 <p className="text-white max-w-52">{siteConfig.address}</p>
               </div>
-              {/* <div className="flex flex-col gap-4">
-                <p className="uppercase text-[#3ba7e0] font-bold text-base underline">
-                  ASIAN INTELLIGENCE CENTRE
-                </p>
-                <p className="text-white">
-                  2nd floor, <br />
-                  Arth Vishwa Complex, <br />
-                  Lane no-5, Koregaon Park, <br />
-                  Pune-411001
-                </p>
-              </div> */}
+            </div>
+            <div className="flex flex-col gap-4">
+              <p className="uppercase text-[#3ba7e0] font-bold text-base underline">
+                POLICIES
+              </p>
+              <ul>
+                {navConfig.policiesNav.map((item) => (
+                  <li
+                    key={item.href}
+                    className="text-white hover:text-[#3ba7e0] py-1"
+                  >
+                    <Link href={item.href!}>{item.title}</Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="flex flex-col gap-4">
+              <p className="uppercase text-[#3ba7e0] font-bold text-base underline">
+                HELP DESK
+              </p>
+              <ul>
+                {navConfig.helpdeskNav.map((item) => (
+                  <li
+                    key={item.href}
+                    className="text-white hover:text-[#3ba7e0] py-1"
+                  >
+                    <Link href={item.href!}>{item.title}</Link>
+                  </li>
+                ))}
+              </ul>{' '}
             </div>
             <div className="flex flex-col gap-4">
               <p className="uppercase text-[#3ba7e0] font-bold text-base underline">

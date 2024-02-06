@@ -1,16 +1,16 @@
 "use client";
 
-import * as NavigationMenu from "@radix-ui/react-navigation-menu";
-import * as React from "react";
-import Link from "next/link";
-import { cn } from "@/lib/utils";
-import { Icons } from "./icons";
-import { siteConfig } from "@/config/site";
 import { navConfig } from "@/config/nav";
-import Image from "next/image";
-import { usePathname } from "next/navigation";
-import { navigationMenuTriggerStyle } from "./ui/navigation-menu";
+import { siteConfig } from "@/config/site";
+import { cn } from "@/lib/utils";
 import { ChevronDownIcon } from "@radix-ui/react-icons";
+import * as NavigationMenu from "@radix-ui/react-navigation-menu";
+import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import * as React from "react";
+import { Icons } from "./icons";
+import { navigationMenuTriggerStyle } from "./ui/navigation-menu";
 
 export function MainNav() {
   const pathname = usePathname();
