@@ -1,11 +1,13 @@
-import type { Metadata } from 'next';
-import { cn } from '@/lib/utils';
-import './globals.css';
-import { fontSans } from '@/lib/fonts';
-import { SiteFooter } from '@/components/site-footer';
-import { SiteHeader } from '@/components/site-header';
-import { siteConfig } from '@/config/site';
-import { Toaster } from '@/components/ui/toaster';
+import { SiteFooter } from "@/components/site-footer";
+import { SiteHeader } from "@/components/site-header";
+import { Toaster } from "@/components/ui/toaster";
+import { siteConfig } from "@/config/site";
+import { fontSans } from "@/lib/fonts";
+import { cn } from "@/lib/utils";
+import { GoogleAnalytics, GoogleTagManager } from "@next/third-parties/google";
+
+import type { Metadata } from "next";
+import "./globals.css";
 
 export const metadata: Metadata = {
   title: {
@@ -14,18 +16,21 @@ export const metadata: Metadata = {
   },
   metadataBase: new URL(siteConfig.url),
   description: siteConfig.description,
-  keywords: ['bajajcodes', 'shubhambajaj.github.io', 'market research'],
+  keywords: ["bajajcodes", "bajajcodes.github.io", "market research"],
   authors: [
     {
-      name: 'shubhambajaj',
-      url: 'https://shmbajaj.github.io',
+      name: "shubhambajaj",
+      url: "https://shmbajaj.github.io",
     },
   ],
-  creator: 'shubhambajaj',
+  creator: "shubhambajaj",
   icons: {
-    icon: '/favicon.ico',
-    shortcut: '/logo.png',
-    apple: '/logo.png',
+    icon: "/favicon.ico",
+    shortcut: "/logo.png",
+    apple: "/logo.png",
+  },
+  verification: {
+    google: "Npd_l_vG2FNA4AnB5_m-8jCgyPAqq1k8DFlKQB_5M1g",
   },
 };
 
@@ -38,7 +43,7 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={cn(
-          'min-h-screen bg-background font-sans antialiased',
+          "min-h-screen bg-background font-sans antialiased",
           fontSans.className
         )}
       >
@@ -51,6 +56,16 @@ export default function RootLayout({
         </div>
         <Toaster />
       </body>
+      <GoogleTagManager gtmId="GTM-NN3SCPBV" />
+      <GoogleAnalytics gaId="G-JRPTJF7TN5" />
+      <noscript>
+        <iframe
+          src="https://www.googletagmanager.com/ns.html?id=GTM-NN3SCPBV"
+          height="0"
+          width="0"
+          style={{ display: "none", visibility: "hidden" }}
+        ></iframe>
+      </noscript>
     </html>
   );
 }
