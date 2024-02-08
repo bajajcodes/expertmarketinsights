@@ -1,19 +1,12 @@
-/* eslint-disable @next/next/no-img-element */
-'use client';
+"use client";
 
 import {
   PageHeader,
   PageHeaderDescription,
   PageHeaderHeading,
-} from '@/components/page-header';
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card';
-import { Separator } from '@radix-ui/react-separator';
+} from "@/components/page-header";
+import { Card, CardContent } from "@/components/ui/card";
+import { Separator } from "@radix-ui/react-separator";
 
 export default function OverviewPage() {
   return (

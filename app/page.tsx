@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import { Icons } from "@/components/icons";
@@ -8,12 +7,12 @@ import {
   PageHeaderDescription,
   PageHeaderHeading,
 } from "@/components/page-header";
+import { Testimonies } from "@/components/testimonies";
 import { navConfig } from "@/config/nav";
+import { images } from "@/data/home-page";
+import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import { images } from "@/data/home-page";
-import { Testimonies } from "@/components/testimonies";
-import Image from "next/image";
 
 export default function Home() {
   return (
@@ -40,16 +39,22 @@ export default function Home() {
       <section className="bg-gray-100">
         <section className="container flex flex-col lg:gap-2 md:flex-row justify-center pl-12 pr-4 pt-8">
           <div className="relative h-[1000px] z-0">
-            <img
+            <Image
               src={images.introduction1.src}
               alt={images.introduction1.alt}
+              width={0}
+              height={0}
+              sizes={"100vw"}
               className={
                 "mb-4 w-[80%] h-[500px] object-cover object-center aspect-square"
               }
             />
-            <img
+            <Image
               src={images.introduction2.src}
               alt={images.introduction2.alt}
+              width={0}
+              height={0}
+              sizes={"100vw"}
               className={
                 "mb-6 absolute -z-10 bottom-10 right-0 w-[80%] h-[500px] object-cover object-center aspect-square"
               }

@@ -1,15 +1,10 @@
-/* eslint-disable @next/next/no-img-element */
 import {
   PageHeader,
   PageHeaderDescription,
   PageHeaderHeading,
-} from '@/components/page-header';
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card';
+} from "@/components/page-header";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import Image from "next/image";
 
 export default function OverviewPage() {
   return (
@@ -17,9 +12,12 @@ export default function OverviewPage() {
       <div className="grid md:gap-8 md:grid-cols-[384px_1fr] py-8 md:px-8">
         <div className="relative h-[400px] md:h-auto md:max-w-sm">
           <div className="w-full h-full relative bg-blend-screen bg-opacity-50 bg-gray-500/5"></div>
-          <img
-            src="https://www.theresearchinsights.com/images/overview.webp"
+          <Image
+            src="https://res.cloudinary.com/dvi5qujxs/image/upload/v1707388837/overview_lxzo8q.webp"
             alt="about banner"
+            width={0}
+            height={0}
+            sizes={"100vw"}
             className={
               "w-full h-full object-cover object-center absolute top-0 left-0 aspect-square"
             }
@@ -59,7 +57,6 @@ export default function OverviewPage() {
         <h3 className="text-2xl lg:text-3xl font-bold text-center leading-6 mb-6 md:mb-4">
           A Ride Through Our Uniqueness
         </h3>
-        {/* md:grid-cols-[repeat(auto-fit,minmax(400px,1fr))] */}
         <div className="md:grid md:gap-4">
           <Card className="hover:drop-shadow hover:shadow-blue-400 hover:shadow-lg text-center mb-4 md:mb-0">
             <CardHeader>
@@ -117,8 +114,8 @@ export default function OverviewPage() {
             <CardContent>
               <p>
                 At Expert Market Insights, our team upholds integrity by doing
-                the right thing even when no one is watching; its our
-                definition of ethical conduct.
+                the right thing even when no one is watching; its our definition
+                of ethical conduct.
               </p>
             </CardContent>
           </Card>
