@@ -41,6 +41,16 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <noscript>
+          <iframe
+            src="https://www.googletagmanager.com/ns.html?id=GTM-NN3SCPBV"
+            height="0"
+            width="0"
+            style={{ display: "none", visibility: "hidden" }}
+          ></iframe>
+        </noscript>
+      </head>
       <body
         className={cn(
           "min-h-screen bg-background font-sans antialiased",
@@ -58,14 +68,6 @@ export default function RootLayout({
       </body>
       <GoogleTagManager gtmId="GTM-NN3SCPBV" />
       <GoogleAnalytics gaId="G-JRPTJF7TN5" />
-      <noscript>
-        <iframe
-          src="https://www.googletagmanager.com/ns.html?id=GTM-NN3SCPBV"
-          height="0"
-          width="0"
-          style={{ display: "none", visibility: "hidden" }}
-        ></iframe>
-      </noscript>
     </html>
   );
 }
