@@ -1,16 +1,17 @@
-'use client';
+"use client";
 
-import * as React from 'react';
-import Link, { LinkProps } from 'next/link';
-import { usePathname, useRouter } from 'next/navigation';
-import { cn } from '@/lib/utils';
-import { Sheet, SheetContent, SheetTrigger } from './ui/sheet';
-import { Button } from './ui/button';
-import { ScrollArea } from './ui/scroll-area';
-import { siteConfig } from '@/config/site';
-import { navConfig } from '@/config/nav';
-import { Icons } from './icons';
-import Image from 'next/image';
+import { navConfig } from "@/config/nav";
+import { siteConfig } from "@/config/site";
+import { cn } from "@/lib/utils";
+import logo from "@/public/logo.png";
+import Image from "next/image";
+import Link, { LinkProps } from "next/link";
+import { usePathname, useRouter } from "next/navigation";
+import * as React from "react";
+import { Icons } from "./icons";
+import { Button } from "./ui/button";
+import { ScrollArea } from "./ui/scroll-area";
+import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
 
 export function MobileNav() {
   const [open, setOpen] = React.useState(false);
@@ -22,13 +23,17 @@ export function MobileNav() {
         className="flex items-center m-2 mt-0 md:hidden"
         onOpenChange={setOpen}
       >
-        <Image
-          width={72}
-          height={72}
-          className="mr-2"
-          src="/logo.png"
-          alt="logo"
-        />
+        <div className="relative w-16 h-16  ">
+          <Image
+            className="object-cover absolute w-full h-full inset-0"
+            sizes="100vw"
+            width={0}
+            height={0}
+            placeholder="blur"
+            src={logo}
+            alt="logo"
+          />
+        </div>
         <span className="font-bold">{siteConfig.name}</span>
       </MobileLink>
       <SheetTrigger asChild>
@@ -51,9 +56,9 @@ export function MobileNav() {
                     href={item.href}
                     onOpenChange={setOpen}
                     className={cn(
-                      'hover:text-expertmarketinsight text-muted-foreground',
+                      "hover:text-expertmarketinsight text-muted-foreground",
                       {
-                        'bg-expertmarketinsight text-white hover:text-white/90':
+                        "bg-expertmarketinsight text-white hover:text-white/90":
                           pathname === item.href,
                       }
                     )}
@@ -78,9 +83,9 @@ export function MobileNav() {
                               href={item.href}
                               onOpenChange={setOpen}
                               className={cn(
-                                'hover:text-expertmarketinsight flex text-muted-foreground',
+                                "hover:text-expertmarketinsight flex text-muted-foreground",
                                 {
-                                  'bg-expertmarketinsight text-white':
+                                  "bg-expertmarketinsight text-white":
                                     pathname === item.href,
                                 }
                               )}
