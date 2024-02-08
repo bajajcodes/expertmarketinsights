@@ -1,6 +1,6 @@
 export const images = {
   header: {
-    src: "https://res.cloudinary.com/dvi5qujxs/image/upload/v1707073140/Services2_gau7j9.jpg",
+    src: "https://res.cloudinary.com/dvi5qujxs/image/upload/w_1000,ar_16:9,c_fill,g_auto,e_sharpen/v1707073140/Services2_gau7j9.jpg",
     alt: "Header",
   },
   introduction1: {
