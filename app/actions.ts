@@ -1,7 +1,11 @@
-'use server';
+"use server";
 
-import { LeadGenerateType } from '@/types/schema';
-import { newsLetterSchema, sendLeadSchema } from '@/utils/schema';
+import { LeadGenerateType } from "@/types/schema";
+import { newsLetterSchema, sendLeadSchema } from "@/utils/schema";
+import { getPlaiceholder } from "plaiceholder";
+
+//TODO: make them generic
+type ImageKeys = "header" | "introduction1" | "introduction2";
 
 const generateHtml = (formData: FormData) => {
   const rawFormData = Object.fromEntries(formData.entries());
@@ -30,16 +34,16 @@ async function sendLeadForFreeCustomizedReport(
 
   const html = generateHtml(formData);
   try {
-    const response = await fetch('https://api.resend.com/emails', {
-      method: 'POST',
+    const response = await fetch("https://api.resend.com/emails", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
         Authorization: `Bearer ${process.env.RESEND_KEY}`,
       },
       body: JSON.stringify({
-        from: 'onboarding@resend.dev',
-        to: 'shmbajaj32@gmail.com',
-        subject: 'Query For Free Customized Report',
+        from: "onboarding@resend.dev",
+        to: "shmbajaj32@gmail.com",
+        subject: "Query For Free Customized Report",
         html,
       }),
     });
@@ -48,7 +52,7 @@ async function sendLeadForFreeCustomizedReport(
   } catch (error: any) {
     return {
       success: false,
-      message: error?.message ?? 'Something Went Wrong',
+      message: error?.message ?? "Something Went Wrong",
       errors: {},
     };
   }
@@ -68,16 +72,16 @@ async function subscribeToNewsLetter(
   }
 
   try {
-    const response = await fetch('https://api.resend.com/emails', {
-      method: 'POST',
+    const response = await fetch("https://api.resend.com/emails", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
         Authorization: `Bearer ${process.env.RESEND_KEY}`,
       },
       body: JSON.stringify({
-        from: 'onboarding@resend.dev',
-        to: 'shmbajaj32@gmail.com',
-        subject: 'News Letter Subscription',
+        from: "onboarding@resend.dev",
+        to: "shmbajaj32@gmail.com",
+        subject: "News Letter Subscription",
         html: `<p><strong>Email:&nbsp;</strong><span>${rawFormData?.email}</span></p>`,
       }),
     });
@@ -86,10 +90,49 @@ async function subscribeToNewsLetter(
   } catch (error: any) {
     return {
       success: false,
-      message: error?.message ?? 'Something Went Wrong',
+      message: error?.message ?? "Something Went Wrong",
       errors: {},
     };
   }
 }
 
-export { sendLeadForFreeCustomizedReport, subscribeToNewsLetter };
+async function getBlurImgData(source: string) {
+  const data = await fetch(source);
+  const arrayBuffer = await data.arrayBuffer();
+  const buffer = Buffer.from(arrayBuffer);
+  const {
+    metadata: { width, height },
+    ...placeholder
+  } = await getPlaiceholder(buffer, {
+    size: 10,
+  });
+  return {
+    ...placeholder,
+    img: { src: source, width, height },
+  };
+}
+
+const getImagesWithPlaceholders = async (
+  sources: Array<{
+    source: string;
+    key: ImageKeys;
+  }>
+) => {
+  return await Promise.all(
+    sources.map(async (item) => {
+      const { base64, img } = await getBlurImgData(item.source);
+      return {
+        key: [item.key],
+        base64,
+        img,
+      };
+    })
+  );
+};
+
+export {
+  getBlurImgData,
+  getImagesWithPlaceholders,
+  sendLeadForFreeCustomizedReport,
+  subscribeToNewsLetter,
+};
