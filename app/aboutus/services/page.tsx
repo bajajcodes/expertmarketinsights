@@ -1,10 +1,24 @@
-"use client";
-
+import { getImagesWithPlaceholders } from "@/app/actions";
+import { ImageKeys } from "@/app/types";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { images } from "@/data/services";
 import Image from "next/image";
 
-export default function ServicesPage() {
+export default async function ServicesPage() {
+  const imagesWithPlaceholders = await getImagesWithPlaceholders([
+    {
+      key: ImageKeys.BANNER1,
+      source: images.banner1.src,
+    },
+    {
+      key: ImageKeys.BANNER2,
+      source: images.banner2.src,
+    },
+    {
+      key: ImageKeys.BANNER3,
+      source: images.banner3.src,
+    },
+  ]);
   return (
     <div className="container p-0 md:p-2 my-8 grid gap-8 lg:gap-4">
       <Card>
@@ -16,14 +30,17 @@ export default function ServicesPage() {
         <CardContent className="grid gap-4 lg:grid-cols-2 p-0">
           <div className="relative h-[240px] lg:h-auto">
             <Image
-              src={images.banner1.src}
-              width={0}
-              height={0}
+              // src={images.banner1.src}
+              // width={0}
+              // height={0}
               sizes="100vw"
+              placeholder="blur"
               alt="about banner"
               className={
                 "w-full h-full absolute top-0 left-0 object-cover object-center"
               }
+              {...imagesWithPlaceholders.BANNER1?.img}
+              blurDataURL={imagesWithPlaceholders.BANNER1!.base64}
             />
           </div>
           <p className="px-4 py-2 text-xl leading-8">
@@ -61,14 +78,14 @@ export default function ServicesPage() {
           </p>
           <div className="relative h-[240px] lg:h-auto">
             <Image
-              src={images.banner2.src}
-              width={0}
-              height={0}
               sizes="100vw"
+              placeholder="blur"
               alt="about banner"
               className={
                 "w-full h-full absolute top-0 left-0 object-cover object-center"
               }
+              {...imagesWithPlaceholders.BANNER2?.img}
+              blurDataURL={imagesWithPlaceholders.BANNER2!.base64}
             />
           </div>
         </CardContent>
@@ -82,14 +99,14 @@ export default function ServicesPage() {
         <CardContent className="grid gap-4 lg:grid-cols-2 p-0">
           <div className="relative h-[240px] lg:h-auto bg-gray-50">
             <Image
-              src={images.banner3.src}
-              width={0}
-              height={0}
               sizes="100vw"
+              placeholder="blur"
               alt="about banner"
               className={
                 "w-full h-full absolute top-0 left-0 object-cover object-center"
               }
+              {...imagesWithPlaceholders.BANNER3?.img}
+              blurDataURL={imagesWithPlaceholders.BANNER3!.base64}
             />
           </div>
           <p className="px-4 py-2 text-xl leading-8">

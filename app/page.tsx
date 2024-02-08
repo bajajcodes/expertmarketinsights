@@ -11,19 +11,20 @@ import { images } from "@/data/home-page";
 import Image from "next/image";
 import React from "react";
 import { getImagesWithPlaceholders } from "./actions";
+import { ImageKeys } from "./types";
 
 export default async function Home() {
   const imagesWithPlaceholders = await getImagesWithPlaceholders([
     {
-      key: "header",
+      key: ImageKeys.HEADER,
       source: images.header.src,
     },
     {
-      key: "introduction1",
+      key: ImageKeys.INTRODUCTION1,
       source: images.introduction1.src,
     },
     {
-      key: "introduction2",
+      key: ImageKeys.INTRODUCTION2,
       source: images.introduction2.src,
     },
   ]);
@@ -35,8 +36,8 @@ export default async function Home() {
           alt={images.header.alt}
           className="object-cover absolute w-full h-full inset-0"
           placeholder="blur"
-          {...imagesWithPlaceholders[0].img}
-          blurDataURL={imagesWithPlaceholders[0].base64}
+          {...imagesWithPlaceholders.HEADER!.img}
+          blurDataURL={imagesWithPlaceholders.HEADER!.base64}
         />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center justify-center">
           <p className="mb-4 leading-10 font-semibold drop-shadow text-4xl text-center">
@@ -55,8 +56,8 @@ export default async function Home() {
               className={
                 "mb-4 w-[80%] h-[500px] object-cover object-center aspect-square"
               }
-              {...imagesWithPlaceholders[1].img}
-              blurDataURL={imagesWithPlaceholders[1].base64}
+              {...imagesWithPlaceholders.INTRODUCTION1!.img}
+              blurDataURL={imagesWithPlaceholders.INTRODUCTION1!.base64}
             />
             <Image
               alt={images.introduction2.alt}
@@ -65,8 +66,8 @@ export default async function Home() {
               className={
                 "mb-6 absolute -z-10 bottom-10 right-0 w-[80%] h-[500px] object-cover object-center aspect-square"
               }
-              {...imagesWithPlaceholders[2].img}
-              blurDataURL={imagesWithPlaceholders[2].base64}
+              {...imagesWithPlaceholders.INTRODUCTION2!.img}
+              blurDataURL={imagesWithPlaceholders.INTRODUCTION2!.base64}
             />
           </div>
           <PageHeader className="flex-1">

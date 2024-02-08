@@ -3,9 +3,7 @@
 import { LeadGenerateType } from "@/types/schema";
 import { newsLetterSchema, sendLeadSchema } from "@/utils/schema";
 import { getPlaiceholder } from "plaiceholder";
-
-//TODO: make them generic
-type ImageKeys = "header" | "introduction1" | "introduction2";
+import { ImageKeys } from "./types";
 
 const generateHtml = (formData: FormData) => {
   const rawFormData = Object.fromEntries(formData.entries());
@@ -118,15 +116,24 @@ const getImagesWithPlaceholders = async (
     key: ImageKeys;
   }>
 ) => {
-  return await Promise.all(
-    sources.map(async (item) => {
-      const { base64, img } = await getBlurImgData(item.source);
+  const imagesWithPlaceholders = await Promise.all(
+    sources.map(async ({ key, source }) => {
+      const { base64, img } = await getBlurImgData(source);
       return {
-        key: [item.key],
+        key,
         base64,
         img,
       };
     })
+  );
+  const initialAcc: Partial<Record<ImageKeys, { base64: string; img: any }>> =
+    {};
+  return imagesWithPlaceholders.reduce(
+    (acc, { key, base64, img }) => ({
+      ...acc,
+      [key]: { base64, img },
+    }),
+    initialAcc
   );
 };
 

@@ -1,25 +1,27 @@
-'use client';
+"use client";
 
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import React, { useEffect, useRef } from 'react';
-import { FormItem, FormMessage } from './form';
-import { useToast } from './ui/use-toast';
-import { useFormState } from 'react-dom';
-import { subscribeToNewsLetter } from '@/app/actions';
-import { NewsLetterType } from '@/types/schema';
-import { cn } from '@/lib/utils';
+import { subscribeToNewsLetter } from "@/app/actions";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { cn } from "@/lib/utils";
+import { NewsLetterType } from "@/types/schema";
+import { useEffect, useRef } from "react";
+import { useFormState } from "react-dom";
+import { FormItem, FormMessage } from "./form";
+import { useToast } from "./ui/use-toast";
 
 const intialState: NewsLetterType = {
-  email: '',
+  email: "",
 };
 
 export function NewsLetterForm({
   title,
-  direction = 'column',
+  direction = "column",
+  className = "",
 }: {
   title: string;
-  direction?: 'row' | 'column';
+  className?: string;
+  direction?: "row" | "column";
 }) {
   const { toast } = useToast();
   const [state, formAction] = useFormState(subscribeToNewsLetter, intialState);
@@ -30,7 +32,7 @@ export function NewsLetterForm({
     }
     formRef.current?.reset();
     toast({
-      title: 'You have subscribed to NewsLetter.',
+      title: "You have subscribed to NewsLetter.",
       duration: 2000,
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -41,8 +43,9 @@ export function NewsLetterForm({
       action={formAction}
       ref={formRef}
       className={cn(
-        'flex flex-col gap-4 lg:flex-row w-full max-w-xl lg:items-center lg:gap-0',
-        { 'flex-row': direction === 'row' }
+        "flex flex-col gap-4 lg:flex-row w-full max-w-xl lg:items-center lg:gap-0",
+        { "flex-row": direction === "row" },
+        className
       )}
     >
       <FormItem className="transition-all ease-in-out">
