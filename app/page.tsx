@@ -1,58 +1,73 @@
-/* eslint-disable @next/next/no-img-element */
-"use client";
-
-import { Icons } from "@/components/icons";
+import { Industries } from "@/components/industries";
 import { InputWithButton } from "@/components/input-with-button";
 import {
   PageHeader,
   PageHeaderDescription,
   PageHeaderHeading,
 } from "@/components/page-header";
-import { navConfig } from "@/config/nav";
-import Link from "next/link";
-import React from "react";
-import { images } from "@/data/home-page";
+import { Stats } from "@/components/stats";
 import { Testimonies } from "@/components/testimonies";
+import { images } from "@/data/home-page";
 import Image from "next/image";
+import React from "react";
+import { getImagesWithPlaceholders } from "./actions";
+import { ImageKeys } from "./types";
 
-export default function Home() {
+export default async function Home() {
+  const imagesWithPlaceholders = await getImagesWithPlaceholders([
+    {
+      key: ImageKeys.HEADER,
+      source: images.header.src,
+    },
+    {
+      key: ImageKeys.INTRODUCTION1,
+      source: images.introduction1.src,
+    },
+    {
+      key: ImageKeys.INTRODUCTION2,
+      source: images.introduction2.src,
+    },
+  ]);
+
   return (
     <React.Fragment>
-      <div className="relative h-[500px]">
-        <div className="w-full h-full relative bg-blend-screen bg-opacity-50 bg-gray-500/5"></div>
+      <div className="relative w-full h-[500px]">
         <Image
-          src={images.header.src}
           alt={images.header.alt}
-          width={0}
-          height={0}
-          sizes={"100vw"}
-          className={
-            "w-full h-full object-cover object-center absolute top-0 left-0 aspect-square"
-          }
+          className="object-cover absolute w-full h-full inset-0"
+          placeholder="blur"
+          {...imagesWithPlaceholders.HEADER!.img}
+          blurDataURL={imagesWithPlaceholders.HEADER!.base64}
         />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center justify-center">
-          <p className="mb-4 leading-10 font-semibold  drop-shadow text-4xl">
+          <p className="mb-4 leading-10 font-semibold drop-shadow text-4xl text-center">
             We Use Research For Illumination!
           </p>
           <InputWithButton title="Search" />
         </div>
-      </div>{" "}
+      </div>
       <section className="bg-gray-100">
         <section className="container flex flex-col lg:gap-2 md:flex-row justify-center pl-12 pr-4 pt-8">
           <div className="relative h-[1000px] z-0">
-            <img
-              src={images.introduction1.src}
+            <Image
               alt={images.introduction1.alt}
+              sizes={"100vw"}
+              placeholder="blur"
               className={
                 "mb-4 w-[80%] h-[500px] object-cover object-center aspect-square"
               }
+              {...imagesWithPlaceholders.INTRODUCTION1!.img}
+              blurDataURL={imagesWithPlaceholders.INTRODUCTION1!.base64}
             />
-            <img
-              src={images.introduction2.src}
+            <Image
               alt={images.introduction2.alt}
+              sizes={"100vw"}
+              placeholder="blur"
               className={
                 "mb-6 absolute -z-10 bottom-10 right-0 w-[80%] h-[500px] object-cover object-center aspect-square"
               }
+              {...imagesWithPlaceholders.INTRODUCTION2!.img}
+              blurDataURL={imagesWithPlaceholders.INTRODUCTION2!.base64}
             />
           </div>
           <PageHeader className="flex-1">
@@ -102,70 +117,8 @@ export default function Home() {
           </PageHeader>
         </section>
       </section>
-      <section>
-        <div className="container py-12 px-6">
-          <div className="heading-section mb-5 mt-3 mt-lg-0">
-            <h2 className="mb-3 text-center font-extrabold text-3xl text-expertmarketinsight">
-              Industries
-            </h2>
-          </div>
-          <div className="grid auto-rows-[1fr] gap-4 md:gap-6 md:grid-cols-2 lg:grid-cols-3 grid-flow-row mb-4 max-w-xs md:max-w-3xl m-auto">
-            {navConfig.sidebarNav[1].items.map((item) => {
-              const Icon = Icons[item.icon!];
-              return (
-                <Link href={item.href!} key={item.href} className="grid">
-                  <div className="flex items-center justify-center rounded-md border-2 border-muted bg-popover p-4 ">
-                    <div className="flex flex-col items-center justify-center hover:text-accent-foreground hover:transform hover:scale-105 hover:lg:scale-110 transition-all">
-                      <h6 className="bg-expertmarketinsight text-white text-xl p-2 h-11  w-14 mx-auto rounded-[50%] hover:bg-blue-500 transition-all delay-0 transform ease-in-out hover:duration-2000 hover:rotate-360">
-                        <Icon className="m-auto mb-3 h-6 w-6 text-white" />
-                      </h6>
-                      <p className="text-base text-center mb-4">
-                        <strong>{item.title}</strong>
-                      </p>
-                    </div>
-                  </div>
-                </Link>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-      <section className="bg-slate-300">
-        <div className="container grid place-items-center md:grid-cols-2 lg:grid-cols-4 py-16 px-10 md:flex-row flex-wrap gap-16">
-          <div>
-            <div className="text-expertmarketinsight mb-2 text-5xl font-bold">
-              210,123
-            </div>
-            <div className="text-expertmarketinsight uppercase tracking-widest">
-              REPORTS PUBLISHED
-            </div>
-          </div>
-          <div>
-            <div className="text-expertmarketinsight mb-2 text-5xl font-bold">
-              10,123
-            </div>
-            <div className="text-expertmarketinsight uppercase tracking-widest">
-              CLIENT INQUIRIES
-            </div>
-          </div>
-          <div>
-            <div className="text-expertmarketinsight mb-2 text-5xl font-bold">
-              1,123
-            </div>
-            <div className="text-expertmarketinsight uppercase tracking-widest">
-              SATISFIED CLIENTS
-            </div>
-          </div>
-          <div>
-            <div className="text-expertmarketinsight mb-2 text-5xl font-bold">
-              510
-            </div>
-            <div className="text-expertmarketinsight uppercase tracking-widest">
-              CUSTOM STUDIES
-            </div>
-          </div>
-        </div>
-      </section>
+      <Industries />
+      <Stats />
       <Testimonies />
     </React.Fragment>
   );

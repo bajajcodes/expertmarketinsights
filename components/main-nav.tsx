@@ -3,6 +3,7 @@
 import { navConfig } from "@/config/nav";
 import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
+import logo from "@/public/logo.png";
 import { ChevronDownIcon } from "@radix-ui/react-icons";
 import * as NavigationMenu from "@radix-ui/react-navigation-menu";
 import Image from "next/image";
@@ -17,13 +18,19 @@ export function MainNav() {
   return (
     <div className="mr-4 hidden md:flex md:items-center">
       <Link href="/" className="mr-6 flex flex-wrap items-center space-x-2">
-        <Image
-          width={72}
-          height={72}
-          className="mr-2"
-          src="/logo.png"
-          alt="logo"
-        />
+        <div className="relative w-16 h-16 mr-1 bg-expertmarketinsight">
+          <Image
+            // layout="fill"
+            sizes="100vw"
+            loading="eager"
+            className="object-cover absolute w-full h-full inset-0"
+            width={0}
+            height={0}
+            placeholder="empty"
+            src={logo}
+            alt="logo"
+          />
+        </div>
         <span className="hidden font-bold sm:inline-block">
           {siteConfig.name}
         </span>

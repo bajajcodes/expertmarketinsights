@@ -1,5 +1,7 @@
-import { Carousel, CarouselContent, CarouselItem } from './ui/carousel';
-import Autoplay from 'embla-carousel-autoplay';
+"use client";
+
+import Autoplay from "embla-carousel-autoplay";
+import { Carousel, CarouselContent, CarouselItem } from "./ui/carousel";
 
 export function Testimonies() {
   return (
@@ -17,21 +19,7 @@ export function Testimonies() {
               delay: 3000,
             }),
           ]}
-          // animation="ease"
-          // autoplay
           className="overflow-hidden w-full max-w-xl lg:max-w-screen-xl m-auto"
-          // responsive={{
-          //   0: {
-          //     items: 1,
-          //   },
-          //   768: {
-          //     items: 2,
-          //   },
-          //   1024: {
-          //     items: 3,
-          //   },
-          // }}
-          // transitionDuration={500}
         >
           <CarouselContent className="items-stretch">
             <CarouselItem className="md:basis-1/2 lg:basis-1/3">
@@ -112,69 +100,6 @@ export function Testimonies() {
             </CarouselItem>
           </CarouselContent>
         </Carousel>
-        {/* <div className="flex flex-wrap overflow-hidden">
-          <div className="flex-shrink-0 w-full md:w-1/2 lg:w-1/3 px-4">
-            <div className="p-6 bg-white rounded-lg shadow-md">
-              <QuoteIcon className="text-[#3b82f6] text-3xl mb-4" />
-              <p className="text-gray-600 mb-4">
-                Expert Market Insights delivers profound market understanding.
-                Their reports are meticulous, offering actionable insights for
-                strategic business growth.
-              </p>
-              <p className="font-semibold">Johan S.</p>
-              <p className="text-sm text-gray-500">Director</p>
-            </div>
-          </div>
-          <div className="flex-shrink-0 w-full md:w-1/2 lg:w-1/3 px-4">
-            <div className="p-6 bg-white rounded-lg shadow-md">
-              <QuoteIcon className="text-[#3b82f6] text-3xl mb-4" />
-              <p className="text-gray-600 mb-4">
-                Expert Market Insights: Unparalleled depth, precise insights. A
-                game-changer in strategic marketing decisions. Highly
-                recommended!
-              </p>
-              <p className="font-semibold">Switty Adams</p>
-              <p className="text-sm text-gray-500">Marketing Head</p>
-            </div>
-          </div>
-          <div className="flex-shrink-0 w-full md:w-1/2 lg:w-1/3 px-4">
-            <div className="p-6 bg-white rounded-lg shadow-md">
-              <QuoteIcon className="text-[#3b82f6] text-3xl mb-4" />
-              <p className="text-gray-600 mb-4">
-                Expert Market Insights delivers unparalleled marketing research
-                reports—comprehensive, meticulously researched, and instrumental
-                in shaping successful strategies.
-              </p>
-              <p className="font-semibold">Rodger Marvel</p>
-              <p className="text-sm text-gray-500">Senior Marketing Manager</p>
-            </div>
-          </div>
-          <div className="flex-shrink-0 w-full md:w-1/2 lg:w-1/3 px-4">
-            <div className="p-6 bg-white rounded-lg shadow-md">
-              <QuoteIcon className="text-[#3b82f6] text-3xl mb-4" />
-              <p className="text-gray-600 mb-4">
-                In a crowded market research landscape, Expert Market Insights
-                shines bright. Their reports are not just data; they are
-                strategic assets. Trustworthy, insightful, and essential for any
-                business aiming to stay ahead in today's dynamic markets.
-              </p>
-              <p className="font-semibold">Matthew Hobert</p>
-              <p className="text-sm text-gray-500">Vice President</p>
-            </div>
-          </div>
-          <div className="flex-shrink-0 w-full md:w-1/2 lg:w-1/3 px-4">
-            <div className="p-6 bg-white rounded-lg shadow-md">
-              <QuoteIcon className="text-[#3b82f6] text-3xl mb-4" />
-              <p className="text-gray-600 mb-4">
-                Expert Market Insights: Unmatched precision in marketing
-                research. Their reports deliver insights with precision and
-                clarity.
-              </p>
-              <p className="font-semibold">Scott Henry</p>
-              <p className="text-sm text-gray-500">Chief Executive Officer</p>
-            </div>
-          </div>
-        </div> */}
       </div>
     </div>
   );

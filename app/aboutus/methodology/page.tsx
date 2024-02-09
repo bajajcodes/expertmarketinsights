@@ -1,19 +1,9 @@
-/* eslint-disable @next/next/no-img-element */
-'use client';
-
 import {
   PageHeader,
   PageHeaderDescription,
   PageHeaderHeading,
-} from '@/components/page-header';
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card';
-import { Separator } from '@radix-ui/react-separator';
+} from "@/components/page-header";
+import { Card, CardContent } from "@/components/ui/card";
 
 export default function OverviewPage() {
   return (
@@ -22,7 +12,7 @@ export default function OverviewPage() {
         <PageHeaderHeading className="md:text-4xl text-left ">
           Research Methodology
         </PageHeaderHeading>
-        <Separator className="w-[124px] h-1 bg-orange-500" />
+        <hr className="w-[124px] h-1 bg-orange-500" />
         <PageHeaderDescription className="font-bold text-left text-neutral-700">
           &quot;All we possess is the power of research!&quot;
         </PageHeaderDescription>
