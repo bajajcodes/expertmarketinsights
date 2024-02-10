@@ -1,0 +1,67 @@
+{
+  "kind": "collectionType",
+  "collectionName": "reports",
+  "info": {
+    "singularName": "report",
+    "pluralName": "reports",
+    "displayName": "Report",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "reportTitle": {
+      "type": "string",
+      "required": true,
+      "minLength": 3
+    },
+    "reportCode": {
+      "type": "string",
+      "required": true,
+      "minLength": 3,
+      "unique": true
+    },
+    "numberOfPages": {
+      "type": "integer",
+      "unique": false,
+      "required": true
+    },
+    "reportId": {
+      "type": "integer",
+      "unique": true,
+      "required": true
+    },
+    "publishedDate": {
+      "type": "date",
+      "unique": true,
+      "required": true
+    },
+    "summary": {
+      "type": "richtext",
+      "required": true
+    },
+    "toc": {
+      "type": "richtext",
+      "required": true
+    },
+    "methodology": {
+      "type": "richtext",
+      "required": true
+    },
+    "faqs": {
+      "type": "component",
+      "repeatable": true,
+      "component": "faq.faq",
+      "min": 1,
+      "required": true
+    },
+    "category": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::category.category",
+      "inversedBy": "reports"
+    }
+  }
+}
