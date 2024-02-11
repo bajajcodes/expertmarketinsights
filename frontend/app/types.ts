@@ -6,3 +6,20 @@ export enum ImageKeys {
   BANNER2 = "BANNER2",
   BANNER3 = "BANNER3",
 }
+
+export interface Category {
+  id: string;
+  attributes: {
+    name: string;
+    value: string;
+    image: {
+      data: {
+        attributes: {
+          name: string;
+          url: string;
+          alternativeText?: string;
+        };
+      };
+    };
+  };
+}

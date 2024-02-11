@@ -1,9 +1,10 @@
 "use server";
 
 import { LeadGenerateType } from "@/types/schema";
+import { LIST_CATEGORIES } from "@/utils/queries";
 import { newsLetterSchema, sendLeadSchema } from "@/utils/schema";
 import { getPlaiceholder } from "plaiceholder";
-import { ImageKeys } from "./types";
+import { Category, ImageKeys } from "./types";
 
 const generateHtml = (formData: FormData) => {
   const rawFormData = Object.fromEntries(formData.entries());
@@ -137,8 +138,31 @@ const getImagesWithPlaceholders = async (
   );
 };
 
+const getCategories = async (category?: string): Promise<Array<Category>> => {
+  const fetchParams: RequestInit = {
+    method: "post",
+    headers: {
+      "content-type": "application/json",
+    },
+    body: JSON.stringify({
+      query: LIST_CATEGORIES,
+      variables: {
+        category,
+      },
+    }),
+  };
+  const response = await fetch(
+    `${process.env.STRAPI_API_BASE_URL}/graphql`,
+    fetchParams
+  );
+  const data = await response.json();
+  //TODO: check if below syntax can be changed?
+  return data.data.categories.data;
+};
+
 export {
   getBlurImgData,
+  getCategories,
   getImagesWithPlaceholders,
   sendLeadForFreeCustomizedReport,
   subscribeToNewsLetter,

@@ -40,6 +40,7 @@ export const navConfig: NavConfig = {
     },
     {
       title: "Categories",
+      href: "/categories",
       items: [
         {
           title: "Aerospace & Defence",
