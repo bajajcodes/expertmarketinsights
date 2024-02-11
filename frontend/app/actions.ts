@@ -3,6 +3,7 @@
 import { LeadGenerateType } from "@/types/schema";
 import {
   LIST_CATEGORIES,
+  LIST_CATEGORIES_SLUGS,
   LIST_CATEGORY_REPORTS_META_DATA,
 } from "@/utils/queries";
 import { newsLetterSchema, sendLeadSchema } from "@/utils/schema";
@@ -165,10 +166,7 @@ const getCategories = async (category?: string): Promise<Array<Category>> => {
 
 const getReportsMetaData = async (
   category?: string
-): Promise<{
-  categoryLabel: string;
-  reports: Array<ReportMetaData>;
-}> => {
+): Promise<Array<ReportMetaData>> => {
   //TODO: create a reusable function
   const fetchParams: RequestInit = {
     method: "post",
@@ -188,18 +186,34 @@ const getReportsMetaData = async (
   );
   const data = await response.json();
   //TODO: change this to direct data if possible
-  const attributes = data.data.categories.data[0].attributes;
-  const categoryLabel: string = attributes.name;
-  const reports: Array<ReportMetaData> = attributes.reports.data;
-  return {
-    categoryLabel,
-    reports,
+  const reports = data.data.reports.data;
+  return reports;
+};
+
+const getCategoriesSlugs = async (): Promise<Array<string>> => {
+  const fetchParams: RequestInit = {
+    method: "post",
+    headers: {
+      "content-type": "application/json",
+    },
+    body: JSON.stringify({
+      query: LIST_CATEGORIES_SLUGS,
+    }),
   };
+  const response = await fetch(
+    `${process.env.STRAPI_API_BASE_URL}/graphql`,
+    fetchParams
+  );
+  const data = await response.json();
+  return data.data.categories.data.map(
+    (item: Record<string, any>) => item.attributes.slug
+  );
 };
 
 export {
   getBlurImgData,
   getCategories,
+  getCategoriesSlugs,
   getImagesWithPlaceholders,
   getReportsMetaData,
   sendLeadForFreeCustomizedReport,

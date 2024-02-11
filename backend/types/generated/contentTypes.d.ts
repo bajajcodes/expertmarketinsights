@@ -800,7 +800,7 @@ export interface ApiCategoryCategory extends Schema.CollectionType {
         minLength: 3;
       }>;
     image: Attribute.Media & Attribute.Required;
-    value: Attribute.String & Attribute.Required & Attribute.Unique;
+    slug: Attribute.String & Attribute.Required & Attribute.Unique;
     reports: Attribute.Relation<
       'api::category.category',
       'oneToMany',
@@ -849,7 +849,7 @@ export interface ApiReportReport extends Schema.CollectionType {
       }>;
     numberOfPages: Attribute.Integer & Attribute.Required;
     reportId: Attribute.Integer & Attribute.Required & Attribute.Unique;
-    publishedDate: Attribute.Date & Attribute.Required & Attribute.Unique;
+    publishedDate: Attribute.Date & Attribute.Required;
     summary: Attribute.RichText & Attribute.Required;
     toc: Attribute.RichText & Attribute.Required;
     methodology: Attribute.RichText & Attribute.Required;

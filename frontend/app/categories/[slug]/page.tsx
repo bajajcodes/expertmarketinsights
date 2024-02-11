@@ -1,4 +1,4 @@
-import { getReportsMetaData } from "@/app/actions";
+import { getCategoriesSlugs, getReportsMetaData } from "@/app/actions";
 import { ReportMetaData } from "@/app/types";
 import { HeroHeader } from "@/components/hero-header";
 import { Button } from "@/components/ui/button";
@@ -10,12 +10,16 @@ interface Props {
   };
 }
 
-export default async function Page({ params }: Props) {
-  const { categoryLabel, reports } = await getReportsMetaData(params.slug);
+export async function generateStaticParams() {
+  const slugs = await getCategoriesSlugs();
+  return slugs;
+}
 
+export default async function Page({ params }: Props) {
+  const reports = await getReportsMetaData(params.slug);
   return (
     <section>
-      <HeroHeader title={categoryLabel} />
+      <HeroHeader title={"NA"} />
       <div className="bg-white p-8 shadow rounded-lg">
         <h2 className="text-xl font-semibold mb-4">Report Details</h2>
         <div className="space-y-4">

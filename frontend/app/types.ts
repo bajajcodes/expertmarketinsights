@@ -11,7 +11,7 @@ export interface Category {
   id: string;
   attributes: {
     name: string;
-    value: string;
+    slug: string;
     image: {
       data: {
         attributes: {

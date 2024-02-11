@@ -35,7 +35,7 @@
     },
     "publishedDate": {
       "type": "date",
-      "unique": true,
+      "unique": false,
       "required": true
     },
     "summary": {

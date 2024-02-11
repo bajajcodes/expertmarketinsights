@@ -11,9 +11,9 @@ export default async function Categories() {
       <HeroHeader title="ALL CATEGORIES" />
       <section className="container">
         <ul className="m-auto py-8 flex flex-col gap-8 md:flex-row md:flex-wrap items-center justify-center">
-          {categories.map(({ id, attributes: { name, image, value } }) => (
+          {categories.map(({ id, attributes: { name, image, slug } }) => (
             <li key={id} className="overflow-hidden">
-              <Link href={`/categories/${value}`}>
+              <Link href={`/categories/${slug}`}>
                 <Image
                   src={image.data.attributes.url}
                   alt={image.data.attributes.alternativeText || name}

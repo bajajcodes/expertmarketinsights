@@ -1,6 +1,6 @@
 const LIST_CATEGORIES = `
 query LIST_CATEGORY($category: String){
-  categories(filters: {value: {eq: $category}}){
+  categories(filters: {slug: {eq: $category}}){
     data {
       id
       attributes {
@@ -15,7 +15,19 @@ query LIST_CATEGORY($category: String){
             }
           }
         }
-        value
+        slug
+      }
+    }
+  }
+}
+`;
+
+const LIST_CATEGORIES_SLUGS = `
+query LIST_CATEGORIES_SLUGS{
+  categories{
+    data {
+      attributes {
+        name
       }
     }
   }
@@ -24,25 +36,22 @@ query LIST_CATEGORY($category: String){
 
 //TODO: check if name from directing to slug route can be used?
 const LIST_CATEGORY_REPORTS_META_DATA = `
-query LIST_CATEGORY_REPORTS($category: String!){
-  categories(filters: {value:{eq: $category}}){
-    data {
+query Reports($category: String!) {
+  reports(filters: {category: {slug: {eq : $category}}}){
+    data{
+      id
       attributes {
-        name
-        reports {
-          data {
-            id
-            attributes {
-              reportId
-              reportCode
-              reportTitle
-              numberOfPages
-            }
-          }
-        }
+        reportTitle
+        reportCode
+        reportId
+        numberOfPages
       }
     }
   }
 }`;
 
-export { LIST_CATEGORIES, LIST_CATEGORY_REPORTS_META_DATA };
+export {
+  LIST_CATEGORIES,
+  LIST_CATEGORIES_SLUGS,
+  LIST_CATEGORY_REPORTS_META_DATA,
+};
