@@ -22,6 +22,21 @@ const generateHtml = (formData: FormData) => {
     </p>`;
 };
 
+const getStrapiFetchParams = (
+  QUERY: unknown,
+  variables: Record<string, unknown> = {}
+): RequestInit => ({
+  method: "post",
+  headers: {
+    "content-type": "application/json",
+    Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`,
+  },
+  body: JSON.stringify({
+    query: QUERY,
+    variables,
+  }),
+});
+
 async function sendLeadForFreeCustomizedReport(
   prevState: LeadGenerateType,
   formData: FormData
@@ -143,18 +158,7 @@ const getImagesWithPlaceholders = async (
 };
 
 const getCategories = async (category?: string): Promise<Array<Category>> => {
-  const fetchParams: RequestInit = {
-    method: "post",
-    headers: {
-      "content-type": "application/json",
-    },
-    body: JSON.stringify({
-      query: LIST_CATEGORIES,
-      variables: {
-        category,
-      },
-    }),
-  };
+  const fetchParams = getStrapiFetchParams(LIST_CATEGORIES, { category });
   const response = await fetch(
     `${process.env.STRAPI_API_BASE_URL}/graphql`,
     fetchParams
@@ -167,19 +171,9 @@ const getCategories = async (category?: string): Promise<Array<Category>> => {
 const getReportsMetaData = async (
   category?: string
 ): Promise<Array<ReportMetaData>> => {
-  //TODO: create a reusable function
-  const fetchParams: RequestInit = {
-    method: "post",
-    headers: {
-      "content-type": "application/json",
-    },
-    body: JSON.stringify({
-      query: LIST_CATEGORY_REPORTS_META_DATA,
-      variables: {
-        category,
-      },
-    }),
-  };
+  const fetchParams = getStrapiFetchParams(LIST_CATEGORY_REPORTS_META_DATA, {
+    category,
+  });
   const response = await fetch(
     `${process.env.STRAPI_API_BASE_URL}/graphql`,
     fetchParams
@@ -191,15 +185,7 @@ const getReportsMetaData = async (
 };
 
 const getCategoriesSlugs = async (): Promise<Array<string>> => {
-  const fetchParams: RequestInit = {
-    method: "post",
-    headers: {
-      "content-type": "application/json",
-    },
-    body: JSON.stringify({
-      query: LIST_CATEGORIES_SLUGS,
-    }),
-  };
+  const fetchParams = getStrapiFetchParams(LIST_CATEGORIES_SLUGS);
   const response = await fetch(
     `${process.env.STRAPI_API_BASE_URL}/graphql`,
     fetchParams

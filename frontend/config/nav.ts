@@ -86,7 +86,7 @@ export const navConfig: NavConfig = {
         },
         {
           title: "Machinery & Equipment",
-          href: "/categories/machinery-and-equipment",
+          href: "/categories/machinery",
           icon: "machinery",
           items: [],
         },
