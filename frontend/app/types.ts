@@ -23,3 +23,32 @@ export interface Category {
     };
   };
 }
+
+type FAQ = {
+  id: string;
+  question: string;
+  answer: string;
+};
+
+type ReportMetaDataAttributes = {
+  reportTitle: string;
+  reportCode: string;
+  numberOfPages: number;
+  reportId: number;
+};
+
+export interface ReportMetaData {
+  id: string;
+  attributes: ReportMetaDataAttributes;
+}
+
+export interface Report extends ReportMetaData {
+  publishedDate: string;
+  summary: string;
+  toc: string;
+  methodology: string;
+  faqs: FAQ[];
+  publishedAt: string;
+  updatedAt: string;
+  createdAt: string;
+}

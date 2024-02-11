@@ -1,10 +1,13 @@
 "use server";
 
 import { LeadGenerateType } from "@/types/schema";
-import { LIST_CATEGORIES } from "@/utils/queries";
+import {
+  LIST_CATEGORIES,
+  LIST_CATEGORY_REPORTS_META_DATA,
+} from "@/utils/queries";
 import { newsLetterSchema, sendLeadSchema } from "@/utils/schema";
 import { getPlaiceholder } from "plaiceholder";
-import { Category, ImageKeys } from "./types";
+import { Category, ImageKeys, ReportMetaData } from "./types";
 
 const generateHtml = (formData: FormData) => {
   const rawFormData = Object.fromEntries(formData.entries());
@@ -160,10 +163,45 @@ const getCategories = async (category?: string): Promise<Array<Category>> => {
   return data.data.categories.data;
 };
 
+const getReportsMetaData = async (
+  category?: string
+): Promise<{
+  categoryLabel: string;
+  reports: Array<ReportMetaData>;
+}> => {
+  //TODO: create a reusable function
+  const fetchParams: RequestInit = {
+    method: "post",
+    headers: {
+      "content-type": "application/json",
+    },
+    body: JSON.stringify({
+      query: LIST_CATEGORY_REPORTS_META_DATA,
+      variables: {
+        category,
+      },
+    }),
+  };
+  const response = await fetch(
+    `${process.env.STRAPI_API_BASE_URL}/graphql`,
+    fetchParams
+  );
+  const data = await response.json();
+  //TODO: change this to direct data if possible
+  const attributes = data.data.categories.data[0].attributes;
+  const categoryLabel: string = attributes.name;
+  const reports: Array<ReportMetaData> = attributes.reports.data;
+  return {
+    categoryLabel,
+    reports,
+  };
+};
+
 export {
   getBlurImgData,
   getCategories,
   getImagesWithPlaceholders,
+  getReportsMetaData,
   sendLeadForFreeCustomizedReport,
   subscribeToNewsLetter,
 };
