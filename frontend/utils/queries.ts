@@ -90,9 +90,22 @@ query LIST_CATEGORY_REPORTS($id: ID){
 }
 `;
 
+const LIST_CATEGORY = `
+query LIST_CATEGORY($id: ID){
+  categories(filters: {id: {eq: $id}}){
+    data {
+      id
+      attributes{
+        name
+      }
+    }
+  }
+}`;
+
 export {
   LIST_CATEGORIES,
   LIST_CATEGORIES_SLUGS,
+  LIST_CATEGORY,
   LIST_CATEGORY_REPORTS,
   LIST_CATEGORY_REPORTS_META_DATA,
   LIST_REPORTS,

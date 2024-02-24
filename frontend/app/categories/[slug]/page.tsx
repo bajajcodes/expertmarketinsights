@@ -1,8 +1,14 @@
-import { getCategoriesSlugs, getCategoryReports } from "@/app/actions";
+import {
+  getCategoriesSlugs,
+  getCategoryById,
+  getCategoryReports,
+} from "@/app/actions";
 import { ReportMetaData } from "@/app/types";
 import { HeroHeader } from "@/components/hero-header";
 import { Report } from "@/components/report";
+import { siteConfig } from "@/config/site";
 import { getIdFromSlug, getSlug } from "@/utils/slugs";
+import { Metadata } from "next";
 import { isRedirectError } from "next/dist/client/components/redirect";
 import { notFound } from "next/navigation";
 
@@ -21,6 +27,17 @@ export async function generateStaticParams() {
 }
 
 export const dynamicParams = false;
+
+export async function generateMetaData({ params }: Props): Promise<Metadata> {
+  const id = getIdFromSlug(params.slug);
+  const category = await getCategoryById(id!);
+  return {
+    title: category.attributes.name,
+    alternates: {
+      canonical: `${siteConfig.url}/categories/${params.slug}`,
+    },
+  };
+}
 
 export default async function Page({ params }: Props) {
   let reports: Array<ReportMetaData>;

@@ -180,6 +180,17 @@ const getCategories = async (category?: string): Promise<Array<Category>> => {
   return data.data.categories.data;
 };
 
+const getCategoryById = async (id: string): Promise<Category> => {
+  const fetchParams = getStrapiFetchParams(LIST_CATEGORIES, { id });
+  const response = await fetch(
+    `${process.env.STRAPI_API_BASE_URL}/graphql`,
+    fetchParams
+  );
+  const data = await response.json();
+  //TODO: check if below syntax can be changed?
+  return data.data.categories.data[0];
+};
+
 const getReportsMetaData = async (
   category?: string
 ): Promise<Array<ReportMetaData>> => {
@@ -229,6 +240,7 @@ export {
   getBlurImgData,
   getCategories,
   getCategoriesSlugs,
+  getCategoryById,
   getCategoryReports,
   getImagesWithPlaceholders,
   getReports,
