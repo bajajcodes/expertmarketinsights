@@ -26,6 +26,7 @@ const LIST_CATEGORIES_SLUGS = `
 query LIST_CATEGORIES_SLUGS{
   categories{
     data {
+      id
       attributes {
         name
       }
@@ -50,8 +51,49 @@ query Reports($category: String!) {
   }
 }`;
 
+const LIST_REPORTS = `
+query LIST_REPORTS{
+  reports {
+    data {
+      id 
+      attributes {
+        reportTitle
+        reportCode
+        numberOfPages
+        reportId
+      }
+    }
+  }
+}
+`;
+
+const LIST_CATEGORY_REPORTS = `
+query LIST_CATEGORY_REPORTS($id: ID){
+  categories(filters: {id: {eq: $id}}){
+    data {
+      id
+      attributes {
+        reports {
+          data {
+            id 
+            attributes {
+              reportTitle
+              reportCode
+							reportId
+							numberOfPages
+            }
+          }
+        }
+      }
+    }
+  }
+}
+`;
+
 export {
   LIST_CATEGORIES,
   LIST_CATEGORIES_SLUGS,
+  LIST_CATEGORY_REPORTS,
   LIST_CATEGORY_REPORTS_META_DATA,
+  LIST_REPORTS,
 };

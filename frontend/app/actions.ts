@@ -4,7 +4,9 @@ import { LeadGenerateType } from "@/types/schema";
 import {
   LIST_CATEGORIES,
   LIST_CATEGORIES_SLUGS,
+  LIST_CATEGORY_REPORTS,
   LIST_CATEGORY_REPORTS_META_DATA,
+  LIST_REPORTS,
 } from "@/utils/queries";
 import { newsLetterSchema, sendLeadSchema } from "@/utils/schema";
 import { getPlaiceholder } from "plaiceholder";
@@ -157,6 +159,16 @@ const getImagesWithPlaceholders = async (
   );
 };
 
+const getReports = async (): Promise<Array<ReportMetaData>> => {
+  const fetchParams = getStrapiFetchParams(LIST_REPORTS);
+  const response = await fetch(
+    `${process.env.STRAPI_API_BASE_URL}/graphql`,
+    fetchParams
+  );
+  const data = await response.json();
+  return data.data.reports.data;
+};
+
 const getCategories = async (category?: string): Promise<Array<Category>> => {
   const fetchParams = getStrapiFetchParams(LIST_CATEGORIES, { category });
   const response = await fetch(
@@ -184,23 +196,42 @@ const getReportsMetaData = async (
   return reports;
 };
 
-const getCategoriesSlugs = async (): Promise<Array<string>> => {
+const getCategoryReports = async (
+  id: string
+): Promise<Array<ReportMetaData>> => {
+  const fetchParams = getStrapiFetchParams(LIST_CATEGORY_REPORTS, {
+    id,
+  });
+  const response = await fetch(
+    `${process.env.STRAPI_API_BASE_URL}/graphql`,
+    fetchParams
+  );
+  const data = await response.json();
+  return data.data.categories.data[0].attributes.reports.data;
+};
+
+const getCategoriesSlugs = async (): Promise<
+  Array<{ title: string; id: string }>
+> => {
   const fetchParams = getStrapiFetchParams(LIST_CATEGORIES_SLUGS);
   const response = await fetch(
     `${process.env.STRAPI_API_BASE_URL}/graphql`,
     fetchParams
   );
   const data = await response.json();
-  return data.data.categories.data.map(
-    (item: Record<string, any>) => item.attributes.slug
-  );
+  return data.data.categories.data.map((category: Category) => ({
+    title: category.attributes.name,
+    id: category.id,
+  }));
 };
 
 export {
   getBlurImgData,
   getCategories,
   getCategoriesSlugs,
+  getCategoryReports,
   getImagesWithPlaceholders,
+  getReports,
   getReportsMetaData,
   sendLeadForFreeCustomizedReport,
   subscribeToNewsLetter,
