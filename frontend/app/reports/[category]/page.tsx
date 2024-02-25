@@ -14,27 +14,27 @@ import { notFound } from "next/navigation";
 
 interface Props {
   params: {
-    slug: string;
+    category: string;
   };
 }
 
 export async function generateStaticParams() {
   const categories = await getCategoriesSlugs();
-  return categories.map((category) => {
-    const slug = getSlug(category.title, category.id);
-    return { slug };
+  return categories.map((item) => {
+    const category = getSlug(item.title, item.id);
+    return { category };
   });
 }
 
 export const dynamicParams = false;
 
 export async function generateMetaData({ params }: Props): Promise<Metadata> {
-  const id = getIdFromSlug(params.slug);
+  const id = getIdFromSlug(params.category);
   const category = await getCategoryById(id!);
   return {
     title: category.attributes.name,
     alternates: {
-      canonical: `${siteConfig.url}/categories/${params.slug}`,
+      canonical: `${siteConfig.url}/categories/${params.category}`,
     },
   };
 }
@@ -42,7 +42,7 @@ export async function generateMetaData({ params }: Props): Promise<Metadata> {
 export default async function Page({ params }: Props) {
   let reports: Array<ReportMetaData>;
   try {
-    const id = getIdFromSlug(params.slug);
+    const id = getIdFromSlug(params.category);
     if (!id) throw Error("Category Not Found");
     reports = await getCategoryReports(id);
     //TODO: add ability to check whether the current URL's readable portion matches the post's actual slug
@@ -60,7 +60,11 @@ export default async function Page({ params }: Props) {
         <h2 className="text-xl font-semibold mb-4">Report Details</h2>
         <div className="space-y-4">
           {reports.map((report) => (
-            <Report {...report} key={report.id} />
+            <Report
+              {...report}
+              key={report.id}
+              categorySlug={params.category}
+            />
           ))}
           {reports.length < 1 && (
             <h4 className="text-base font-semibold text-muted-foreground">

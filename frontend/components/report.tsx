@@ -6,15 +6,14 @@ import { Button } from "./ui/button";
 export function Report({
   id,
   attributes: { reportTitle, reportCode, numberOfPages },
-}: ReportMetaData) {
-  const slug = getSlug(reportTitle, id);
+  categorySlug,
+}: ReportMetaData & { categorySlug: string }) {
+  const reportSlug = getSlug(reportTitle, id);
+  const href = `/reports/${categorySlug}/${reportSlug}`;
   return (
     <div className="bg-[#f3f4f6] p-6 rounded-lg flex flex-col md:flex-row md:justify-between md:items-start w-full">
       <div>
-        <Link
-          className="text-blue-600 hover:text-blue-800"
-          href={`/reports/${slug}`}
-        >
+        <Link className="text-blue-600 hover:text-blue-800" href={href}>
           <h3 className="text-lg font-semibold cursor-pointer">
             {reportTitle}
           </h3>
@@ -24,7 +23,7 @@ export function Report({
         </p>
         <Link
           className="text-expertmarketinsight/95 hover:text-expertmarketinsight block mt-2"
-          href={`/reports/${slug}`}
+          href={href}
         >
           READ MORE
         </Link>

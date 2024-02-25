@@ -13,10 +13,10 @@ export default async function Categories() {
       <section className="container">
         <ul className="container max-w-screen-lg m-auto py-8 flex flex-col gap-8 md:flex-row md:flex-wrap items-center justify-center">
           {categories.map(({ id, attributes: { name, image } }) => {
-            const slug = getSlug(name, id);
+            const category = getSlug(name, id);
             return (
               <li key={id} className="overflow-hidden">
-                <Link href={`/categories/${slug}`}>
+                <Link href={`/reports/${category}`}>
                   <Image
                     src={image.data.attributes.url}
                     alt={image.data.attributes.alternativeText || name}

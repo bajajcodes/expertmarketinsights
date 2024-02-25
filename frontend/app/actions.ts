@@ -7,10 +7,12 @@ import {
   LIST_CATEGORY_REPORTS,
   LIST_CATEGORY_REPORTS_META_DATA,
   LIST_REPORTS,
+  LIST_REPORTS_BY_CATEGORY,
+  LIST_REPORT_BY_ID,
 } from "@/utils/queries";
 import { newsLetterSchema, sendLeadSchema } from "@/utils/schema";
 import { getPlaiceholder } from "plaiceholder";
-import { Category, ImageKeys, ReportMetaData } from "./types";
+import { Category, ImageKeys, Report, ReportMetaData } from "./types";
 
 const generateHtml = (formData: FormData) => {
   const rawFormData = Object.fromEntries(formData.entries());
@@ -191,6 +193,28 @@ const getCategoryById = async (id: string): Promise<Category> => {
   return data.data.categories.data[0];
 };
 
+const getReportById = async (id: string): Promise<Report> => {
+  const fetchParams = getStrapiFetchParams(LIST_REPORT_BY_ID, { id });
+  const response = await fetch(
+    `${process.env.STRAPI_API_BASE_URL}/graphql`,
+    fetchParams
+  );
+  const data = await response.json();
+  //TODO: check if below syntax can be changed?
+  return data.data.report.data;
+};
+
+const getReportsByCategory = async (id: string): Promise<Array<Report>> => {
+  const fetchParams = getStrapiFetchParams(LIST_REPORTS_BY_CATEGORY, { id });
+  const response = await fetch(
+    `${process.env.STRAPI_API_BASE_URL}/graphql`,
+    fetchParams
+  );
+  const data = await response.json();
+  //TODO: check if below syntax can be changed?
+  return data.data.reports.data;
+};
+
 const getReportsMetaData = async (
   category?: string
 ): Promise<Array<ReportMetaData>> => {
@@ -243,7 +267,9 @@ export {
   getCategoryById,
   getCategoryReports,
   getImagesWithPlaceholders,
+  getReportById,
   getReports,
+  getReportsByCategory,
   getReportsMetaData,
   sendLeadForFreeCustomizedReport,
   subscribeToNewsLetter,
