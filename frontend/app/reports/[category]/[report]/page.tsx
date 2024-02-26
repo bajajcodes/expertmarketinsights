@@ -41,7 +41,7 @@ const tabsList = [
   },
 ];
 
-const DEFAULT_TAB = tabsList.at(1)?.value;
+const DEFAULT_TAB = tabsList.at(0)?.value;
 
 export async function generateStaticParams({
   params,
