@@ -28,7 +28,7 @@ export async function generateStaticParams() {
 
 export const dynamicParams = false;
 
-export async function generateMetaData({ params }: Props): Promise<Metadata> {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const id = getIdFromSlug(params.category);
   const category = await getCategoryById(id!);
   return {

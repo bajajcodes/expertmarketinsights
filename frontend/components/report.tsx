@@ -6,10 +6,12 @@ import { Button } from "./ui/button";
 export function Report({
   id,
   attributes: { reportTitle, reportCode, numberOfPages },
-  categorySlug,
-}: ReportMetaData & { categorySlug: string }) {
+  categorySlug = "",
+}: ReportMetaData & { categorySlug?: string }) {
   const reportSlug = getSlug(reportTitle, id);
-  const href = `/reports/${categorySlug}/${reportSlug}`;
+  const href = categorySlug
+    ? `/reports/${categorySlug}/${reportSlug}`
+    : `/reports/${reportSlug}`;
   return (
     <div className="bg-[#f3f4f6] p-6 rounded-lg flex flex-col md:flex-row md:justify-between md:items-start w-full">
       <div>

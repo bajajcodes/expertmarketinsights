@@ -58,7 +58,7 @@ export async function generateStaticParams({
   });
 }
 
-export async function generateMetaData({ params }: Props): Promise<Metadata> {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const reportId = getIdFromSlug(params.report);
   const report = await getReportById(reportId!);
   return {
