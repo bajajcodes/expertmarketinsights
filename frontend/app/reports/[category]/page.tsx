@@ -3,7 +3,7 @@ import {
   getCategoryById,
   getCategoryReports,
 } from "@/app/actions";
-import { ReportMetaData } from "@/app/types";
+import { Category, ReportMetaData } from "@/app/types";
 import { HeroHeader } from "@/components/hero-header";
 import { Report } from "@/components/report";
 import { siteConfig } from "@/config/site";
@@ -41,13 +41,16 @@ export async function generateMetaData({ params }: Props): Promise<Metadata> {
 
 export default async function Page({ params }: Props) {
   let reports: Array<ReportMetaData>;
+  let category: Category;
   try {
     const id = getIdFromSlug(params.category);
     if (!id) throw Error("Category Not Found");
     reports = await getCategoryReports(id);
+    category = await getCategoryById(id!);
     //TODO: add ability to check whether the current URL's readable portion matches the post's actual slug
     //REF: https://mikebifulco.com/posts/self-healing-urls-nextjs-seo#setting-up-pagetsx-where-the-magic-happens
   } catch (error) {
+    console.error({ error });
     if (isRedirectError(error)) {
       throw error;
     }
@@ -55,7 +58,7 @@ export default async function Page({ params }: Props) {
   }
   return (
     <>
-      <HeroHeader title={"NA"} />
+      <HeroHeader title={category.attributes.name} />
       <div className="container max-w-screen-lg bg-white py-8">
         <h2 className="text-xl font-semibold mb-4">Report Details</h2>
         <div className="space-y-4">
