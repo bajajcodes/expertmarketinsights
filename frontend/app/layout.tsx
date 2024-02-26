@@ -16,12 +16,10 @@ export const metadata: Metadata = {
   },
   metadataBase: new URL(siteConfig.url),
   description: siteConfig.description,
-  keywords: ["bajajcodes", "bajajcodes.github.io", "market research"],
-  authors: [
-    {
-      name: "shubhambajaj",
-      url: "https://shmbajaj.github.io",
-    },
+  keywords: [
+    "expert market insights",
+    "market research report",
+    "market research",
   ],
   creator: "shubhambajaj",
   icons: {

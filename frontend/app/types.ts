@@ -24,7 +24,7 @@ export interface Category {
   };
 }
 
-type FAQ = {
+export type FAQ = {
   id: string;
   question: string;
   answer: string;
@@ -35,6 +35,7 @@ type ReportMetaDataAttributes = {
   reportCode: string;
   numberOfPages: number;
   reportId: number;
+  publishedDate: string;
 };
 
 export interface ReportMetaData {
@@ -43,12 +44,13 @@ export interface ReportMetaData {
 }
 
 export interface Report extends ReportMetaData {
-  publishedDate: string;
-  summary: string;
-  toc: string;
-  methodology: string;
-  faqs: FAQ[];
-  publishedAt: string;
-  updatedAt: string;
-  createdAt: string;
+  attributes: ReportMetaDataAttributes & {
+    summary: string;
+    toc: string;
+    methodology: string;
+    faqs: FAQ[];
+    publishedAt: string;
+    updatedAt: string;
+    createdAt: string;
+  };
 }

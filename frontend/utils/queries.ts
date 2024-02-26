@@ -61,6 +61,15 @@ query LIST_REPORTS{
         reportCode
         numberOfPages
         reportId
+        publishedDate
+        summary
+        toc
+        methodology
+        faqs {
+          id
+          question
+          answer
+        }
       }
     }
   }

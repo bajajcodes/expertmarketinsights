@@ -83,3 +83,37 @@
 .template-text:hover {
   color: rgb(61, 61, 234);
 }
+/* TODO: add ability to use styles over react-marrkdown or tailwindcss */
+
+thead {
+  background-color: #3a3774;
+  vertical-align: top;
+  color: white;
+}
+
+th,
+td {
+  width: 50%;
+  padding: 0.5rem;
+  text-align: left;
+}
+
+th {
+  padding: 1rem;
+}
+
+table a[href^="mailto:"]::before {
+  content: " 📨";
+}
+
+table a[href^="mailto:"] {
+  font-weight: 600;
+  color: blue;
+}
+
+table ol,
+table ul {
+  list-style-type: decimal;
+}
+
+/* TODO: add ability to use styles over react-marrkdown or tailwindcss */
