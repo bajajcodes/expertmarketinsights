@@ -1,7 +1,7 @@
-import { Phone, Mail } from "lucide-react";
+import { siteConfig } from "@/config/site";
+import { Mail, Phone } from "lucide-react";
 import { MainNav } from "./main-nav";
 import { MobileNav } from "./mobile-nav";
-import { siteConfig } from "@/config/site";
 import { SocialLinks } from "./social-links";
 
 export function SiteHeader() {
@@ -10,7 +10,7 @@ export function SiteHeader() {
       <div className="container max-w-screen-xl bg-white">
         <div className="flex flex-wrap justify-between gap-2 items-center px-2 md:px-6 py-4 mb-2 bg-expertmarketinsight text-white">
           <div className="flex flex-wrap items-center gap-2 md:gap-4">
-            <div className="flex flex-wrap items-center gap-1">
+            <div className="flex flex-wrap items-center gap-1 text-xs md:text-sm">
               <span>
                 <Phone className="h-4 w-4" />
               </span>
