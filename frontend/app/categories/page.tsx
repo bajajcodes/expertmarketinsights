@@ -3,10 +3,18 @@ import { getSlug } from "@/utils/slugs";
 import Image from "next/image";
 import Link from "next/link";
 import { getCategories } from "../actions";
+import { Category } from "../types";
 
 //TODO: handle api errors
 export default async function Categories() {
-  const categories = await getCategories();
+  let categories: Array<Category> = [];
+  try {
+    categories = await getCategories();
+  } catch (error) {
+    //TODO: add ability to notify users about error
+    console.error({ error });
+    categories = [];
+  }
   return (
     <>
       <HeroHeader title="ALL CATEGORIES" />
@@ -33,6 +41,11 @@ export default async function Categories() {
             );
           })}
         </ul>
+        {categories.length < 1 && (
+          <h4 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-muted-foreground text-center mb-8">
+            No Categories Found :)
+          </h4>
+        )}
       </section>
     </>
   );

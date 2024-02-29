@@ -1,7 +1,7 @@
 "use client";
 
-import { navConfig } from "@/config/nav";
 import { siteConfig } from "@/config/site";
+import { useNavItems } from "@/hooks/useNavItems";
 import { cn } from "@/lib/utils";
 import logo from "@/public/logo.png";
 import Image from "next/image";
@@ -16,6 +16,8 @@ import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
 export function MobileNav() {
   const [open, setOpen] = React.useState(false);
   const pathname = usePathname();
+  const { mainNav, sidebarNav } = useNavItems();
+
   return (
     <Sheet open={open} onOpenChange={setOpen}>
       <MobileLink
@@ -49,7 +51,7 @@ export function MobileNav() {
       <SheetContent side="left" className="pr-0 pl-4">
         <ScrollArea className="my-4 h-[calc(100vh-8rem)] pb-10">
           <div className="flex flex-col space-y-3">
-            {navConfig.mainNav?.map(
+            {mainNav?.map(
               (item) =>
                 item.href && (
                   <MobileLink
@@ -70,7 +72,7 @@ export function MobileNav() {
             )}
           </div>
           <div className="flex flex-col space-y-2">
-            {navConfig.sidebarNav.map((item, index) => (
+            {sidebarNav.map((item, index) => (
               <div key={index} className="flex flex-col space-y-3 pt-6">
                 <h4 className="font-medium">
                   {item.href ? (
@@ -79,7 +81,7 @@ export function MobileNav() {
                     item.title
                   )}
                 </h4>
-                {item?.items?.length &&
+                {item?.items?.length > 1 &&
                   item.items.map((item) => {
                     const Icon = Icons[item?.icon!];
                     return (

@@ -28,7 +28,8 @@ const generateHtml = (formData: FormData) => {
 
 const getStrapiFetchParams = (
   QUERY: unknown,
-  variables: Record<string, unknown> = {}
+  variables: Record<string, unknown> = {},
+  next?: NextFetchRequestConfig | undefined
 ): RequestInit => ({
   method: "post",
   headers: {
@@ -39,6 +40,7 @@ const getStrapiFetchParams = (
     query: QUERY,
     variables,
   }),
+  next,
 });
 
 async function sendLeadForFreeCustomizedReport(
@@ -178,12 +180,17 @@ const getCategories = async (category?: string): Promise<Array<Category>> => {
     fetchParams
   );
   const data = await response.json();
+  if (!data.data) throw Error(`${data.error.name}: ${data.error.message}`);
   //TODO: check if below syntax can be changed?
   return data.data.categories.data;
 };
 
 const getCategoryById = async (id: string): Promise<Category> => {
-  const fetchParams = getStrapiFetchParams(LIST_CATEGORIES, { id });
+  const fetchParams = getStrapiFetchParams(
+    LIST_CATEGORIES,
+    { id },
+    { revalidate: 3600 }
+  );
   const response = await fetch(
     `${process.env.STRAPI_API_BASE_URL}/graphql`,
     fetchParams
@@ -234,9 +241,13 @@ const getReportsMetaData = async (
 const getCategoryReports = async (
   id: string
 ): Promise<Array<ReportMetaData>> => {
-  const fetchParams = getStrapiFetchParams(LIST_CATEGORY_REPORTS, {
-    id,
-  });
+  const fetchParams = getStrapiFetchParams(
+    LIST_CATEGORY_REPORTS,
+    {
+      id,
+    },
+    { revalidate: 3600 }
+  );
   const response = await fetch(
     `${process.env.STRAPI_API_BASE_URL}/graphql`,
     fetchParams
@@ -248,7 +259,11 @@ const getCategoryReports = async (
 const getCategoriesSlugs = async (): Promise<
   Array<{ title: string; id: string }>
 > => {
-  const fetchParams = getStrapiFetchParams(LIST_CATEGORIES_SLUGS);
+  const fetchParams = getStrapiFetchParams(
+    LIST_CATEGORIES_SLUGS,
+    {},
+    { revalidate: 3600 }
+  );
   const response = await fetch(
     `${process.env.STRAPI_API_BASE_URL}/graphql`,
     fetchParams
