@@ -1,7 +1,7 @@
 "use client";
 
-import { navConfig } from "@/config/nav";
 import { siteConfig } from "@/config/site";
+import { useNavItems } from "@/hooks/useNavItems";
 import { cn } from "@/lib/utils";
 import logo from "@/public/logo.png";
 import { ChevronDownIcon } from "@radix-ui/react-icons";
@@ -15,6 +15,8 @@ import { navigationMenuTriggerStyle } from "./ui/navigation-menu";
 
 export function MainNav() {
   const pathname = usePathname();
+  const { mainNav, sidebarNav } = useNavItems();
+
   return (
     <div className="mr-4 hidden md:flex md:items-center">
       <Link href="/" className="mr-6 flex flex-wrap items-center space-x-2">
@@ -37,7 +39,7 @@ export function MainNav() {
       </Link>
       <NavigationMenu.Root className="relative z-10 flex max-w-max flex-1 items-center justify-center ml-auto">
         <NavigationMenu.List className="group flex flex-1 list-none items-center justify-center space-x-1 relative">
-          {navConfig.mainNav?.map(
+          {mainNav?.map(
             (item) =>
               item.href && (
                 <NavigationMenu.Item key={item.href}>
@@ -58,7 +60,7 @@ export function MainNav() {
                 </NavigationMenu.Item>
               )
           )}
-          {navConfig.sidebarNav.map((item, index) => (
+          {sidebarNav.map((item, index) => (
             <NavigationMenu.Item key={item.href || item.title}>
               <NavigationMenu.Trigger
                 className={cn(navigationMenuTriggerStyle(), "group")}
