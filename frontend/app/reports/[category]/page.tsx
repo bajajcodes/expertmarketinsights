@@ -70,7 +70,7 @@ export default async function Page({ params }: Props) {
             />
           ))}
           {reports.length < 1 && (
-            <h4 className="text-base font-semibold text-muted-foreground">
+            <h4 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-muted-foreground text-center mb-8">
               No Reports Found
             </h4>
           )}

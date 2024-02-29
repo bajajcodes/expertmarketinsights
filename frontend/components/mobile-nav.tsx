@@ -79,7 +79,7 @@ export function MobileNav() {
                     item.title
                   )}
                 </h4>
-                {item?.items?.length &&
+                {item?.items?.length > 1 &&
                   item.items.map((item) => {
                     const Icon = Icons[item?.icon!];
                     return (

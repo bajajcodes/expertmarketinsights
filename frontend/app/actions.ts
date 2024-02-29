@@ -178,6 +178,7 @@ const getCategories = async (category?: string): Promise<Array<Category>> => {
     fetchParams
   );
   const data = await response.json();
+  if (!data.data) throw Error(`${data.error.name}: ${data.error.message}`);
   //TODO: check if below syntax can be changed?
   return data.data.categories.data;
 };
