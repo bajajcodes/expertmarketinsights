@@ -14,11 +14,12 @@ export async function POST(request: NextRequest) {
     revalidatePath("/categories");
     revalidatePath("/reports/[category]", "page");
   }
-  if (payload?.model === "report") {
-    revalidatePath("/reports");
-    revalidatePath("/reports/[category]", "page");
-    revalidatePath("/reports/[category]/[report]", "page");
-  }
+  // if (payload?.model === "report") {
+  //   revalidatePath("/reports");
+  //   revalidatePath("/reports/[category]", "page");
+  //   revalidatePath("/reports/[category]/[report]", "page");
+  // }
+  console.log({ payload });
   return NextResponse.json({ message: "Revalidate Done", revalidate: true });
 }
 
