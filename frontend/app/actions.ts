@@ -1,5 +1,7 @@
 "use server";
 
+import { API_CACHE_TAGS } from "@/types/api";
+import { MainNavItem, SidebarNavItem } from "@/types/nav";
 import { LeadGenerateType } from "@/types/schema";
 import {
   LIST_CATEGORIES,
@@ -11,6 +13,8 @@ import {
   LIST_REPORT_BY_ID,
 } from "@/utils/queries";
 import { newsLetterSchema, sendLeadSchema } from "@/utils/schema";
+import { getSlug } from "@/utils/slugs";
+import { revalidateTag } from "next/cache";
 import { getPlaiceholder } from "plaiceholder";
 import { Category, ImageKeys, Report, ReportMetaData } from "./types";
 
@@ -174,7 +178,13 @@ const getReports = async (): Promise<Array<ReportMetaData>> => {
 };
 
 const getCategories = async (category?: string): Promise<Array<Category>> => {
-  const fetchParams = getStrapiFetchParams(LIST_CATEGORIES, { category });
+  const fetchParams = getStrapiFetchParams(
+    LIST_CATEGORIES,
+    { category },
+    {
+      tags: [API_CACHE_TAGS.CATEGORIES],
+    }
+  );
   const response = await fetch(
     `${process.env.STRAPI_API_BASE_URL}/graphql`,
     fetchParams
@@ -251,7 +261,11 @@ const getCategoryReports = async (
 const getCategoriesSlugs = async (): Promise<
   Array<{ title: string; id: string }>
 > => {
-  const fetchParams = getStrapiFetchParams(LIST_CATEGORIES_SLUGS, {});
+  const fetchParams = getStrapiFetchParams(
+    LIST_CATEGORIES_SLUGS,
+    {},
+    { tags: [API_CACHE_TAGS.CATEGORY_SLUGS] }
+  );
   const response = await fetch(
     `${process.env.STRAPI_API_BASE_URL}/graphql`,
     fetchParams
@@ -263,6 +277,27 @@ const getCategoriesSlugs = async (): Promise<
   }));
 };
 
+const revalidateCache = async (tag: API_CACHE_TAGS) => {
+  revalidateTag(tag);
+};
+
+const getNavItems = async (initialNavItems: {
+  mainNav: MainNavItem[];
+  sidebarNav: SidebarNavItem[];
+}) => {
+  const navItems = { ...initialNavItems };
+  const categories = await getCategoriesSlugs();
+  const categoriesItem = categories.map((category) => ({
+    title: category.title,
+    items: [],
+    href: `/reports/${getSlug(category.title, category.id)}`,
+  }));
+  navItems.sidebarNav = [...navItems.sidebarNav].map((item) =>
+    item.title === "Categories" ? { ...item, items: categoriesItem } : item
+  );
+  return navItems;
+};
+
 export {
   getBlurImgData,
   getCategories,
@@ -270,10 +305,12 @@ export {
   getCategoryById,
   getCategoryReports,
   getImagesWithPlaceholders,
+  getNavItems,
   getReportById,
   getReports,
   getReportsByCategory,
   getReportsMetaData,
+  revalidateCache,
   sendLeadForFreeCustomizedReport,
   subscribeToNewsLetter,
 };
