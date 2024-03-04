@@ -15,11 +15,11 @@ export async function POST(request: NextRequest) {
     revalidatePath("/reports/[category]", "page");
   }
   if (payload?.model === "report") {
+    revalidateTag(API_CACHE_TAGS.REPORTS);
     revalidatePath("/reports");
     revalidatePath("/reports/[category]", "page");
     revalidatePath("/reports/[category]/[report]", "page");
   }
-
   return NextResponse.json({ message: "Revalidate Done", revalidate: true });
 }
 

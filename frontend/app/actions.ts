@@ -168,7 +168,11 @@ const getImagesWithPlaceholders = async (
 };
 
 const getReports = async (): Promise<Array<ReportMetaData>> => {
-  const fetchParams = getStrapiFetchParams(LIST_REPORTS_META_DATA);
+  const fetchParams = getStrapiFetchParams(
+    LIST_REPORTS_META_DATA,
+    {},
+    { tags: [API_CACHE_TAGS.REPORTS] }
+  );
   const response = await fetch(
     `${process.env.STRAPI_API_BASE_URL}/graphql`,
     fetchParams
