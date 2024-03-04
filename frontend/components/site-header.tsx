@@ -16,15 +16,15 @@ export async function SiteHeader() {
       <div className="container max-w-screen-xl bg-white">
         <div className="flex flex-wrap justify-between gap-2 items-center px-2 md:px-6 py-4 mb-2 bg-expertmarketinsight text-white">
           <div className="flex flex-wrap items-center gap-2 md:gap-4">
-            <div className="flex flex-wrap items-center gap-1 text-xs md:text-sm">
+            <div className="flex flex-wrap items-center gap-1  text-xs md:text-sm">
               <span>
-                <Phone className="h-4 w-4" />
+                <Phone className="h-4 w-3" />
               </span>
               <span>{siteConfig.mobile}</span>
             </div>
-            <div className="flex flex-wrap items-center gap-1">
+            <div className="flex flex-wrap items-center gap-1 text-xs md:text-sm">
               <span>
-                <Mail className="h-4 w-4" />
+                <Mail className="h-4 w-3" />
               </span>
               <span>{siteConfig.email}</span>
             </div>

@@ -25,7 +25,7 @@ export function MainNav({
   return (
     <div className="mr-4 hidden md:flex md:items-center">
       <Link href="/" className="mr-6 flex flex-wrap items-center space-x-2">
-        <div className="relative w-16 h-16 mr-1 bg-expertmarketinsight">
+        <div className="relative w-24 h-24 mr-1 bg-expertmarketinsight">
           <Image
             // layout="fill"
             sizes="100vw"

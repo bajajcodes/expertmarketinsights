@@ -31,7 +31,7 @@ export function MobileNav({
         className="flex items-center m-2 mt-0 md:hidden"
         onOpenChange={setOpen}
       >
-        <div className="relative w-16 h-16 bg-expertmarketinsight">
+        <div className="relative w-24 h-24 bg-expertmarketinsight">
           <Image
             className="object-cover absolute w-full h-full inset-0"
             sizes="100vw"
