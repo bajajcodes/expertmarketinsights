@@ -43,18 +43,15 @@ const tabsList = [
 
 const DEFAULT_TAB = tabsList.at(0)?.value;
 
-export async function generateStaticParams({
-  params,
-}: {
-  params: {
-    category: string;
-    report: string;
-  };
-}) {
+export async function generateStaticParams() {
   const reports = await getReports();
   return reports.map((report) => {
-    const slug = getSlug(report.attributes.reportTitle, report.id);
-    return { report: slug };
+    const categorySlug = getSlug(
+      report.attributes.category.data.attributes.name,
+      report.attributes.category.data.id
+    );
+    const reportSlug = getSlug(report.attributes.reportTitle, report.id);
+    return { report: reportSlug, category: categorySlug };
   });
 }
 
