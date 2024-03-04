@@ -39,30 +39,38 @@ export function NewsLetterForm({
   }, [state.success]);
 
   return (
-    <form
-      action={formAction}
-      ref={formRef}
-      className={cn(
-        "flex flex-col gap-4 lg:flex-row w-full max-w-xl lg:items-center lg:gap-0",
-        { "flex-row": direction === "row" },
-        className
-      )}
-    >
-      <FormItem className="transition-all ease-in-out">
-        <Input
-          name="email"
-          type="email"
-          placeholder="Email"
-          className="bg-white py-6 px-4 rounded-r-none focus:ring-0 focus-visible:ring-0"
-        />
-        <FormMessage>{state?.errors?.email}</FormMessage>
-      </FormItem>
-      <Button
-        type="submit"
-        className="rounded-l-none bg-expertmarketinsight hover:bg-expertmarketinsight/90 py-6 px-4 round max-w-sm"
+    <>
+      <form
+        action={formAction}
+        ref={formRef}
+        className={cn(
+          "flex flex-col gap-4 lg:flex-row w-full max-w-xl lg:items-center lg:gap-0",
+          { "flex-row": direction === "row" },
+          className
+        )}
       >
-        {title}
-      </Button>
-    </form>
+        <FormItem className="transition-all ease-in-out">
+          <Input
+            name="email"
+            type="email"
+            placeholder={
+              title !== "Search"
+                ? "Subscribe to recieved reports"
+                : "Search by Report Title"
+            }
+            className="bg-white py-6 px-4 rounded-r-none focus:ring-0 focus-visible:ring-0"
+          />
+        </FormItem>
+        <Button
+          type="submit"
+          className="rounded-l-none bg-expertmarketinsight hover:bg-expertmarketinsight/90 py-6 px-4 round max-w-sm"
+        >
+          {title}
+        </Button>
+      </form>
+      <FormMessage className="leading-8 font-semibold text-base">
+        {state?.errors?.email}
+      </FormMessage>
+    </>
   );
 }

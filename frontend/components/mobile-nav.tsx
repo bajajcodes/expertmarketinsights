@@ -1,9 +1,9 @@
 "use client";
 
 import { siteConfig } from "@/config/site";
-import { useNavItems } from "@/hooks/useNavItems";
 import { cn } from "@/lib/utils";
 import logo from "@/public/logo.png";
+import { MainNavItem, SidebarNavItem } from "@/types/nav";
 import Image from "next/image";
 import Link, { LinkProps } from "next/link";
 import { usePathname, useRouter } from "next/navigation";
@@ -13,10 +13,16 @@ import { Button } from "./ui/button";
 import { ScrollArea } from "./ui/scroll-area";
 import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
 
-export function MobileNav() {
+export function MobileNav({
+  mainNav,
+  sidebarNav,
+}: {
+  mainNav: MainNavItem[];
+  sidebarNav: SidebarNavItem[];
+}) {
   const [open, setOpen] = React.useState(false);
   const pathname = usePathname();
-  const { mainNav, sidebarNav } = useNavItems();
+  // const { mainNav, sidebarNav } = useNavItems();
 
   return (
     <Sheet open={open} onOpenChange={setOpen}>
@@ -25,7 +31,7 @@ export function MobileNav() {
         className="flex items-center m-2 mt-0 md:hidden"
         onOpenChange={setOpen}
       >
-        <div className="relative w-16 h-16 bg-expertmarketinsight">
+        <div className="relative w-24 h-24 bg-expertmarketinsight">
           <Image
             className="object-cover absolute w-full h-full inset-0"
             sizes="100vw"
