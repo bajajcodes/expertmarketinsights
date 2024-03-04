@@ -1,5 +1,3 @@
-import { revalidateCache } from "@/app/actions";
-import { API_CACHE_TAGS } from "@/types/api";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET() {
@@ -8,11 +6,11 @@ export async function GET() {
 
 export async function POST(request: NextRequest) {
   const payload = await request.json();
-  if (payload?.model === "category") {
-    revalidateCache(API_CACHE_TAGS.CATEGORIES);
-    revalidateCache(API_CACHE_TAGS.CATEGORY_SLUGS);
-  }
-  return NextResponse.json({ message: "Revalidate Done" });
+  // if (payload?.model === "category") {
+  //   revalidateCache(API_CACHE_TAGS.CATEGORIES);
+  //   revalidateCache(API_CACHE_TAGS.CATEGORY_SLUGS);
+  // }
+  return NextResponse.json({ message: "Revalidate Done", revalidate: true });
 }
 
 //category created
