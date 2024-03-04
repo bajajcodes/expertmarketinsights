@@ -1,26 +1,17 @@
+import { ReportMetaData } from "@/app/types";
+import { getSlug } from "@/utils/slugs";
 import Link from "next/link";
 import { Button } from "./ui/button";
 
-export interface ReportProps {
-  id: string;
-  reportTitle: string;
-  reportCode: string;
-  numberOfPages: number;
-  reportId: number;
-  publishedDate: string;
-  reportSlug: string;
-  categorySlug: string;
-}
-
 export function Report({
-  categorySlug,
-  reportSlug,
-  reportTitle,
-  reportCode,
-  numberOfPages,
-  ...rest
-}: ReportProps) {
-  const href = `/reports/${categorySlug}/${reportSlug}`;
+  id,
+  attributes: { reportTitle, reportCode, numberOfPages },
+  categorySlug = "",
+}: ReportMetaData & { categorySlug?: string }) {
+  const reportSlug = getSlug(reportTitle, id);
+  const href = categorySlug
+    ? `/reports/${categorySlug}/${reportSlug}`
+    : `/reports/${reportSlug}`;
   return (
     <div className="bg-[#f3f4f6] p-6 rounded-lg flex flex-col md:flex-row md:justify-between md:items-start w-full">
       <div>

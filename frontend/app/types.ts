@@ -7,13 +7,6 @@ export enum ImageKeys {
   BANNER3 = "BANNER3",
 }
 
-export interface CategoryMetadata {
-  id: string;
-  attributes: {
-    name: string;
-  };
-}
-
 export interface Category {
   id: string;
   attributes: {
@@ -43,9 +36,6 @@ type ReportMetaDataAttributes = {
   numberOfPages: number;
   reportId: number;
   publishedDate: string;
-  category: {
-    data: CategoryMetadata;
-  };
 };
 
 export interface ReportMetaData {
