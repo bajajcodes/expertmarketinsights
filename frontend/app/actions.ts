@@ -8,8 +8,8 @@ import {
   LIST_CATEGORIES_SLUGS,
   LIST_CATEGORY_REPORTS,
   LIST_CATEGORY_REPORTS_META_DATA,
-  LIST_REPORTS,
   LIST_REPORTS_BY_CATEGORY,
+  LIST_REPORTS_META_DATA,
   LIST_REPORT_BY_ID,
 } from "@/utils/queries";
 import { newsLetterSchema, sendLeadSchema } from "@/utils/schema";
@@ -168,13 +168,13 @@ const getImagesWithPlaceholders = async (
 };
 
 const getReports = async (): Promise<Array<ReportMetaData>> => {
-  const fetchParams = getStrapiFetchParams(LIST_REPORTS);
+  const fetchParams = getStrapiFetchParams(LIST_REPORTS_META_DATA);
   const response = await fetch(
     `${process.env.STRAPI_API_BASE_URL}/graphql`,
     fetchParams
   );
   const data = await response.json();
-  return data.data.reports.data;
+  return data.data.reports.data as Array<ReportMetaData>;
 };
 
 const getCategories = async (category?: string): Promise<Array<Category>> => {

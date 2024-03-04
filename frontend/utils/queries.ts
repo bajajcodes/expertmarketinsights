@@ -76,6 +76,31 @@ query LIST_REPORTS{
 }
 `;
 
+const LIST_REPORTS_META_DATA = `
+query LIST_REPORTS{
+  reports {
+    data {
+      id 
+      attributes {
+        reportTitle
+        reportCode
+        numberOfPages
+        reportId
+        publishedDate
+        category{
+          data {
+            id
+            attributes {
+              name
+            }
+          }
+        }
+      }
+    }
+  }
+}
+`;
+
 const LIST_CATEGORY_REPORTS = `
 query LIST_CATEGORY_REPORTS($id: ID){
   categories(filters: {id: {eq: $id}}){
@@ -191,5 +216,6 @@ export {
   LIST_REPORT,
   LIST_REPORTS,
   LIST_REPORTS_BY_CATEGORY,
+  LIST_REPORTS_META_DATA,
   LIST_REPORT_BY_ID,
 };
