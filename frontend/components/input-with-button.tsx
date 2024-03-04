@@ -12,10 +12,7 @@ export function InputWithButton({
   direction?: "row" | "column";
 }) {
   return (
-    <div
-      className={cn("flex w-full max-w-xl items-center", className)}
-      {...rest}
-    >
+    <div className={cn("w-full max-w-xl items-center", className)} {...rest}>
       <NewsLetterForm title={title} direction={direction} className="gap-0" />
     </div>
   );
