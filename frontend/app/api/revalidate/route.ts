@@ -11,12 +11,12 @@ export async function POST(request: NextRequest) {
   if (payload?.model === "category") {
     //revalidate cache for categories
     revalidateTag(API_CACHE_TAGS.CATEGORY_SLUGS);
-    revalidatePath("/categories");
+    revalidatePath("/categories", "page");
     revalidatePath("/reports/[category]", "page");
   }
   if (payload?.model === "report") {
     revalidateTag(API_CACHE_TAGS.REPORTS);
-    revalidatePath("/reports");
+    revalidatePath("/reports", "page");
     revalidatePath("/reports/[category]", "page");
     revalidatePath("/reports/[category]/[report]", "page");
   }
