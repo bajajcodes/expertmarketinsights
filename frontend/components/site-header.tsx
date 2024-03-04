@@ -1,10 +1,16 @@
+import { getNavItems } from "@/app/actions";
+import { navConfig } from "@/config/nav";
 import { siteConfig } from "@/config/site";
 import { Mail, Phone } from "lucide-react";
 import { MainNav } from "./main-nav";
 import { MobileNav } from "./mobile-nav";
 import { SocialLinks } from "./social-links";
 
-export function SiteHeader() {
+export async function SiteHeader() {
+  const navItems = await getNavItems({
+    mainNav: navConfig.mainNav,
+    sidebarNav: navConfig.sidebarNav,
+  });
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-white/95 md:p-2 pt-0 pb-4 text-black">
       <div className="container max-w-screen-xl bg-white">
@@ -25,8 +31,8 @@ export function SiteHeader() {
           </div>
           <SocialLinks />
         </div>
-        <MainNav />
-        <MobileNav />
+        <MainNav {...navItems} />
+        <MobileNav {...navItems} />
       </div>
     </header>
   );
