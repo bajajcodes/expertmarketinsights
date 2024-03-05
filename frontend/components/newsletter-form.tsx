@@ -63,7 +63,7 @@ export function NewsLetterForm({
         </FormItem>
         <Button
           type="submit"
-          className="rounded-l-none bg-expertmarketinsight hover:bg-expertmarketinsight/90 py-6 px-4 round max-w-sm"
+          className="rounded-l-none bg-expertmarketinsight hover:bg-expertmarketinsight/90 text-white py-6 px-4 round max-w-sm"
         >
           {title}
         </Button>

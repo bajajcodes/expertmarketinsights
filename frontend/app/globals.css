@@ -88,10 +88,10 @@ a[href^="mailto:"]::before {
   content: " 📨";
 }
 
-a[href^="mailto:"] {
+/* a[href^="mailto:"] {
   font-weight: 600;
   color: blue;
-}
+} */
 
 ol ul {
   margin-bottom: 1rem;
