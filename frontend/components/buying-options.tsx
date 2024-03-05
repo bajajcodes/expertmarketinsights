@@ -4,9 +4,11 @@
  * @see https://v0.dev/t/qNLSalKcLtD
  */
 import { buyNow } from "@/actions/form";
-import { Button } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { cn } from "@/lib/utils";
+import Link from "next/link";
 import { redirect } from "next/navigation";
 import { useFormState } from "react-dom";
 import { FormMessage } from "./form";
@@ -24,14 +26,14 @@ enum UserTypeLabel {
   EnterpriseUser = "Enterprise User",
 }
 
-enum ButtonValue {
+enum RequestInfoValue {
   Sample = "sample",
   Discount = "discount",
   Enquiry = "enquiry",
   BulkReport = "bulk-report",
 }
 
-enum ButtonLabel {
+enum RequestInfoLabel {
   RequestSample = "Request Sample",
   RequestDiscount = "Request Discount",
   PreOrderEnquiry = "Pre Order Enquiry",
@@ -43,16 +45,19 @@ interface BuyingOptionsProps {
   prices: { price: string; userType: keyof typeof UserType }[];
 }
 
-interface ButtonData {
-  label: ButtonLabel;
-  value: ButtonValue;
+interface RequestData {
+  label: RequestInfoLabel;
+  value: RequestInfoValue;
 }
 
-const buttons: ButtonData[] = [
-  { label: ButtonLabel.RequestSample, value: ButtonValue.Sample },
-  { label: ButtonLabel.RequestDiscount, value: ButtonValue.Discount },
-  { label: ButtonLabel.PreOrderEnquiry, value: ButtonValue.Enquiry },
-  { label: ButtonLabel.RequestBulkReport, value: ButtonValue.BulkReport },
+const requestLinks: RequestData[] = [
+  { label: RequestInfoLabel.RequestSample, value: RequestInfoValue.Sample },
+  { label: RequestInfoLabel.RequestDiscount, value: RequestInfoValue.Discount },
+  { label: RequestInfoLabel.PreOrderEnquiry, value: RequestInfoValue.Enquiry },
+  {
+    label: RequestInfoLabel.RequestBulkReport,
+    value: RequestInfoValue.BulkReport,
+  },
 ];
 
 export function BuyingOptions(props: BuyingOptionsProps) {
@@ -60,10 +65,6 @@ export function BuyingOptions(props: BuyingOptionsProps) {
   if (state.user) {
     redirect(`/checkout?id=${props.reportId}&user=${state.user}`);
   }
-  const handleButtonClick = (value: ButtonValue) => {
-    console.log({ value });
-    redirect(`/request?id=${props.reportId}&value=${value}`);
-  };
   return (
     <div className="flex flex-col space-y-6  py-8 md:py-12 lg:py-24 ">
       <div className="border">
@@ -92,15 +93,17 @@ export function BuyingOptions(props: BuyingOptionsProps) {
         </form>
       </div>
       <div className="grid grid-cols-[repeat(auto-fill,minmax(200px,1fr))] gap-4 px-6">
-        {buttons.map((button) => (
-          <Button
+        {requestLinks.map((button) => (
+          <Link
+            href={`/request?id=${props.reportId}&value=${button.value}`}
+            className={cn(
+              buttonVariants({ variant: "default" }),
+              "text-white uppercase"
+            )}
             key={button.value}
-            className="text-white uppercase"
-            onClick={() => handleButtonClick(button.value)}
-            type="button"
           >
             {button.label}
-          </Button>
+          </Link>
         ))}
       </div>
     </div>
