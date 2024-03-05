@@ -1,5 +1,4 @@
-import { API_CACHE_TAGS } from "@/types/api";
-import { revalidatePath, revalidateTag } from "next/cache";
+import { revalidatePath } from "next/cache";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET() {
@@ -7,24 +6,30 @@ export async function GET() {
 }
 
 export async function POST(request: NextRequest) {
+  const path = request.nextUrl;
+  console.log({ path });
   const payload = await request.json();
-  if (payload?.model === "category") {
-    //revalidate cache for categories
-    revalidatePath("/", "layout");
-    revalidatePath("/", "page");
-    revalidateTag(API_CACHE_TAGS.CATEGORY_SLUGS);
-    revalidateTag(API_CACHE_TAGS.CATEGORIES);
-    // revalidatePath("/categories", "page");
-    // revalidatePath("/reports/[category]", "page");
-  }
-  if (payload?.model === "report") {
-    revalidateTag(API_CACHE_TAGS.REPORTS);
-    revalidateTag(API_CACHE_TAGS.CATEGORY_SLUGS);
-    revalidateTag(API_CACHE_TAGS.CATEGORIES);
-    // revalidatePath("/reports", "page");
-    // revalidatePath("/reports/[category]", "page");
-    // revalidatePath("/reports/[category]/[report]", "page");
-  }
+  console.log({ payload });
+  // if (payload?.model === "category") {
+  //   //revalidate cache for categories
+  //   revalidatePath("/", "layout");
+  //   revalidatePath("/", "page");
+  //   revalidateTag(API_CACHE_TAGS.CATEGORY_SLUGS);
+  //   revalidateTag(API_CACHE_TAGS.CATEGORIES);
+  //   // revalidatePath("/categories", "page");
+  //   // revalidatePath("/reports/[category]", "page");
+  // }
+  // if (payload?.model === "report") {
+  //   revalidateTag(API_CACHE_TAGS.REPORTS);
+  //   revalidateTag(API_CACHE_TAGS.CATEGORY_SLUGS);
+  //   revalidateTag(API_CACHE_TAGS.CATEGORIES);
+  //   // revalidatePath("/reports", "page");
+  //   // revalidatePath("/reports/[category]", "page");
+  //   // revalidatePath("/reports/[category]/[report]", "page");
+  // }
+
+  revalidatePath("/", "layout");
+  revalidatePath("/", "page");
   return NextResponse.json({ message: "Revalidate Done", revalidate: true });
 }
 
