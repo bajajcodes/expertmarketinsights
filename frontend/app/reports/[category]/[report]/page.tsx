@@ -1,5 +1,6 @@
 import { getReportById, getReports } from "@/app/actions";
 import { Report } from "@/app/types";
+import { BuyingOptions } from "@/components/buying-options";
 import { FAQ } from "@/components/faqs";
 import { HeroHeader } from "@/components/hero-header";
 import {
@@ -89,104 +90,127 @@ export default async function Page({ params }: Props) {
   return (
     <>
       <HeroHeader title={report.attributes.reportTitle} />
-      <section className="container max-w-screen-lg bg-white mb-4">
-        <PageHeader className="pb-1 md:pb-2 lg:pb-4">
-          <PageHeaderHeading>{report.attributes.reportTitle}</PageHeaderHeading>
-          <PageHeaderDescription>
-            {report.attributes.reportCode} ID&nbsp;|&nbsp;
-            {report.attributes.publishedDate}&nbsp;|&nbsp;
-            {report.attributes.numberOfPages} Pages
-          </PageHeaderDescription>
-        </PageHeader>
-        <Tabs defaultValue={DEFAULT_TAB} className="w-full">
-          <TabsList className="mb-2 w-full items-start justify-start">
-            {tabsList.map((item) => (
-              <TabsTrigger
-                value={item.value}
-                key={item.value}
-                className="flex-1"
+      <section className="container bg-white mb-4 grid gap-4 md:grid-cols-[1fr_0.5fr]">
+        <div>
+          <PageHeader className="pb-1 md:pb-2 lg:pb-4">
+            <PageHeaderHeading>
+              {report.attributes.reportTitle}
+            </PageHeaderHeading>
+            <PageHeaderDescription>
+              {report.attributes.reportCode} ID&nbsp;|&nbsp;
+              {report.attributes.publishedDate}&nbsp;|&nbsp;
+              {report.attributes.numberOfPages} Pages
+            </PageHeaderDescription>
+          </PageHeader>
+          <Tabs defaultValue={DEFAULT_TAB} className="w-full">
+            <TabsList className="mb-2 w-full items-start justify-start">
+              {tabsList.map((item) => (
+                <TabsTrigger
+                  value={item.value}
+                  key={item.value}
+                  className="flex-1"
+                >
+                  {item.label}
+                </TabsTrigger>
+              ))}
+            </TabsList>
+            {/* REF: https://stackoverflow.com/questions/60332183/new-line-with-react-markdown */}
+            {/* TODO: make the tabscontent part reusable */}
+            <TabsContent value={tabsList.at(0)?.value!}>
+              <ReactMarkdown
+                remarkPlugins={[gfm]}
+                className="whitespace-pre-wrap"
+                components={{
+                  thead: ({ className, ...props }) => (
+                    <thead
+                      {...props}
+                      className={
+                        (cn(className),
+                        "align-top bg-expertmarketinsight text-white")
+                      }
+                    />
+                  ),
+                  th: ({ className, ...props }) => (
+                    <th
+                      {...props}
+                      className={cn(className, "text-left p-4 w-1/2")}
+                    />
+                  ),
+                  td: ({ className, ...props }) => (
+                    <td
+                      {...props}
+                      className={cn(className, "text-left p-2 w-1/2")}
+                    />
+                  ),
+                }}
               >
-                {item.label}
-              </TabsTrigger>
-            ))}
-          </TabsList>
-          {/* REF: https://stackoverflow.com/questions/60332183/new-line-with-react-markdown */}
-          {/* TODO: make the tabscontent part reusable */}
-          <TabsContent value={tabsList.at(0)?.value!}>
-            <ReactMarkdown
-              remarkPlugins={[gfm]}
-              className="whitespace-pre-wrap"
-              components={{
-                thead: ({ className, ...props }) => (
-                  <thead
-                    {...props}
-                    className={
-                      (cn(className),
-                      "align-top bg-expertmarketinsight text-white")
-                    }
-                  />
-                ),
-                th: ({ className, ...props }) => (
-                  <th
-                    {...props}
-                    className={cn(className, "text-left p-4 w-1/2")}
-                  />
-                ),
-                td: ({ className, ...props }) => (
-                  <td
-                    {...props}
-                    className={cn(className, "text-left p-2 w-1/2")}
-                  />
-                ),
-              }}
-            >
-              {report.attributes.summary}
-            </ReactMarkdown>
-            {report.attributes.faqs.length > 0 && (
-              <FAQ faqs={report.attributes.faqs} />
-            )}
-          </TabsContent>
-          <TabsContent value={tabsList.at(1)?.value!}>
-            <ReactMarkdown
-              remarkPlugins={[gfm]}
-              className="whitespace-pre-wrap"
-              components={{
-                ol: ({ className, ...props }) => {
-                  return (
-                    <ol
-                      {...props}
-                      className={cn(
-                        className,
-                        "list-decimal whitespace-normal mx-8 md:mx-10"
-                      )}
-                    />
-                  );
-                },
-                ul: ({ className, ...props }) => {
-                  return (
-                    <ul
-                      {...props}
-                      className={cn(
-                        className,
-                        "list-disc whitespace-normal mx-4 md:mx-8"
-                      )}
-                    />
-                  );
-                },
-              }}
-            >
-              {report.attributes.toc}
-            </ReactMarkdown>
-          </TabsContent>
-          <TabsContent value={tabsList.at(2)?.value!}>
-            <ReactMarkdown
-              remarkPlugins={[gfm]}
-              className="whitespace-pre-wrap"
-            >
-              {report.attributes.methodology}
-            </ReactMarkdown>
-          </TabsContent>
-        </Tabs>
+                {report.attributes.summary}
+              </ReactMarkdown>
+              {report.attributes.faqs.length > 0 && (
+                <FAQ faqs={report.attributes.faqs} />
+              )}
+            </TabsContent>
+            <TabsContent value={tabsList.at(1)?.value!}>
+              <ReactMarkdown
+                remarkPlugins={[gfm]}
+                className="whitespace-pre-wrap"
+                components={{
+                  ol: ({ className, ...props }) => {
+                    return (
+                      <ol
+                        {...props}
+                        className={cn(
+                          className,
+                          "list-decimal whitespace-normal mx-8 md:mx-10"
+                        )}
+                      />
+                    );
+                  },
+                  ul: ({ className, ...props }) => {
+                    return (
+                      <ul
+                        {...props}
+                        className={cn(
+                          className,
+                          "list-disc whitespace-normal mx-4 md:mx-8"
+                        )}
+                      />
+                    );
+                  },
+                }}
+              >
+                {report.attributes.toc}
+              </ReactMarkdown>
+            </TabsContent>
+            <TabsContent value={tabsList.at(2)?.value!}>
+              <ReactMarkdown
+                remarkPlugins={[gfm]}
+                className="whitespace-pre-wrap"
+              >
+                {report.attributes.methodology}
+              </ReactMarkdown>
+            </TabsContent>
+          </Tabs>
+        </div>
+        {/* TODO: change report strucuture to have prices */}
+        {/* TODO: show prices based on report */}
+        <BuyingOptions
+          reportId={report.id}
+          prices={[
+            {
+              price: "1999",
+              userType: "SingleUser",
+            },
+            {
+              price: "3999",
+              userType: "MultiUser",
+            },
+            {
+              price: "7999",
+              userType: "EnterpriseUser",
+            },
+          ]}
+        />
       </section>
     </>
   );
