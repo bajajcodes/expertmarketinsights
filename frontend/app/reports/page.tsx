@@ -13,6 +13,7 @@ interface Props {
 }
 
 export const dynamicParams = false;
+export const revalidate = 1800;
 
 export async function generateStaticParams() {
   const reports = await getReports();

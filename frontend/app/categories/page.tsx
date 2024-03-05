@@ -5,6 +5,8 @@ import Link from "next/link";
 import { getCategories } from "../actions";
 import { Category } from "../types";
 
+export const revalidate = 1800;
+
 //TODO: handle api errors
 export default async function Categories() {
   let categories: Array<Category> = [];

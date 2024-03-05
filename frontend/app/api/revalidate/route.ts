@@ -10,16 +10,20 @@ export async function POST(request: NextRequest) {
   const payload = await request.json();
   if (payload?.model === "category") {
     //revalidate cache for categories
+    revalidatePath("/", "layout");
+    revalidatePath("/", "page");
     revalidateTag(API_CACHE_TAGS.CATEGORY_SLUGS);
-    revalidatePath("/categories", "page");
-    revalidatePath("/reports/[category]", "page");
+    revalidateTag(API_CACHE_TAGS.CATEGORIES);
+    // revalidatePath("/categories", "page");
+    // revalidatePath("/reports/[category]", "page");
   }
   if (payload?.model === "report") {
     revalidateTag(API_CACHE_TAGS.REPORTS);
     revalidateTag(API_CACHE_TAGS.CATEGORY_SLUGS);
-    revalidatePath("/reports", "page");
-    revalidatePath("/reports/[category]", "page");
-    revalidatePath("/reports/[category]/[report]", "page");
+    revalidateTag(API_CACHE_TAGS.CATEGORIES);
+    // revalidatePath("/reports", "page");
+    // revalidatePath("/reports/[category]", "page");
+    // revalidatePath("/reports/[category]/[report]", "page");
   }
   return NextResponse.json({ message: "Revalidate Done", revalidate: true });
 }
