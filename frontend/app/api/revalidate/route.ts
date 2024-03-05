@@ -1,4 +1,6 @@
-import { revalidatePath } from "next/cache";
+import { API_CACHE_TAGS } from "@/types/api";
+import { getSlug } from "@/utils/slugs";
+import { revalidatePath, revalidateTag } from "next/cache";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET() {
@@ -6,19 +8,24 @@ export async function GET() {
 }
 
 export async function POST(request: NextRequest) {
-  const path = request.nextUrl;
+  const path = request.nextUrl.toString();
   console.log({ path });
   const payload = await request.json();
   console.log({ payload });
-  // if (payload?.model === "category") {
-  //   //revalidate cache for categories
-  //   revalidatePath("/", "layout");
-  //   revalidatePath("/", "page");
-  //   revalidateTag(API_CACHE_TAGS.CATEGORY_SLUGS);
-  //   revalidateTag(API_CACHE_TAGS.CATEGORIES);
-  //   // revalidatePath("/categories", "page");
-  //   // revalidatePath("/reports/[category]", "page");
-  // }
+  if (payload?.model === "category") {
+    //revalidate cache for categories
+    revalidatePath("/", "layout");
+    revalidatePath("/", "page");
+    revalidateTag(API_CACHE_TAGS.CATEGORY_SLUGS);
+    revalidateTag(API_CACHE_TAGS.CATEGORIES);
+    revalidatePath("/categories", "page");
+    // revalidatePath("/reports/[category]", "page");
+    const name = payload.entry.name;
+    const id = payload.entry.id;
+    const slug = getSlug(name, id);
+    console.log({ name, id, slug });
+    revalidatePath(`/reports/${slug}`, "page");
+  }
   // if (payload?.model === "report") {
   //   revalidateTag(API_CACHE_TAGS.REPORTS);
   //   revalidateTag(API_CACHE_TAGS.CATEGORY_SLUGS);
