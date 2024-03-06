@@ -58,9 +58,12 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const reportId = getIdFromSlug(params.report);
-  const report = await getReportById(reportId!);
-  //TODO: handle it beautifully
-  if (!reportId || !report)
+  if (!reportId)
+    return {
+      title: `Report does not exists for ${params.report}`,
+    };
+  const report = await getReportById(reportId);
+  if (!report)
     return {
       title: `Report does not exists for ${params.report}`,
     };
@@ -77,15 +80,17 @@ export default async function Page({ params }: Props) {
   let prices: Array<Price> = [];
   try {
     const reportId = getIdFromSlug(params.report);
-    report = await getReportById(reportId!);
-    if (!reportId || !report)
-      throw Error(`Report does not exists for ${params.report}`);
-    prices = report.attributes.buyingOptions.map((item) => ({
-      ...item,
-      userType: item.user,
-    }));
+    if (!reportId) throw Error(`Report does not exists for ${params.report}`);
+    report = await getReportById(reportId);
+    if (!report) throw Error(`Report does not exists for ${params.report}`);
+    prices =
+      report.attributes.buyingOptions.length > 0
+        ? report.attributes.buyingOptions.map((item) => ({
+            ...item,
+            userType: item.user,
+          }))
+        : prices;
   } catch (error) {
-    console.error({ error });
     if (isRedirectError(error)) {
       throw error;
     }
