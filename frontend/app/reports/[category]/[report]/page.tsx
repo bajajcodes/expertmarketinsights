@@ -1,5 +1,5 @@
 import { getReportById, getReports } from "@/app/actions";
-import { Report } from "@/app/types";
+import { Report, UserType } from "@/app/types";
 import { BuyingOptions } from "@/components/buying-options";
 import { FAQ } from "@/components/faqs";
 import { HeroHeader } from "@/components/hero-header";
@@ -199,15 +199,15 @@ export default async function Page({ params }: Props) {
           prices={[
             {
               price: "1999",
-              userType: "SingleUser",
+              userType: UserType.SingleUser,
             },
             {
               price: "3999",
-              userType: "MultiUser",
+              userType: UserType.MultiUser,
             },
             {
               price: "7999",
-              userType: "EnterpriseUser",
+              userType: UserType.EnterpriseUser,
             },
           ]}
         />

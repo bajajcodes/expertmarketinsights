@@ -7,6 +7,18 @@ export enum ImageKeys {
   BANNER3 = "BANNER3",
 }
 
+export enum UserType {
+  SingleUser = "singleuser",
+  MultiUser = "multiuser",
+  EnterpriseUser = "enterpriseuser",
+}
+
+export enum UserTypeLabel {
+  singleuser = "Single User",
+  multiuser = "Multi User",
+  enterpriseuser = "Enterprise User",
+}
+
 export interface CategoryMetadata {
   id: string;
   attributes: {
@@ -37,7 +49,7 @@ export type FAQ = {
   answer: string;
 };
 
-type ReportMetaDataAttributes = {
+export type ReportMetaDataAttributes = {
   reportTitle: string;
   reportCode: string;
   numberOfPages: number;

@@ -4,6 +4,7 @@
  * @see https://v0.dev/t/qNLSalKcLtD
  */
 import { buyNow } from "@/actions/form";
+import { UserType, UserTypeLabel } from "@/app/types";
 import { buttonVariants } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
@@ -13,18 +14,6 @@ import { redirect } from "next/navigation";
 import { useFormState } from "react-dom";
 import { FormMessage } from "./form";
 import { SubmitButton } from "./submit-button";
-
-enum UserType {
-  SingleUser = "singleuser",
-  MultiUser = "multiuser",
-  EnterpriseUser = "enterpriseuser",
-}
-
-enum UserTypeLabel {
-  SingleUser = "Single User",
-  MultiUser = "Multi User",
-  EnterpriseUser = "Enterprise User",
-}
 
 enum RequestInfoValue {
   Sample = "sample",
@@ -42,7 +31,7 @@ enum RequestInfoLabel {
 
 interface BuyingOptionsProps {
   reportId: string;
-  prices: { price: string; userType: keyof typeof UserType }[];
+  prices: { price: string; userType: UserType }[];
 }
 
 interface RequestData {
@@ -74,15 +63,9 @@ export function BuyingOptions(props: BuyingOptionsProps) {
         <form className="space-y-4 px-6 py-4" action={action}>
           <RadioGroup defaultValue={UserType.SingleUser} required name="user">
             {props.prices.map((item) => (
-              <div
-                className="flex items-center space-x-2"
-                key={UserType[item.userType]}
-              >
-                <RadioGroupItem
-                  id={UserType[item.userType]}
-                  value={UserType[item.userType]}
-                />
-                <Label htmlFor={UserType[item.userType]}>
+              <div className="flex items-center space-x-2" key={item.userType}>
+                <RadioGroupItem id={item.userType} value={item.userType} />
+                <Label htmlFor={item.userType}>
                   {UserTypeLabel[item.userType]} ${item.price}
                 </Label>
               </div>

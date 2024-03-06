@@ -1,5 +1,6 @@
 "use server";
 
+import { siteConfig } from "@/config/site";
 import { API_CACHE_TAGS } from "@/types/api";
 import { MainNavItem, SidebarNavItem } from "@/types/nav";
 import { LeadGenerateType } from "@/types/schema";
@@ -11,6 +12,7 @@ import {
   LIST_REPORTS_BY_CATEGORY,
   LIST_REPORTS_META_DATA,
   LIST_REPORT_BY_ID,
+  LIST_REPORT_METADATA_BY_ID,
 } from "@/utils/queries";
 import { newsLetterSchema, sendLeadSchema } from "@/utils/schema";
 import { getSlug } from "@/utils/slugs";
@@ -70,7 +72,7 @@ async function sendLeadForFreeCustomizedReport(
       },
       body: JSON.stringify({
         from: "onboarding@resend.dev",
-        to: "shmbajaj32@gmail.com",
+        to: siteConfig.email,
         subject: "Query For Free Customized Report",
         html,
       }),
@@ -108,7 +110,7 @@ async function subscribeToNewsLetter(
       },
       body: JSON.stringify({
         from: "onboarding@resend.dev",
-        to: "shmbajaj32@gmail.com",
+        to: siteConfig.email,
         subject: "News Letter Subscription",
         html: `<p><strong>Email:&nbsp;</strong><span>${rawFormData?.email}</span></p>`,
       }),
@@ -221,6 +223,17 @@ const getReportById = async (id: string): Promise<Report> => {
   return data.data.report.data;
 };
 
+const getReportMetdadataById = async (id: string): Promise<Report> => {
+  const fetchParams = getStrapiFetchParams(LIST_REPORT_METADATA_BY_ID, { id });
+  const response = await fetch(
+    `${process.env.STRAPI_API_BASE_URL}/graphql`,
+    fetchParams
+  );
+  const data = await response.json();
+  //TODO: check if below syntax can be changed?
+  return data.data.report.data;
+};
+
 const getReportsByCategory = async (id: string): Promise<Array<Report>> => {
   const fetchParams = getStrapiFetchParams(LIST_REPORTS_BY_CATEGORY, { id });
   const response = await fetch(
@@ -268,7 +281,7 @@ const getCategoriesSlugs = async (): Promise<
   const fetchParams = getStrapiFetchParams(
     LIST_CATEGORIES_SLUGS,
     {},
-    { tags: [API_CACHE_TAGS.CATEGORY_SLUGS] }
+    { tags: [API_CACHE_TAGS.CATEGORY_SLUGS], revalidate: 3600 }
   );
   const response = await fetch(
     `${process.env.STRAPI_API_BASE_URL}/graphql`,
@@ -311,6 +324,7 @@ export {
   getImagesWithPlaceholders,
   getNavItems,
   getReportById,
+  getReportMetdadataById,
   getReports,
   getReportsByCategory,
   getReportsMetaData,
