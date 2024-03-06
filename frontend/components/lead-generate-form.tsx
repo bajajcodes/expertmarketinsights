@@ -1,24 +1,24 @@
-'use client';
+"use client";
 
-import { Button } from './ui/button';
-import { FormItem, FormMessage } from './form';
-import { Input } from './ui/input';
-import { Textarea } from './ui/textarea';
-import { sendLeadForFreeCustomizedReport } from '@/app/actions';
-import { useFormState } from 'react-dom';
-import { LeadGenerateType } from '@/types/schema';
-import { useEffect, useRef } from 'react';
-import { useToast } from './ui/use-toast';
-import { cn } from '@/lib/utils';
+import { sendLeadForFreeCustomizedReport } from "@/app/actions";
+import { cn } from "@/lib/utils";
+import { LeadGenerateType } from "@/types/schema";
+import { useEffect, useRef } from "react";
+import { useFormState } from "react-dom";
+import { FormItem, FormMessage } from "./form";
+import { Button } from "./ui/button";
+import { Input } from "./ui/input";
+import { Textarea } from "./ui/textarea";
+import { useToast } from "./ui/use-toast";
 
 const intialState: LeadGenerateType = {
-  name: '',
-  email: '',
-  mobile: '',
-  message: '',
+  name: "",
+  email: "",
+  mobile: "",
+  message: "",
 };
 
-export function LeadGenerateForm({ className = '' }: { className?: string }) {
+export function LeadGenerateForm({ className = "" }: { className?: string }) {
   const { toast } = useToast();
   const [state, formAction] = useFormState(
     sendLeadForFreeCustomizedReport,
@@ -31,16 +31,16 @@ export function LeadGenerateForm({ className = '' }: { className?: string }) {
     }
     formRef.current?.reset();
     toast({
-      title: 'Your report will soon be sent to you.',
+      title: "Your report will soon be sent to you.",
       duration: 2000,
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [state.success]);
+  }, [state]);
 
   return (
     <form
       name="freeCustomizedReportForm"
-      className={cn('grid gap-4 text-white', className)}
+      className={cn("grid gap-4 text-white", className)}
       action={formAction}
       ref={formRef}
     >
