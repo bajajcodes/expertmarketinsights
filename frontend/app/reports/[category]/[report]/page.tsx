@@ -79,12 +79,12 @@ export default async function Page({ params }: Props) {
   try {
     const reportId = getIdFromSlug(params.report);
     report = await getReportById(reportId!);
+    if (!reportId || !report)
+      throw Error(`Report does not exists for ${params.report}`);
     prices = report.attributes.buyingOptions.map((item) => ({
       ...item,
       userType: item.user,
     }));
-    if (!reportId || !report)
-      throw Error(`Report does not exists for ${params.report}`);
   } catch (error) {
     console.error({ error });
     if (isRedirectError(error)) {
