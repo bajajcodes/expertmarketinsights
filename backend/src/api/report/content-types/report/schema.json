@@ -62,6 +62,12 @@
       "relation": "manyToOne",
       "target": "api::category.category",
       "inversedBy": "reports"
+    },
+    "buyingOptions": {
+      "displayName": "BuyingOptions",
+      "type": "component",
+      "repeatable": true,
+      "component": "price.buying-options"
     }
   }
 }

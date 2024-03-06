@@ -866,6 +866,7 @@ export interface ApiReportReport extends Schema.CollectionType {
       'manyToOne',
       'api::category.category'
     >;
+    buyingOptions: Attribute.Component<'price.buying-options', true>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

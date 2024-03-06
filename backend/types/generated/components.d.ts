@@ -19,10 +19,24 @@ export interface FaqFaq extends Schema.Component {
   };
 }
 
+export interface PriceBuyingOptions extends Schema.Component {
+  collectionName: 'components_price_buying_options';
+  info: {
+    displayName: 'BuyingOptions';
+    icon: 'chartBubble';
+    description: '';
+  };
+  attributes: {
+    user: Attribute.Enumeration<['singleuser', 'multiuser', 'enterpriseuser']>;
+    price: Attribute.Integer;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface Components {
       'faq.faq': FaqFaq;
+      'price.buying-options': PriceBuyingOptions;
     }
   }
 }

@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_price_buying_options",
+  "info": {
+    "displayName": "BuyingOptions",
+    "icon": "chartBubble",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "user": {
+      "type": "enumeration",
+      "enum": [
+        "singleuser",
+        "multiuser",
+        "enterpriseuser"
+      ]
+    },
+    "price": {
+      "type": "integer"
+    }
+  }
+}
