@@ -1,6 +1,5 @@
 import { getReportById, getReports } from "@/app/actions";
 import { Price, Report } from "@/app/types";
-import { BuyingOptions } from "@/components/buying-options";
 import { FAQ } from "@/components/faqs";
 import { HeroHeader } from "@/components/hero-header";
 import {
@@ -199,7 +198,7 @@ export default async function Page({ params }: Props) {
         </div>
         {/* TODO: change report strucuture to have prices */}
         {/* TODO: show prices based on report */}
-        <BuyingOptions reportId={report.id} prices={prices} />
+        {/* <BuyingOptions reportId={report.id} prices={prices} /> */}
       </section>
     </>
   );
