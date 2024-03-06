@@ -49,6 +49,12 @@ export type FAQ = {
   answer: string;
 };
 
+export type Price = {
+  id: string;
+  user: UserType;
+  price: number;
+};
+
 export type ReportMetaDataAttributes = {
   reportTitle: string;
   reportCode: string;
@@ -58,6 +64,7 @@ export type ReportMetaDataAttributes = {
   category: {
     data: CategoryMetadata;
   };
+  buyingOptions: Price[];
 };
 
 export interface ReportMetaData {

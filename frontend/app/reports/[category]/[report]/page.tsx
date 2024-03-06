@@ -1,5 +1,5 @@
 import { getReportById, getReports } from "@/app/actions";
-import { Report, UserType } from "@/app/types";
+import { Price, Report } from "@/app/types";
 import { BuyingOptions } from "@/components/buying-options";
 import { FAQ } from "@/components/faqs";
 import { HeroHeader } from "@/components/hero-header";
@@ -75,9 +75,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function Page({ params }: Props) {
   let report: Report;
+  let prices: Array<Price> = [];
   try {
     const reportId = getIdFromSlug(params.report);
     report = await getReportById(reportId!);
+    prices = report.attributes.buyingOptions.map((item) => ({
+      ...item,
+      userType: item.user,
+    }));
     if (!reportId || !report)
       throw Error(`Report does not exists for ${params.report}`);
   } catch (error) {
@@ -194,23 +199,7 @@ export default async function Page({ params }: Props) {
         </div>
         {/* TODO: change report strucuture to have prices */}
         {/* TODO: show prices based on report */}
-        <BuyingOptions
-          reportId={report.id}
-          prices={[
-            {
-              price: "1999",
-              userType: UserType.SingleUser,
-            },
-            {
-              price: "3999",
-              userType: UserType.MultiUser,
-            },
-            {
-              price: "7999",
-              userType: UserType.EnterpriseUser,
-            },
-          ]}
-        />
+        <BuyingOptions reportId={report.id} prices={prices} />
       </section>
     </>
   );

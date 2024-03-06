@@ -182,6 +182,7 @@ query LIST_REPORTS_BY_CATEGORY($id : ID!){
 }
 `;
 
+//TODO: use fragments
 const LIST_REPORT_BY_ID = `
 query LIST_REPORT_BY_ID($id: ID!){
   report(id: $id) {
@@ -201,6 +202,11 @@ query LIST_REPORT_BY_ID($id: ID!){
           question
           answer
         }
+        buyingOptions {
+          id
+          user
+          price
+        }
       }
     }
   }
@@ -218,6 +224,11 @@ query LIST_REPORT_BY_ID($id: ID!){
         numberOfPages
         reportId
         publishedDate
+        buyingOptions {
+          id
+          user
+          price
+        }
         category {
           data {
             id

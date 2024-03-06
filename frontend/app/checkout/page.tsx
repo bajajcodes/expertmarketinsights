@@ -15,9 +15,13 @@ export default async function Checkout({
   const id = searchParams.id;
   const user = searchParams.user as UserType;
   let report: Report;
+  let price: number | undefined;
   try {
     if (!id || !user) throw Error("Report ID or Buying User is Incorrect");
     report = await getReportMetdadataById(id);
+    price = report.attributes.buyingOptions.find(
+      (item) => item.user === user
+    )?.price;
   } catch (error) {
     if (isRedirectError(error)) {
       throw error;
@@ -54,7 +58,8 @@ export default async function Checkout({
               <div className="p-4 border rounded-md">
                 <p className="text-sm">{report.attributes.reportTitle}</p>
                 <p className="text-sm">
-                  {report.attributes.reportCode} | {UserTypeLabel[user]} | $ 999
+                  {report.attributes.reportCode} | {UserTypeLabel[user]} | ${" "}
+                  {price}
                 </p>
               </div>
               <div className="p-4 border rounded-md">
@@ -66,7 +71,7 @@ export default async function Checkout({
               <div className="p-4 border rounded-md">
                 <div className="flex justify-between">
                   <h3 className="text-sm font-semibold">TOTAL</h3>
-                  <p className="text-sm font-semibold">$999</p>
+                  <p className="text-sm font-semibold">${price}</p>
                 </div>
               </div>
             </section>
@@ -81,7 +86,7 @@ export default async function Checkout({
                 id={id}
                 {...report.attributes}
                 user={user}
-                price="999"
+                price={price as unknown as string}
               />
             </section>
           </div>
