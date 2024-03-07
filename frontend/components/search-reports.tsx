@@ -2,10 +2,10 @@ import { images } from "@/data/layout";
 import Image from "next/image";
 import { Suspense } from "react";
 import { SearchReportsForm } from "./search-reports-form";
+import { Skeleton } from "./ui/skeleton";
 
-//TODO: replace with skeleton
 function SearchBarFallback() {
-  return <>placeholder</>;
+  return <Skeleton className="h-16 w-full rounded-xl" />;
 }
 
 export function SearchReports() {
