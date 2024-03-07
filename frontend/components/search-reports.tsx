@@ -1,6 +1,12 @@
 import { images } from "@/data/layout";
 import Image from "next/image";
+import { Suspense } from "react";
 import { SearchReportsForm } from "./search-reports-form";
+
+//TODO: replace with skeleton
+function SearchBarFallback() {
+  return <>placeholder</>;
+}
 
 export function SearchReports() {
   return (
@@ -20,5 +26,13 @@ export function SearchReports() {
         <SearchReportsForm />
       </div>
     </div>
+  );
+}
+
+export function SearchReportsWithSuspense() {
+  return (
+    <Suspense fallback={<SearchBarFallback />}>
+      <SearchReports />
+    </Suspense>
   );
 }

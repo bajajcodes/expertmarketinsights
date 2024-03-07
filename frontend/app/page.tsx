@@ -4,7 +4,7 @@ import {
   PageHeaderDescription,
   PageHeaderHeading,
 } from "@/components/page-header";
-import { SearchReportsForm } from "@/components/search-reports-form";
+import { SearchReportsWithSuspense } from "@/components/search-reports";
 import { Stats } from "@/components/stats";
 import { Testimonies } from "@/components/testimonies";
 import { images } from "@/data/home-page";
@@ -43,7 +43,7 @@ export default async function Home() {
           <p className="mb-4 leading-10 font-semibold drop-shadow text-4xl text-center">
             We Use Research For Illumination!
           </p>
-          <SearchReportsForm />
+          <SearchReportsWithSuspense />
         </div>
       </div>
       <section className="bg-gray-100">
