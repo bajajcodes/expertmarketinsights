@@ -1,3 +1,4 @@
+import { ReportBuyingUser } from "@/app/types";
 import Link from "next/link";
 import { Button } from "./ui/button";
 
@@ -41,7 +42,12 @@ export function Report({
       </div>
       <div className="flex items-center space-x-2 mt-4 md:mt-0">
         <Button className="bg-expertmarketinsight/90 hover:bg-expertmarketinsight text-white">
-          BUY NOW
+          <Link
+            href={`/checkout?id=${rest.id}&user=${ReportBuyingUser.SingleUser}`}
+            className="hover:no-underline"
+          >
+            BUY NOW
+          </Link>
         </Button>
         <Button className="bg-blue-400 hover:bg-blue-500 text-white">
           REQUEST SAMPLE
