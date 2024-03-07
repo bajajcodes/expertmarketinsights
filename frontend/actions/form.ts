@@ -3,6 +3,7 @@
 import { FormFieldName } from "@/components/order-summary";
 import { siteConfig } from "@/config/site";
 import { orderSummaryFormSchema } from "@/utils/schema";
+import { redirect } from "next/navigation";
 
 async function sendEmail(params: Record<"subject" | "html", string>) {
   return await fetch("https://api.resend.com/emails", {
@@ -67,4 +68,12 @@ const checkoutReport = async (
   }
 };
 
-export { buyNow, checkoutReport };
+async function navigateToReports(_: unknown, data: FormData) {
+  const search = data.get("search") as string;
+  if (!search || search.trim().length < 1) {
+    return { error: "Search Cannot Be Empty." };
+  }
+  redirect(`/reports/?search=${search}`);
+}
+
+export { buyNow, checkoutReport, navigateToReports };
