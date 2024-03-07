@@ -30,9 +30,6 @@ export default async function ServicesPage() {
         <CardContent className="grid gap-4 lg:grid-cols-2 p-0">
           <div className="relative h-[240px] lg:h-auto">
             <Image
-              // src={images.banner1.src}
-              // width={0}
-              // height={0}
               sizes="100vw"
               placeholder="blur"
               alt="about banner"

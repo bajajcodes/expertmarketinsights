@@ -77,8 +77,8 @@ query LIST_REPORTS{
 `;
 
 const LIST_REPORTS_META_DATA = `
-query LIST_REPORTS{
-  reports {
+query LIST_REPORTS($search: String){
+  reports(pagination: {pageSize: 100}, filters: {reportTitle: {containsi: $search}}) {
     data {
       id 
       attributes {
@@ -103,7 +103,7 @@ query LIST_REPORTS{
 
 const LIST_CATEGORY_REPORTS = `
 query LIST_CATEGORY_REPORTS($id: ID){
-  categories(filters: {id: {eq: $id}}){
+  categories(filters: {id: {eq: $id}}, pagination: {pageSize: 100}){
     data {
       id
       attributes {

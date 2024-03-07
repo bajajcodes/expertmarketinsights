@@ -1,6 +1,6 @@
 import { Icons } from "@/components/icons";
 import { LeadGenerateForm } from "@/components/lead-generate-form";
-import { SearchReport } from "@/components/search-report";
+import { SearchReportsWithSuspense } from "@/components/search-reports";
 import {
   Card,
   CardContent,
@@ -15,7 +15,7 @@ export default function ContactUsPage() {
   return (
     <>
       <div>
-        <SearchReport />
+        <SearchReportsWithSuspense />
         <div className="bg-[#413c69] px-8 py-4 text-white gap-2 flex items-center">
           <span>
             <Link href="/" className="text-[#b0e0e6]">

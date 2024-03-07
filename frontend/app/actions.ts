@@ -168,10 +168,12 @@ const getImagesWithPlaceholders = async (
   );
 };
 
-const getReports = async (): Promise<Array<ReportMetaData>> => {
+const getReports = async (
+  search: string = ""
+): Promise<Array<ReportMetaData>> => {
   const fetchParams = getStrapiFetchParams(
     LIST_REPORTS_META_DATA,
-    {},
+    { search },
     { tags: [API_CACHE_TAGS.REPORTS] }
   );
   const response = await fetch(

@@ -33,10 +33,15 @@ export async function generateStaticParams() {
   });
 }
 
-export default async function Reports() {
+export default async function Reports({
+  searchParams,
+}: {
+  searchParams: Record<"search", string | undefined>;
+}) {
+  const search = searchParams.search;
   let reports: Array<ReportProps>;
   try {
-    const rawReportsData = await getReports();
+    const rawReportsData = await getReports(search);
     reports = rawReportsData.map((report) => {
       const reportSlug = getSlug(report.attributes.reportTitle, report.id);
       const categorySlug = getSlug(
@@ -67,6 +72,11 @@ export default async function Reports() {
             <Report {...report} key={report.id} />
           ))}
         </ul>
+        {reports.length < 1 && (
+          <h4 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-muted-foreground text-center mb-8">
+            No Reports Found :)
+          </h4>
+        )}
       </section>
     </>
   );
