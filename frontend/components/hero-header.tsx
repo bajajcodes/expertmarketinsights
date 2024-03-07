@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { SearchReports } from "./search-reports";
 
-export function HeroHeader({ title }: { title: string }) {
+export function HeroHeader({ title = "" }: { title?: string }) {
   return (
     <div>
       <SearchReports />
@@ -11,8 +11,8 @@ export function HeroHeader({ title }: { title: string }) {
             HOME
           </Link>
         </span>
-        <span>/</span>
-        <span className="font-medium">{title}</span>
+        {title && <span>/</span>}
+        {title && <span className="font-medium">{title}</span>}
       </div>
     </div>
   );

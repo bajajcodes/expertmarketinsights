@@ -75,7 +75,7 @@ export default async function Page({ params }: Props) {
   }
   return (
     <>
-      <HeroHeader title={category.attributes.name} />
+      <HeroHeader />
       <div className="container max-w-screen-lg bg-white py-8">
         <h2 className="text-xl font-semibold mb-4">Report Details</h2>
         <div className="space-y-4">
