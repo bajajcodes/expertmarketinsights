@@ -34,19 +34,19 @@ interface RequestData {
 
 const requestLinks: RequestData[] = [
   {
-    label: RequestInfoLabel.RequestSample,
+    label: RequestInfoLabel.sample,
     value: RequestInfoValue.RequestSample,
   },
   {
-    label: RequestInfoLabel.RequestDiscount,
+    label: RequestInfoLabel.discount,
     value: RequestInfoValue.RequestDiscount,
   },
   {
-    label: RequestInfoLabel.PreOrderEnquiry,
+    label: RequestInfoLabel.enquiry,
     value: RequestInfoValue.PreOrderEnquiry,
   },
   {
-    label: RequestInfoLabel.RequestBulkReport,
+    label: RequestInfoLabel.bulk_report,
     value: RequestInfoValue.RequestBulkReport,
   },
 ];

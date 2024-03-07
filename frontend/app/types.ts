@@ -23,14 +23,14 @@ export enum RequestInfoValue {
   RequestSample = "sample",
   RequestDiscount = "discount",
   PreOrderEnquiry = "enquiry",
-  RequestBulkReport = "bulk-report",
+  RequestBulkReport = "bulk_report",
 }
 
 export enum RequestInfoLabel {
-  RequestSample = "Request Sample",
-  RequestDiscount = "Request Discount",
-  PreOrderEnquiry = "Pre Order Enquiry",
-  RequestBulkReport = "Request Bulk Report",
+  sample = "Request Sample",
+  discount = "Request Discount",
+  enquiry = "Pre Order Enquiry",
+  bulk_report = "Request Bulk Report",
 }
 
 export interface CategoryMetadata {
