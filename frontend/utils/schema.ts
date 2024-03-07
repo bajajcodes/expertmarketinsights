@@ -46,4 +46,18 @@ const orderSummaryFormSchema = z.object({
   zipCode: z.string(),
 });
 
-export { newsLetterSchema, orderSummaryFormSchema, sendLeadSchema };
+const requestReportSchema = z.object({
+  fullName: z.string(),
+  email: z.string().email(),
+  country: z.string(),
+  number: z.string(),
+  companyName: z.string(),
+  designation: z.string(),
+});
+
+export {
+  newsLetterSchema,
+  orderSummaryFormSchema,
+  requestReportSchema,
+  sendLeadSchema,
+};

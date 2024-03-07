@@ -19,6 +19,20 @@ export enum ImageKeys {
   BANNER3 = "BANNER3",
 }
 
+export enum RequestInfoValue {
+  RequestSample = "sample",
+  RequestDiscount = "discount",
+  PreOrderEnquiry = "enquiry",
+  RequestBulkReport = "bulk_report",
+}
+
+export enum RequestInfoLabel {
+  sample = "Request Sample",
+  discount = "Request Discount",
+  enquiry = "Pre Order Enquiry",
+  bulk_report = "Request Bulk Report",
+}
+
 export interface CategoryMetadata {
   id: string;
   attributes: {

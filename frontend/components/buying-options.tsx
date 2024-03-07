@@ -5,7 +5,13 @@
  */
 // import { buyNow } from "@/actions/form";
 import { buyNow } from "@/actions/form";
-import { Price, ReportBuyingUser, ReportBuyingUserLabel } from "@/app/types";
+import {
+  Price,
+  ReportBuyingUser,
+  ReportBuyingUserLabel,
+  RequestInfoLabel,
+  RequestInfoValue,
+} from "@/app/types";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
@@ -15,20 +21,6 @@ import { FormMessage } from "./form";
 import { SubmitButton } from "./submit-button";
 import { Label } from "./ui/label";
 import { RadioGroup, RadioGroupItem } from "./ui/radio-group";
-
-enum RequestInfoValue {
-  Sample = "sample",
-  Discount = "discount",
-  Enquiry = "enquiry",
-  BulkReport = "bulk-report",
-}
-
-enum RequestInfoLabel {
-  RequestSample = "Request Sample",
-  RequestDiscount = "Request Discount",
-  PreOrderEnquiry = "Pre Order Enquiry",
-  RequestBulkReport = "Request Bulk Report",
-}
 
 interface BuyingOptionsProps {
   reportId: string;
@@ -41,12 +33,21 @@ interface RequestData {
 }
 
 const requestLinks: RequestData[] = [
-  { label: RequestInfoLabel.RequestSample, value: RequestInfoValue.Sample },
-  { label: RequestInfoLabel.RequestDiscount, value: RequestInfoValue.Discount },
-  { label: RequestInfoLabel.PreOrderEnquiry, value: RequestInfoValue.Enquiry },
   {
-    label: RequestInfoLabel.RequestBulkReport,
-    value: RequestInfoValue.BulkReport,
+    label: RequestInfoLabel.sample,
+    value: RequestInfoValue.RequestSample,
+  },
+  {
+    label: RequestInfoLabel.discount,
+    value: RequestInfoValue.RequestDiscount,
+  },
+  {
+    label: RequestInfoLabel.enquiry,
+    value: RequestInfoValue.PreOrderEnquiry,
+  },
+  {
+    label: RequestInfoLabel.bulk_report,
+    value: RequestInfoValue.RequestBulkReport,
   },
 ];
 
