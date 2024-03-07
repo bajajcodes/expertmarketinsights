@@ -1,4 +1,4 @@
-import { ReportBuyingUser } from "@/app/types";
+import { ReportBuyingUser, RequestInfoValue } from "@/app/types";
 import Link from "next/link";
 import { Button } from "./ui/button";
 
@@ -50,7 +50,12 @@ export function Report({
           </Link>
         </Button>
         <Button className="bg-blue-400 hover:bg-blue-500 text-white">
-          REQUEST SAMPLE
+          <Link
+            href={`/request?id=${rest.id}&value=${RequestInfoValue.RequestSample}`}
+            className="hover:no-underline"
+          >
+            REQUEST SAMPLE
+          </Link>
         </Button>
       </div>
     </div>
