@@ -52,10 +52,10 @@ export type FAQ = {
 export type Price = {
   id: string;
   user: ReportBuyingUser;
-  price: string;
+  price: number;
 };
 
-type ReportMetaDataAttributes = {
+export type ReportMetaDataAttributes = {
   reportTitle: string;
   reportCode: string;
   numberOfPages: number;
