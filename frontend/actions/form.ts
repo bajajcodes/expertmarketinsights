@@ -70,7 +70,7 @@ const checkoutReport = async (
 
 async function navigateToReports(_: unknown, data: FormData) {
   const search = data.get("search") as string;
-  if (!search || search.trim().length < 1) {
+  if (!search) {
     return { error: "Search Cannot Be Empty." };
   }
   redirect(`/reports/?search=${search}`);
