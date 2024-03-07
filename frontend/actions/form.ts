@@ -2,7 +2,7 @@
 
 import { FormFieldName } from "@/components/order-summary";
 import { siteConfig } from "@/config/site";
-import { orderSummaryFormSchema } from "@/utils/schema";
+import { orderSummaryFormSchema, requestReportSchema } from "@/utils/schema";
 import { redirect } from "next/navigation";
 
 async function sendEmail(params: Record<"subject" | "html", string>) {
@@ -68,6 +68,39 @@ const checkoutReport = async (
   }
 };
 
+const requestReport = async (
+  prevState: {
+    errors?: Record<string, unknown>;
+    data?: Record<string, string>;
+  },
+  formData: FormData
+) => {
+  try {
+    const rawFormData = Object.fromEntries(formData.entries());
+    const validatedFields = requestReportSchema.safeParse(rawFormData);
+    if (!validatedFields.success) {
+      return {
+        errors: validatedFields.error.flatten().fieldErrors,
+        success: false,
+      };
+    }
+    const html = Object.entries(rawFormData)
+      .map(([k, v]) => `<strong>${k}:&nbsp;</strong><span>${v}</span>`)
+      .join("<br />");
+    const response = await sendEmail({
+      subject: "Request Report Summary",
+      html,
+    });
+    const data = await response.json();
+    return { data, success: true };
+  } catch (e: any) {
+    return {
+      errors: {},
+      success: false,
+    };
+  }
+};
+
 async function navigateToReports(_: unknown, data: FormData) {
   const search = data.get("search") as string;
   if (!search) {
@@ -76,4 +109,4 @@ async function navigateToReports(_: unknown, data: FormData) {
   redirect(`/reports/?search=${search}`);
 }
 
-export { buyNow, checkoutReport, navigateToReports };
+export { buyNow, checkoutReport, navigateToReports, requestReport };
