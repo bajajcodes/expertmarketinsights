@@ -43,21 +43,21 @@ export const navConfig: NavConfig = {
       href: "/categories",
       items: [],
     },
-    {
-      title: "Media",
-      items: [
-        {
-          title: "Blogs",
-          href: "/media/blogs",
-          items: [],
-        },
-        {
-          title: "Press Released",
-          href: "/media/pressrelease",
-          items: [],
-        },
-      ],
-    },
+    // {
+    //   title: "Media",
+    //   items: [
+    //     {
+    //       title: "Blogs",
+    //       href: "/media/blogs",
+    //       items: [],
+    //     },
+    //     {
+    //       title: "Press Released",
+    //       href: "/media/pressrelease",
+    //       items: [],
+    //     },
+    //   ],
+    // },
   ],
   policiesNav: [
     {
