@@ -212,7 +212,11 @@ const getCategoryById = async (id: string): Promise<Category> => {
 };
 
 const getReportById = async (id: string): Promise<Report> => {
-  const fetchParams = getStrapiFetchParams(LIST_REPORT_BY_ID, { id });
+  const fetchParams = getStrapiFetchParams(
+    LIST_REPORT_BY_ID,
+    { id },
+    { tags: [API_CACHE_TAGS.REPORT_BY_ID] }
+  );
   const response = await fetch(
     `${process.env.STRAPI_API_BASE_URL}/graphql`,
     fetchParams
@@ -252,9 +256,13 @@ const getReportsMetaData = async (
 const getCategoryReports = async (
   id: string
 ): Promise<Array<ReportMetaData>> => {
-  const fetchParams = getStrapiFetchParams(LIST_CATEGORY_REPORTS, {
-    id,
-  });
+  const fetchParams = getStrapiFetchParams(
+    LIST_CATEGORY_REPORTS,
+    {
+      id,
+    },
+    { tags: [API_CACHE_TAGS.CATEGORY_REPORTS] }
+  );
   const response = await fetch(
     `${process.env.STRAPI_API_BASE_URL}/graphql`,
     fetchParams

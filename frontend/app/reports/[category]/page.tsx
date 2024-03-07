@@ -58,9 +58,9 @@ export default async function Page({ params }: Props) {
     reports = rawReportsData.map((report) => {
       const reportSlug = getSlug(report.attributes.reportTitle, report.id);
       return {
-        id: report.id,
         ...report.attributes,
         reportSlug,
+        id: report.id,
         categorySlug: params.category,
       };
     });
