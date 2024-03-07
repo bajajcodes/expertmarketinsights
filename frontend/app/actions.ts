@@ -11,6 +11,7 @@ import {
   LIST_REPORTS_BY_CATEGORY,
   LIST_REPORTS_META_DATA,
   LIST_REPORT_BY_ID,
+  LIST_REPORT_FOR_CHECKOUT_BY_ID,
 } from "@/utils/queries";
 import { newsLetterSchema, sendLeadSchema } from "@/utils/schema";
 import { getSlug } from "@/utils/slugs";
@@ -302,6 +303,21 @@ const getNavItems = async (initialNavItems: {
   return navItems;
 };
 
+const getReportForCheckoutById = async (
+  id: string
+): Promise<ReportMetaData> => {
+  const fetchParams = getStrapiFetchParams(LIST_REPORT_FOR_CHECKOUT_BY_ID, {
+    id,
+  });
+  const response = await fetch(
+    `${process.env.STRAPI_API_BASE_URL}/graphql`,
+    fetchParams
+  );
+  const data = await response.json();
+  //TODO: check if below syntax can be changed?
+  return data.data.report.data;
+};
+
 export {
   getBlurImgData,
   getCategories,
@@ -311,6 +327,7 @@ export {
   getImagesWithPlaceholders,
   getNavItems,
   getReportById,
+  getReportForCheckoutById,
   getReports,
   getReportsByCategory,
   getReportsMetaData,
