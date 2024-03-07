@@ -1,3 +1,15 @@
+export enum ReportBuyingUser {
+  SingleUser = "singleuser",
+  MultiUser = "multiuser",
+  EnterpriseUser = "enterpriseuser",
+}
+
+export enum ReportBuyingUserLabel {
+  singleuser = "Single User",
+  multiuser = "Multi User",
+  enterpriseuser = "Enterprise User",
+}
+
 export enum ImageKeys {
   HEADER = "HEADER",
   INTRODUCTION1 = "INTRODUCTION1",
@@ -37,6 +49,12 @@ export type FAQ = {
   answer: string;
 };
 
+export type Price = {
+  id: string;
+  user: ReportBuyingUser;
+  price: string;
+};
+
 type ReportMetaDataAttributes = {
   reportTitle: string;
   reportCode: string;
@@ -46,6 +64,7 @@ type ReportMetaDataAttributes = {
   category: {
     data: CategoryMetadata;
   };
+  buyingOptions: Price[];
 };
 
 export interface ReportMetaData {
