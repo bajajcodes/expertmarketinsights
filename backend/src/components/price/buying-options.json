@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_price_buying_options",
+  "info": {
+    "displayName": "buyingOptions",
+    "icon": "grid"
+  },
+  "options": {},
+  "attributes": {
+    "user": {
+      "type": "enumeration",
+      "enum": [
+        "singleuser",
+        "multiuser",
+        "enterpriseuser"
+      ]
+    },
+    "price": {
+      "type": "integer"
+    }
+  }
+}
