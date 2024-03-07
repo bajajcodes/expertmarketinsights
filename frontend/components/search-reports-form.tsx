@@ -1,16 +1,20 @@
 "use client";
 import { navigateToReports } from "@/actions/form";
+import { cn } from "@/lib/utils";
 import { useFormState } from "react-dom";
 import { FormItem, FormMessage } from "./form";
 import { SubmitButton } from "./submit-button";
 import { Input } from "./ui/input";
 
-export function SearchReportsForm() {
+export function SearchReportsForm({ className }: { className?: string }) {
   const [state, action] = useFormState(navigateToReports, { error: "" });
 
   return (
     <>
-      <form className={"grid md:grid-cols-[3fr_1fr] w-full"} action={action}>
+      <form
+        className={cn("grid md:grid-cols-[3fr_1fr] w-full", className)}
+        action={action}
+      >
         <FormItem className="transition-all ease-in-out max-w-[unset]">
           <Input
             name="search"

@@ -90,7 +90,7 @@ a[href^="mailto:"]::before {
 
 a[href^="mailto:"] {
   font-weight: 600;
-  color: blue;
+  /* color: blue; */
 }
 
 ol ul {

@@ -1,5 +1,5 @@
 import { OrderSummaryForm } from "@/components/order-summary";
-import { SearchReport } from "@/components/search-report";
+import { SearchReports } from "@/components/search-reports";
 import { isRedirectError } from "next/dist/client/components/redirect";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -36,7 +36,7 @@ export default async function Checkout({
   return (
     <>
       <div>
-        <SearchReport />
+        <SearchReports />
         <div className="bg-[#413c69] px-8 py-4 text-white gap-2 flex items-center">
           <span>
             <Link href="/" className="text-[#b0e0e6]">
