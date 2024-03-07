@@ -201,6 +201,11 @@ query LIST_REPORT_BY_ID($id: ID!){
           question
           answer
         }
+        buyingOptions {
+          id
+          user
+          price
+        }
       }
     }
   }
