@@ -24,7 +24,7 @@ query LIST_CATEGORY($category: String){
 
 const LIST_CATEGORIES_SLUGS = `
 query LIST_CATEGORIES_SLUGS{
-  categories{
+  categories(pagination: {pageSize: 100}){
     data {
       id
       attributes {

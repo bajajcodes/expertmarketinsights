@@ -47,8 +47,8 @@ export default async function Checkout({
           <span>CHECKOUT</span>
         </div>
       </div>
-      <div className={"container bg-gray-100 p-8"}>
-        <div className="bg-white p-6 rounded-md shadow-md">
+      <div className={"container min-h-64 md:min-h-96 p-8"}>
+        <div className="bg-white p-6 rounded-md shadow-lg">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <section
               aria-labelledby="order-summary-title"

@@ -90,7 +90,7 @@ export function MainNav({
               >
                 <ul
                   className={cn("grid w-max gap-3 p-4 md:grid-flow-col", {
-                    "md:grid-cols-2 md:grid-flow-row": index === 1,
+                    "md:grid-cols-4 md:grid-flow-row": index === 1,
                   })}
                 >
                   {item.items.map((item, index) => {
