@@ -33,7 +33,10 @@ export async function POST(request: NextRequest) {
       revalidateTag(API_CACHE_TAGS.CATEGORY_SLUGS);
       revalidateTag(API_CACHE_TAGS.CATEGORIES);
 
-      if (!category) return;
+      if (!category) {
+        console.error(`Category is missing for revalidating reports path.`);
+        return;
+      }
 
       const categorySlug = getSlug(category.title, category.id);
 
