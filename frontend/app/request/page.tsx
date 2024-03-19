@@ -6,6 +6,8 @@ import { notFound } from "next/navigation";
 import { getReportForCheckoutById } from "../actions";
 import { ReportMetaData, RequestInfoLabel, RequestInfoValue } from "../types";
 
+export const dynamic = "force-dynamic";
+
 export default async function RequestPage({
   searchParams,
 }: {
