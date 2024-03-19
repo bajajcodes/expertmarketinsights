@@ -27,7 +27,6 @@ export async function generateStaticParams() {
 }
 
 export const dynamicParams = false;
-export const revalidate = 1800;
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const id = getIdFromSlug(params.category);
