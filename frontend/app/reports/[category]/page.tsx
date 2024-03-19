@@ -27,7 +27,6 @@ export async function generateStaticParams() {
 }
 
 export const dynamicParams = false;
-export const revalidate = 1800;
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const id = getIdFromSlug(params.category);
@@ -47,6 +46,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
+//INFO: "lift" the logic for populating
+// https://stackoverflow.com/questions/49641885/graphql-sort-by-nested-field
 export default async function Page({ params }: Props) {
   let reports: Array<ReportProps>;
   let category: Category;

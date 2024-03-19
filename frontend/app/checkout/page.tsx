@@ -10,6 +10,8 @@ import {
   ReportMetaData,
 } from "../types";
 
+export const dynamic = "force-dynamic";
+
 //TODO: check is to good to generate static params
 export default async function Checkout({
   searchParams,

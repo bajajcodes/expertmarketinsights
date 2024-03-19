@@ -6,6 +6,7 @@ import { LeadGenerateType } from "@/types/schema";
 import {
   LIST_CATEGORIES,
   LIST_CATEGORIES_SLUGS,
+  LIST_CATEGORY_BY_REPORT_ID,
   LIST_CATEGORY_REPORTS,
   LIST_CATEGORY_REPORTS_META_DATA,
   LIST_REPORTS_BY_CATEGORY,
@@ -17,7 +18,7 @@ import { newsLetterSchema, sendLeadSchema } from "@/utils/schema";
 import { getSlug } from "@/utils/slugs";
 import { revalidateTag } from "next/cache";
 import { getPlaiceholder } from "plaiceholder";
-import { Category, ImageKeys, Report, ReportMetaData } from "./types";
+import { $TsFixMe, Category, ImageKeys, Report, ReportMetaData } from "./types";
 
 const generateHtml = (formData: FormData) => {
   const rawFormData = Object.fromEntries(formData.entries());
@@ -270,7 +271,7 @@ const getCategoryReports = async (
     fetchParams
   );
   const data = await response.json();
-  return data.data.categories.data[0].attributes.reports.data;
+  return data.data.reports.data;
 };
 
 const getCategoriesSlugs = async (): Promise<
@@ -328,11 +329,37 @@ const getReportForCheckoutById = async (
   return data.data.report.data;
 };
 
+const getCategoryByReportId = async (
+  reportId: string
+): Promise<{ id: string; title: string } | null> => {
+  try {
+    const fetchParams = getStrapiFetchParams(LIST_CATEGORY_BY_REPORT_ID, {
+      id: reportId,
+    });
+    const response = await fetch(
+      `${process.env.STRAPI_API_BASE_URL}/graphql`,
+      fetchParams
+    );
+    const data = await response.json();
+    const reportData = data.data.report.data;
+    const categoryData = reportData.attributes.category.data;
+    const id = categoryData.id;
+    const title = categoryData.attributes.name;
+    return { id, title };
+  } catch (err: $TsFixMe) {
+    console.error({
+      message: err?.message || "Failed to get Category by Report Id",
+    });
+    return null;
+  }
+};
+
 export {
   getBlurImgData,
   getCategories,
   getCategoriesSlugs,
   getCategoryById,
+  getCategoryByReportId,
   getCategoryReports,
   getImagesWithPlaceholders,
   getNavItems,

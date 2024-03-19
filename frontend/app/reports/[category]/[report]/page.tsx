@@ -26,7 +26,6 @@ interface Props {
 }
 
 export const dynamicParams = false;
-export const revalidate = 1800;
 
 const tabsList = [
   {

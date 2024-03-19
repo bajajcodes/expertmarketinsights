@@ -1,3 +1,5 @@
+export type $TsFixMe = any;
+
 export enum ReportBuyingUser {
   SingleUser = "singleuser",
   MultiUser = "multiuser",

@@ -78,7 +78,7 @@ query LIST_REPORTS{
 
 const LIST_REPORTS_META_DATA = `
 query LIST_REPORTS($search: String){
-  reports(pagination: {pageSize: 100}, filters: {reportTitle: {containsi: $search}}) {
+  reports(sort: "publishedAt:desc", pagination: {pageSize: 100}, filters: {reportTitle: {containsi: $search}}) {
     data {
       id 
       attributes {
@@ -102,23 +102,17 @@ query LIST_REPORTS($search: String){
 `;
 
 const LIST_CATEGORY_REPORTS = `
-query LIST_CATEGORY_REPORTS($id: ID){
-  categories(filters: {id: {eq: $id}}, pagination: {pageSize: 100}){
-    data {
+query LIST_CATEGORY_REPORTS($id: ID!){
+  reports(sort: "publishedAt:desc", filters: {category: {id: {eq: $id}}}, pagination: {pageSize: 100} ){
+    data { 
       id
-      attributes {
-        reports {
-          data {
-            id 
             attributes {
               reportTitle
               reportCode
 							reportId
 							numberOfPages
+              publishedDate
             }
-          }
-        }
-      }
     }
   }
 }
@@ -229,12 +223,33 @@ query LIST_REPORT_BY_ID($id: ID!){
       }
     }
   }
-} 
-  `;
+} `;
+
+const LIST_CATEGORY_BY_REPORT_ID = `
+query LIST_CATEGORY_BY_REPORT_ID($id: ID!){
+  report(id: $id){
+    data {
+      id
+      attributes {
+        category {
+          data {
+            id
+            attributes {
+              name
+            }
+          }
+        }
+      }
+    }
+  }
+}
+`;
+
 export {
   LIST_CATEGORIES,
   LIST_CATEGORIES_SLUGS,
   LIST_CATEGORY,
+  LIST_CATEGORY_BY_REPORT_ID,
   LIST_CATEGORY_REPORTS,
   LIST_CATEGORY_REPORTS_META_DATA,
   LIST_REPORT,
