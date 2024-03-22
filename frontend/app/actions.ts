@@ -1,5 +1,7 @@
 "use server";
 
+import { Icons } from "@/components/icons";
+import { navConfig } from "@/config/nav";
 import { API_CACHE_TAGS } from "@/types/api";
 import { MainNavItem, SidebarNavItem } from "@/types/nav";
 import { LeadGenerateType } from "@/types/schema";
@@ -314,6 +316,24 @@ const getNavItems = async (initialNavItems: {
   return navItems;
 };
 
+const getIndustries = async () => {
+  const categories = await getCategoriesSlugs();
+  const iconsKeys = Object.keys(Icons);
+  const categoriesItem = [];
+  for (const category of categories) {
+    const title = category.title;
+    const lowerCasedTitle = title.toLowerCase();
+    const items: Array<unknown> = [];
+    const href = `/reports/${getSlug(category.title, category.id)}`;
+    const iconKey = iconsKeys.find((k) =>
+      lowerCasedTitle.includes(k)
+    ) as unknown as keyof typeof Icons;
+    const icon = Icons[iconKey] || Icons.placeholder;
+    categoriesItem.push({ title, items, href, icon });
+  }
+  return { ...navConfig.sidebarNav[1], items: categoriesItem };
+};
+
 const getReportForCheckoutById = async (
   id: string
 ): Promise<ReportMetaData> => {
@@ -362,6 +382,7 @@ export {
   getCategoryByReportId,
   getCategoryReports,
   getImagesWithPlaceholders,
+  getIndustries,
   getNavItems,
   getReportById,
   getReportForCheckoutById,
