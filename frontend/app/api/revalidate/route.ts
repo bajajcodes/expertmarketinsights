@@ -22,6 +22,8 @@ export async function POST(request: NextRequest) {
       revalidateTag(API_CACHE_TAGS.CATEGORIES);
       revalidatePath("/categories", "page");
       revalidatePath(`/reports/${slug}`, "page");
+      revalidatePath("/", "page");
+      revalidatePath("/", "layout");
     }
 
     if (payload?.model === "report") {
