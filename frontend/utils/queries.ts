@@ -200,6 +200,14 @@ query LIST_REPORT_BY_ID($id: ID!){
           user
           price
         }
+        category {
+          data {
+            id
+            attributes {
+              name
+            }
+          }
+        }
       }
     }
   }

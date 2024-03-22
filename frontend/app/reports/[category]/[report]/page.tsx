@@ -97,6 +97,7 @@ export default async function Page({ params }: Props) {
             </PageHeaderHeading>
             <PageHeaderDescription>
               {report.attributes.reportCode} ID&nbsp;|&nbsp;
+              {report.attributes.category.data.attributes.name}&nbsp;|&nbsp;
               {report.attributes.publishedDate}&nbsp;|&nbsp;
               {report.attributes.numberOfPages} Pages
             </PageHeaderDescription>
