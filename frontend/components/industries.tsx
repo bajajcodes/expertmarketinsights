@@ -1,8 +1,8 @@
-import { navConfig } from "@/config/nav";
+import { getIndustries } from "@/app/actions";
 import Link from "next/link";
-import { Icons } from "./icons";
 
-export function Industries() {
+export async function Industries() {
+  const navItems = await getIndustries();
   return (
     <section>
       <div className="container py-12 px-6">
@@ -12,8 +12,8 @@ export function Industries() {
           </h2>
         </div>
         <div className="grid auto-rows-[1fr] gap-4 md:gap-6 md:grid-cols-2 lg:grid-cols-3 grid-flow-row mb-4 max-w-xs md:max-w-3xl m-auto">
-          {navConfig.sidebarNav[1].items.map((item) => {
-            const Icon = Icons[item.icon!];
+          {navItems.items.map((item) => {
+            const Icon = item.icon;
             return (
               <Link href={item.href!} key={item.href} className="grid">
                 <div className="flex items-center justify-center rounded-md border-2 border-muted bg-popover p-4 ">

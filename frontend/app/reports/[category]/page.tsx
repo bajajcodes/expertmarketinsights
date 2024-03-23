@@ -1,6 +1,7 @@
 import {
   getCategoriesSlugs,
   getCategoryById,
+  getCategoryNameById,
   getCategoryReports,
 } from "@/app/actions";
 import { Category } from "@/app/types";
@@ -55,7 +56,7 @@ export default async function Page({ params }: Props) {
     const id = getIdFromSlug(params.category);
     if (!id) throw Error("Category Not Found");
     const rawReportsData = await getCategoryReports(id);
-    category = await getCategoryById(id!);
+    category = await getCategoryNameById(id);
     reports = rawReportsData.map((report) => {
       const reportSlug = getSlug(report.attributes.reportTitle, report.id);
       return {
@@ -76,7 +77,7 @@ export default async function Page({ params }: Props) {
   }
   return (
     <>
-      <HeroHeader />
+      <HeroHeader title={category.attributes.name} />
       <div className="container max-w-screen-lg bg-white py-8">
         <h2 className="text-xl font-semibold mb-4">Report Details</h2>
         <div className="space-y-4">

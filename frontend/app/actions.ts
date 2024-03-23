@@ -1,5 +1,7 @@
 "use server";
 
+import { Icons } from "@/components/icons";
+import { navConfig } from "@/config/nav";
 import { API_CACHE_TAGS } from "@/types/api";
 import { MainNavItem, SidebarNavItem } from "@/types/nav";
 import { LeadGenerateType } from "@/types/schema";
@@ -7,6 +9,7 @@ import {
   LIST_CATEGORIES,
   LIST_CATEGORIES_SLUGS,
   LIST_CATEGORY_BY_REPORT_ID,
+  LIST_CATEGORY_NAME,
   LIST_CATEGORY_REPORTS,
   LIST_CATEGORY_REPORTS_META_DATA,
   LIST_REPORTS_BY_CATEGORY,
@@ -214,6 +217,16 @@ const getCategoryById = async (id: string): Promise<Category> => {
   return data.data.categories.data[0];
 };
 
+const getCategoryNameById = async (id: string): Promise<Category> => {
+  const fetchParams = getStrapiFetchParams(LIST_CATEGORY_NAME, { id });
+  const response = await fetch(
+    `${process.env.STRAPI_API_BASE_URL}/graphql`,
+    fetchParams
+  );
+  const data = await response.json();
+  return data.data.categories.data[0];
+};
+
 const getReportById = async (id: string): Promise<Report> => {
   const fetchParams = getStrapiFetchParams(
     LIST_REPORT_BY_ID,
@@ -314,6 +327,24 @@ const getNavItems = async (initialNavItems: {
   return navItems;
 };
 
+const getIndustries = async () => {
+  const categories = await getCategoriesSlugs();
+  const iconsKeys = Object.keys(Icons);
+  const categoriesItem = [];
+  for (const category of categories) {
+    const title = category.title;
+    const lowerCasedTitle = title.toLowerCase();
+    const items: Array<unknown> = [];
+    const href = `/reports/${getSlug(category.title, category.id)}`;
+    const iconKey = iconsKeys.find((k) =>
+      lowerCasedTitle.includes(k)
+    ) as unknown as keyof typeof Icons;
+    const icon = Icons[iconKey] || Icons.placeholder;
+    categoriesItem.push({ title, items, href, icon });
+  }
+  return { ...navConfig.sidebarNav[1], items: categoriesItem };
+};
+
 const getReportForCheckoutById = async (
   id: string
 ): Promise<ReportMetaData> => {
@@ -360,8 +391,10 @@ export {
   getCategoriesSlugs,
   getCategoryById,
   getCategoryByReportId,
+  getCategoryNameById,
   getCategoryReports,
   getImagesWithPlaceholders,
+  getIndustries,
   getNavItems,
   getReportById,
   getReportForCheckoutById,

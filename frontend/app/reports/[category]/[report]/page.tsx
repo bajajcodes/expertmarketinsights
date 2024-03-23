@@ -72,6 +72,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
+function formatDate(dateString: string) {
+  const [_year, month, day] = dateString.split("-");
+  return `${day}-${month}`;
+}
+
 export default async function Page({ params }: Props) {
   let report: Report;
   try {
@@ -97,7 +102,8 @@ export default async function Page({ params }: Props) {
             </PageHeaderHeading>
             <PageHeaderDescription>
               {report.attributes.reportCode} ID&nbsp;|&nbsp;
-              {report.attributes.publishedDate}&nbsp;|&nbsp;
+              {report.attributes.category.data.attributes.name}&nbsp;|&nbsp;
+              {formatDate(report.attributes.publishedDate)}&nbsp;|&nbsp;
               {report.attributes.numberOfPages} Pages
             </PageHeaderDescription>
           </PageHeader>
