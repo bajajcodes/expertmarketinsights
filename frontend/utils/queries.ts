@@ -253,11 +253,25 @@ query LIST_CATEGORY_BY_REPORT_ID($id: ID!){
 }
 `;
 
+const LIST_CATEGORY_NAME = `
+query LIST_CATEGORY_NAME($id: ID){
+  categories(filters: {id: {eq: $id}}){
+    data {
+      id
+      attributes{
+        name
+      }
+    }
+  }
+}
+`;
+
 export {
   LIST_CATEGORIES,
   LIST_CATEGORIES_SLUGS,
   LIST_CATEGORY,
   LIST_CATEGORY_BY_REPORT_ID,
+  LIST_CATEGORY_NAME,
   LIST_CATEGORY_REPORTS,
   LIST_CATEGORY_REPORTS_META_DATA,
   LIST_REPORT,

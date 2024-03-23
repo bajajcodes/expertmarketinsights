@@ -9,6 +9,7 @@ import {
   LIST_CATEGORIES,
   LIST_CATEGORIES_SLUGS,
   LIST_CATEGORY_BY_REPORT_ID,
+  LIST_CATEGORY_NAME,
   LIST_CATEGORY_REPORTS,
   LIST_CATEGORY_REPORTS_META_DATA,
   LIST_REPORTS_BY_CATEGORY,
@@ -216,6 +217,16 @@ const getCategoryById = async (id: string): Promise<Category> => {
   return data.data.categories.data[0];
 };
 
+const getCategoryNameById = async (id: string): Promise<Category> => {
+  const fetchParams = getStrapiFetchParams(LIST_CATEGORY_NAME, { id });
+  const response = await fetch(
+    `${process.env.STRAPI_API_BASE_URL}/graphql`,
+    fetchParams
+  );
+  const data = await response.json();
+  return data.data.categories.data[0];
+};
+
 const getReportById = async (id: string): Promise<Report> => {
   const fetchParams = getStrapiFetchParams(
     LIST_REPORT_BY_ID,
@@ -380,6 +391,7 @@ export {
   getCategoriesSlugs,
   getCategoryById,
   getCategoryByReportId,
+  getCategoryNameById,
   getCategoryReports,
   getImagesWithPlaceholders,
   getIndustries,
