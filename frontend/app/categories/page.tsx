@@ -21,7 +21,7 @@ export default async function Categories() {
     <>
       <HeroHeader title="ALL CATEGORIES" />
       <section className="container">
-        <ul className="container max-w-screen-lg m-auto py-8 flex flex-col gap-8 md:flex-row md:flex-wrap items-center justify-center">
+        <ul className="container max-w-screen-lg m-auto py-8 gap-8 place-items-center grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))]">
           {categories.map(({ id, attributes: { name, image } }) => {
             const category = getSlug(name, id);
             return (
