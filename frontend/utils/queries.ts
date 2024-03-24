@@ -1,6 +1,6 @@
 const LIST_CATEGORIES = `
 query LIST_CATEGORY($category: String){
-  categories(filters: {slug: {eq: $category}}){
+  categories(filters: {slug: {eq: $category}}, pagination: {pageSize: 100}){
     data {
       id
       attributes {
