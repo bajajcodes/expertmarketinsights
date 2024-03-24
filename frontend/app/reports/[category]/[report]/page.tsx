@@ -73,8 +73,31 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 function formatDate(dateString: string) {
-  const [_year, month, day] = dateString.split("-");
-  return `${day}-${month}`;
+  const [year, month, _day] = dateString.split("-");
+  const monthName = getMonthName(month);
+  return `${monthName}-${year}`;
+}
+
+const monthMap = {
+  "01": "January",
+  "02": "February",
+  "03": "March",
+  "04": "April",
+  "05": "May",
+  "06": "June",
+  "07": "July",
+  "08": "August",
+  "09": "September",
+  "10": "October",
+  "11": "November",
+  "12": "December",
+} as const;
+
+function getMonthName(_monthNumber: string) {
+  const monthNumber = _monthNumber
+    .toString()
+    .padStart(2, "0") as keyof typeof monthMap;
+  return monthMap[monthNumber];
 }
 
 export default async function Page({ params }: Props) {
