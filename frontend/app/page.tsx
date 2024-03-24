@@ -41,7 +41,7 @@ export default async function Home() {
         />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center justify-center">
           <p className="mb-4 leading-10 font-semibold drop-shadow text-4xl text-center">
-            We Use Research For Illumination!
+            Insights Redefining Success in Every Market.
           </p>
           <SearchReportsWithSuspense />
         </div>
