@@ -266,6 +266,27 @@ query LIST_CATEGORY_NAME($id: ID){
 }
 `;
 
+const LIST_LATEST_REPORTS_META_DATA = `
+query LIST_LATEST_REPORTS_META_DATA($pageSize: Int){
+  reports(sort: "publishedAt:desc", pagination: {pageSize: $pageSize}){
+    data {
+      id
+      attributes{
+        reportTitle
+        category {
+          data {
+            id 
+            attributes {
+              name
+            }
+          }
+        }
+      }
+    }
+  }
+}
+`;
+
 export {
   LIST_CATEGORIES,
   LIST_CATEGORIES_SLUGS,
@@ -274,6 +295,7 @@ export {
   LIST_CATEGORY_NAME,
   LIST_CATEGORY_REPORTS,
   LIST_CATEGORY_REPORTS_META_DATA,
+  LIST_LATEST_REPORTS_META_DATA,
   LIST_REPORT,
   LIST_REPORTS,
   LIST_REPORTS_BY_CATEGORY,

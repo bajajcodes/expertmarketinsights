@@ -1,4 +1,5 @@
 import { Industries } from "@/components/industries";
+import { LatestReports } from "@/components/latest-reports";
 import {
   PageHeader,
   PageHeaderDescription,
@@ -28,7 +29,6 @@ export default async function Home() {
       source: images.introduction2.src,
     },
   ]);
-
   return (
     <React.Fragment>
       <div className="relative w-full h-[500px]">
@@ -118,6 +118,7 @@ export default async function Home() {
         </section>
       </section>
       <Industries />
+      <LatestReports />
       <Stats />
       <Testimonies />
     </React.Fragment>

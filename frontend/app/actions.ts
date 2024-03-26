@@ -12,6 +12,7 @@ import {
   LIST_CATEGORY_NAME,
   LIST_CATEGORY_REPORTS,
   LIST_CATEGORY_REPORTS_META_DATA,
+  LIST_LATEST_REPORTS_META_DATA,
   LIST_REPORTS_BY_CATEGORY,
   LIST_REPORTS_META_DATA,
   LIST_REPORT_BY_ID,
@@ -385,6 +386,21 @@ const getCategoryByReportId = async (
   }
 };
 
+const getLatestReportsMetaData = async (
+  pageSize: number = 10
+): Promise<Array<ReportMetaData>> => {
+  const fetchParams = getStrapiFetchParams(LIST_LATEST_REPORTS_META_DATA, {
+    pageSize,
+  });
+  const response = await fetch(
+    `${process.env.STRAPI_API_BASE_URL}/graphql`,
+    fetchParams
+  );
+  const data = await response.json();
+  const reports = data.data.reports.data;
+  return reports;
+};
+
 export {
   getBlurImgData,
   getCategories,
@@ -395,6 +411,7 @@ export {
   getCategoryReports,
   getImagesWithPlaceholders,
   getIndustries,
+  getLatestReportsMetaData,
   getNavItems,
   getReportById,
   getReportForCheckoutById,
