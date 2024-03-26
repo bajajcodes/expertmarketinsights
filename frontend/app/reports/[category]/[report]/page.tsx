@@ -3,6 +3,7 @@ import { Report } from "@/app/types";
 import { BuyingOptions } from "@/components/buying-options";
 import { FAQ } from "@/components/faqs";
 import { HeroHeader } from "@/components/hero-header";
+import { LatestReports } from "@/components/latest-reports-buying-options";
 import {
   PageHeader,
   PageHeaderDescription,
@@ -220,10 +221,13 @@ export default async function Page({ params }: Props) {
             </TabsContent>
           </Tabs>
         </div>
-        <BuyingOptions
-          reportId={report.id}
-          prices={report.attributes.buyingOptions}
-        />
+        <div>
+          <BuyingOptions
+            reportId={report.id}
+            prices={report.attributes.buyingOptions}
+          />
+          <LatestReports />
+        </div>
       </section>
     </>
   );
