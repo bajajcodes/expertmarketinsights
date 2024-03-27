@@ -2,6 +2,7 @@
 
 import { Icons } from "@/components/icons";
 import { navConfig } from "@/config/nav";
+import { siteConfig } from "@/config/site";
 import { API_CACHE_TAGS } from "@/types/api";
 import { MainNavItem, SidebarNavItem } from "@/types/nav";
 import { LeadGenerateType } from "@/types/schema";
@@ -76,7 +77,7 @@ async function sendLeadForFreeCustomizedReport(
       },
       body: JSON.stringify({
         from: "onboarding@resend.dev",
-        to: "shmbajaj32@gmail.com",
+        to: siteConfig.email,
         subject: "Query For Free Customized Report",
         html,
       }),
@@ -114,7 +115,7 @@ async function subscribeToNewsLetter(
       },
       body: JSON.stringify({
         from: "onboarding@resend.dev",
-        to: "shmbajaj32@gmail.com",
+        to: siteConfig.email,
         subject: "News Letter Subscription",
         html: `<p><strong>Email:&nbsp;</strong><span>${rawFormData?.email}</span></p>`,
       }),
