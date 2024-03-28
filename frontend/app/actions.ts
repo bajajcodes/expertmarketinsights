@@ -85,6 +85,7 @@ async function sendLeadForFreeCustomizedReport(
     const data = await response.json();
     return { ...data, success: true };
   } catch (error: any) {
+    console.error({ error });
     return {
       success: false,
       message: error?.message ?? "Something Went Wrong",
