@@ -120,7 +120,7 @@ export default async function Page({ params }: Props) {
       <HeroHeader title={report.attributes.reportTitle} />
       <section className="container bg-white mb-4 grid gap-4 md:grid-cols-[1fr_0.5fr]">
         <div>
-          <PageHeader className="pb-1 md:pb-2 lg:pb-4">
+          <PageHeader className="pb-1 md:pb-2 lg:pb-4 md:pt-6 lg:pt-12">
             <PageHeaderHeading>
               {report.attributes.reportTitle}
             </PageHeaderHeading>

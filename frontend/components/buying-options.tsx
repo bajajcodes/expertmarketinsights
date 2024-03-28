@@ -57,7 +57,7 @@ export function BuyingOptions(props: BuyingOptionsProps) {
     redirect(`/checkout?id=${props.reportId}&user=${state.user}`);
   }
   return (
-    <div className="flex flex-col space-y-6  py-8 md:pt-12 lg:pt-24 ">
+    <div className="flex flex-col space-y-6 py-8 md:pt-6 lg:pt-12  md:sticky md:z-40 md:top-52 lg:top-40 bg-white">
       {props.prices.length > 0 ? (
         <div className="border">
           <div className="bg-gray-200 p-4 text-center text-xl font-semibold">
