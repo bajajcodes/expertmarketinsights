@@ -67,8 +67,12 @@ const records = [
 
 export function RequestForm({
   defaultRequest,
+  reportCode,
+  reportTitle,
 }: {
   defaultRequest: RequestInfoValue;
+  reportCode: string;
+  reportTitle: string;
 }) {
   const { toast } = useToast();
   const [state, action] = useFormState(requestReport, {
@@ -94,6 +98,8 @@ export function RequestForm({
       ref={formRef}
       action={action}
     >
+      <Input type="hidden" name="reportCode" value={reportCode} />
+      <Input type="hidden" name="reportTitle" value={reportTitle} />
       {formFields.map((field) => (
         <FormItem key={field.name} className="max-w-full">
           <Input

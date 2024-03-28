@@ -46,7 +46,11 @@ export default async function RequestPage({
         <h2 className="text-2xl font-semibold text-white text-center">
           {report.attributes.reportTitle}
         </h2>
-        <RequestForm defaultRequest={value} />
+        <RequestForm
+          defaultRequest={value}
+          reportCode={report.attributes.reportCode}
+          reportTitle={report.attributes.reportTitle}
+        />
       </section>
     </>
   );
