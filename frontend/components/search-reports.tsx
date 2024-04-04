@@ -10,7 +10,7 @@ function SearchBarFallback() {
 
 export function SearchReports() {
   return (
-    <div className="relative h-[100px]">
+    <div className="relative h-32">
       <div className="w-full h-full relative bg-blend-screen bg-opacity-50 bg-gray-500/5"></div>
       <Image
         src={images.banner.src}

@@ -64,7 +64,7 @@ export default async function Reports({
   return (
     <>
       <HeroHeader title="ALL REPORTS" />
-      <section className="container max-w-screen-lg py-8 ">
+      <section className="container md:max-w-screen-lg p-4 lg:p-8">
         <h2 className="text-xl font-semibold mb-4">Reports</h2>
         <ul className="grid gap-8 place-items-center">
           {reports.map((report) => (

@@ -11,7 +11,11 @@ export function SearchReportsForm({ className }: { className?: string }) {
   const searchParams = useSearchParams();
   const [state, action] = useFormState(navigateToReports, { error: "" });
   const search = searchParams.get("search") || "";
-
+  console.info(
+    `searched: default-value is ${search} and searched-value is ${JSON.stringify(
+      state
+    )}`
+  );
   return (
     <>
       <form

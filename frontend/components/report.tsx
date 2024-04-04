@@ -23,7 +23,7 @@ export function Report({
 }: ReportProps) {
   const href = `/reports/${categorySlug}/${reportSlug}`;
   return (
-    <div className="bg-[#f3f4f6] p-6 rounded-lg flex flex-col md:flex-row md:justify-between md:items-start w-full">
+    <div className="bg-[#f3f4f6] p-4 rounded-lg flex flex-col md:flex-row md:justify-between md:items-start w-full">
       <div>
         <Link className="text-blue-600 hover:text-blue-800" href={href}>
           <h3 className="text-lg font-semibold cursor-pointer">

@@ -103,7 +103,7 @@ const requestReport = async (
 
 async function navigateToReports(_: unknown, data: FormData) {
   const search = data.get("search") as string;
-  if (!search) {
+  if (!search || !search.trim().length) {
     return { error: "Search Cannot Be Empty." };
   }
   redirect(`/reports/?search=${search}`);
